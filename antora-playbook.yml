@@ -1,6 +1,6 @@
 site:
-  title: FIXME Course Title
-  start_page: REPLACEREPONAME::index.adoc
+  title: Guardrails for AI Applications
+  start_page: genai-guardrails::index.adoc
 
 content:
   sources:

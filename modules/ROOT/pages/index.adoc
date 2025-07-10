@@ -1,27 +1,44 @@
-= An Example Quick Course
+= Guardrails for AI Applications
 :navtitle: Home
 
-== Introduction
+== About this Course
 
-Course Title: Course title FIXME
+This course equips students with an understanding of the risks involved in accepting requests and generating responses using Large Language Models (LLMs), and the methods to mitigate them using various **guardrail** techniques, frameworks, libraries and tools.
 
-Description:
-Course description FIXME
+**Target Audience:** Data scientists, AI engineers, solution architects, consultants, and developers who are involved in the design, development, or deployment of generative AI solutions, and need to ensure their safety, ethics, and reliability.
 
-Duration: FIXME hours
+**Duration:** 4 hours
 
 == Objectives
 
 On completing this course, you should be able to:
 
-* Observable, measurable objective...
-* Observable, measurable objective...
-* Observable, measurable objective...
+* Understand the critical need for AI guardrails to ensure safe, ethical, and reliable AI interactions, proactively preventing harmful outputs and aligning AI behavior with legal and ethical standards.
+
+* Identify and categorize various AI risks, including inherent model biases, unintended outputs, misuse, and security threats such as misinformation, prompt injection, and hallucinations.
+
+* Learn and apply different methods for implementing AI guardrails, leveraging specialized models like **Granite Guardian**, **Llama Guard**, and **PromptGuard**, as well as orchestrator frameworks such as **TrustyAI Guardrails Orchestrator**.
+
+* Gain hands-on experience with local development environments and Red Hat OpenShift AI for deploying, configuring, and managing guardrails.
+
+* Develop skills in evaluating the effectiveness of guardrails and continuously iterating on their implementation using various evaluation metrics and tools.
 
 == Prerequisites
 
-This course assumes that you have the following prior experience:
+The following courses and labs are recommended before attempting this course:
 
-* Course or experience...
-* Course or experience...
-* Course or experience...
+* AI Fundamentals (https://training-lms.redhat.com/sso/saml/auth/rhlpint?RelayState=deeplinkoffering%3D62410986[Internal] | https://training-lms.redhat.com/sso/saml/auth/rhopen?RelayState=deeplinkoffering%3D62412150[Partner])
+
+* Consult the https://source.redhat.com/career/start_learning/core_skills_academies/ai_skills_academy[AI Skills Academy] page for more introductory material on AI
+
+* Introduction to Large Language Models (https://training-lms.redhat.com/sso/saml/auth/rhlpint?RelayState=deeplinkoffering%3D61705036[Internal] | https://training-lms.redhat.com/sso/saml/auth/rhopen?RelayState=deeplinkoffering%3D61706249[Partner])
+
+* You must be comfortable with the basics of Python and usage of tools like `pip` to install liibraries
+
+== Acknowledgements
+
+* Karlos Knox
+* Rupali Talwatkar
+* Sam Zahran
+* Caitlyn Rymarchyk
+* Ravi Srinivasan
