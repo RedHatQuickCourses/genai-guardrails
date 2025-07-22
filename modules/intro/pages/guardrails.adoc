@@ -13,6 +13,8 @@ At its core, an AI guardrail is a __set of rules, safeguards, and policies desig
 
 This proactive approach helps to prevent a range of undesirable behaviors, including misuse, inherent biases, the spread of misinformation, and various security risks, all while upholding compliance with industry standards and legal requirements.
 
+video::FLOXGvqdwbM[youtube,title=What are guardrails for LLMs?,width=700,height=450]
+
 == Why Guardrails are Indispensable for AI Applications
 
 image::gr-bullseye.png[title=Why Guardrails?]
@@ -34,7 +36,7 @@ Guardrails are specifically designed to address these challenges by reducing the
 
 === Specific Risks Necessitating Guardrails
 
-The IBM https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas[AI risk atlas] outlines various risks associated with agentic AI, generative AI, and machine learning models. These risks are categorized based on whether they are traditional, amplified by generative AI, specific to generative AI, amplified by agentic AI, or specific to agentic AI. Guardrails are crucial for mitigating these diverse and evolving threats.
+The IBM https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas[AI risk atlas^] outlines various risks associated with agentic AI, generative AI, and machine learning models. These risks are categorized based on whether they are traditional, amplified by generative AI, specific to generative AI, amplified by agentic AI, or specific to agentic AI. Guardrails are crucial for mitigating these diverse and evolving threats.
 
 The appendices at the end of this section provide a brief overview of the different types of risks associated with AI applications (both generative AI and agentic AI applications) without guardrails.
 
@@ -64,9 +66,10 @@ While preventing harmful content and ensuring compliance are primary drivers, gu
 
 == Appendix
 
-=== Risks Amplified by, or specific to Agentic AI
+.AI Risks
+****
 
-AI agents are software entities that use AI techniques and possess the agency to act in their environment based on set goals, deciding and executing actions autonomously. Since recent agents are often built on large language models, generative AI risks are also applicable to them.
+AI agents are software entities that use AI techniques and possess the agency to act in their environment based on set goals, deciding and executing actions autonomously. Since recent agents are often built on large language models, generative AI risks are also applicable to them. The following are risks amplified by, or specific to Agentic AI:
 
 * **Fairness**:
 ** Discriminatory actions 
@@ -106,9 +109,7 @@ AI agents are software entities that use AI techniques and possess the agency to
 * **Explainability**:
 ** Unexplainable and untraceable actions
 
-=== Risks Applicable to Generative AI Models (and Traditional AI)
-
-These risks are broadly applicable to generative AI models, which form the foundation for many AI applications today.
+The following risks are broadly applicable to generative AI models, which form the foundation for many AI applications today.
 
 * **Training Data Risks**:
 ** **Accuracy**: Unrepresentative data, Data contamination
@@ -140,3 +141,10 @@ These risks are broadly applicable to generative AI models, which form the found
 ** **Governance**: Lack of data transparency, Lack of model transparency, Lack of system transparency, Incomplete usage definition, Incorrect risk testing, Unrepresentative risk testing, Lack of testing diversity 
 ** **Legal Compliance**: Model usage rights restrictions, Legal accountability, Generated content ownership and IP 
 ** **Societal Impact**: Impact on the environment, Impact on affected communities, Human exploitation, Impact on Jobs, AI agents' Impact on human agency, Impact on cultural diversity
+
+****
+
+== References
+
+* https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas[IBM AI Risk Atlas^]
+* https://www.redhat.com/en/blog/security-and-safety-ai-systems[Security and safety of AI systems^]
