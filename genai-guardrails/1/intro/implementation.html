@@ -167,50 +167,256 @@
 </aside>
 <article class="doc">
 <h1 class="page">Implementing Guardrails</h1>
-<div class="sect1">
-<h2 id="_key_guardrail_frameworks_and_tools"><a class="anchor" href="#_key_guardrail_frameworks_and_tools"></a>Key Guardrail Frameworks and Tools</h2>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>The market offers a variety of solutions, both proprietary and open-source, to implement AI guardrails:</p>
+<p>In the previous section, you learnt about the importance of adding Guardrails to your AI applications. Rather than manually coding the Guardrail rails and workflows, there are specialized LLMs that can analyze inputs and outputs to and from the LLM (inference) that you are using for your applications. There are multiple options when it comes to Guardrails implementation using a mixture of specialized models and SDKs targeting programming languages like Python, Node.js and Java.</p>
+</div>
+<div class="paragraph">
+<p>Here are some of the most popular guardrails libraries, frameworks, and tools for AI applications, covering both input and output guardrails.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+In this course, we will mostly focus on a few open source Guardrails frameworks and libraries.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_proprietary_guardrails_frameworks_and_tools"><a class="anchor" href="#_proprietary_guardrails_frameworks_and_tools"></a>Proprietary Guardrails Frameworks and Tools</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Most of the hyperscaler cloud providers like AWS, GCP and Azure provide their own Guardrails frameworks that are tightly integrated with their cloud services.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>TrustyAI</strong>:: An open-source toolkit and Red Hat team dedicated to providing Responsible AI-as-a-Service at an enterprise scale. It integrates into platforms like Open Data Hub and Red Hat OpenShift AI to streamline responsible AI workflows . TrustyAI offers a guardrails framework that allows plugging in various text detection algorithms and manages the routing between these detectors and the generative model . It also provides out-of-the-box detectors, currently regex-based, with plans for more advanced detections like validating output format (e.g., valid JSON) . A significant advantage is its centralized management, meaning changes to the guardrail configuration are transparent to consuming applications, ensuring consistent adherence to new standards across all deployments . TrustyAI also includes tools for bias monitoring, data drift monitoring, and explainability, alongside its guardrails and LM-Eval capabilities for language model evaluation.</p>
+<p><a href="https://aws.amazon.com/bedrock/guardrails" target="_blank" rel="noopener">AWS Bedrock Guardrails</a>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Manages what an AI model can and cannot say using various filters, also called policies.</p>
 </li>
 <li>
-<p><strong>Granite Guardian</strong>:: A collection of models from IBM specifically designed to detect risks in prompts and responses. These models are trained on instruction-tuned Granite language models and excel at identifying risks categorized in the IBM AI Risk Atlas . They cover a broad spectrum of risks, including harmful content (social bias, profanity, sexual content, violence, unethical behavior), harm engagement, evasiveness, jailbreaking, groundedness and relevance for RAG systems, and function calling hallucination in agentic workflows. The Granite-Guardian-HAP-38M model, a smaller variant, is effective for detecting hateful and profane speech.</p>
+<p>Content filters identify and filter harmful text or images (hate speech, insults, sexual material, violence, harmful behavior, prompt attacks) with customizable strictness.</p>
 </li>
 <li>
-<p><strong>Llama Guard</strong>:: Developed by Meta, this is an LLM-based input-output safeguard model tailored for Human-AI conversations. It leverages a safety risk taxonomy to classify risks in both user prompts and AI responses. Llama Guard treats safety checks as instruction-following tasks, guided by explicit rules and categories of unsafe content. Its instruction fine-tuning enables customization of tasks and output formats, supporting zero-shot or few-shot prompting with diverse taxonomies.</p>
+<p>Word filters block specific words or phrases (e.g., swear words, competitor names).</p>
 </li>
 <li>
-<p><strong>Nvidia NeMo</strong>:: This framework adds a control layer between users and LLMs to enhance safety and reliability. It uses Colang, a programming language by Nvidia, to define rules for how LLMs should respond. NeMo employs a K-nearest neighbor (KNN) method to compare user prompts with stored examples, facilitating the generation of safe responses. It also includes built-in tools for fact-checking, hallucination prevention, and harmful content moderation.</p>
+<p>Sensitive information filters look for and can block or mask private data like Social Security numbers, birthdates, and addresses, supporting custom patterns.</p>
 </li>
 <li>
-<p><strong>Guardrails AI</strong>:: This framework allows users to impose rules on the structure, type, and quality of LLM outputs, utilizing RAIL (Reliable AI Language) specifications, typically in XML format . Its workflow involves defining RAIL specifications, integrating classification models, and employing an error correction mechanism that can re-prompt the LLM until the output meets the defined rules . Guardrails AI is primarily text-focused and functions as a Type-2 neural-symbolic system, combining symbolic rules with machine learning models for classification .</p>
+<p>Includes a contextual grounding check to verify if the model&#8217;s answer matches its source, flagging or filtering out "hallucinations" or off-topic responses.</p>
 </li>
 <li>
-<p><strong>LlamaFirewall</strong>:: An open-source, security-focused guardrail framework from Meta, designed to be the final layer of defense against security risks in AI agents . It specifically addresses prompt injection, agent misalignment, and insecure code generation risks . LlamaFirewall integrates three core guardrails:</p>
+<p>Allows setting custom messages for blocked content.</p>
+</li>
+</ul>
+</div>
 </li>
 <li>
-<p><strong>PromptGuard 2</strong>:: A universal jailbreak detector that operates in real-time on user prompts to identify direct jailbreak attempts .</p>
+<p><a href="https://azure.microsoft.com/en-us/products/ai-services/ai-content-safety" target="_blank" rel="noopener">Azure AI Content Safety</a>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>A cloud service that helps spot and manage harmful text and images, including hate speech, violence, sexual content, and self-harm.</p>
 </li>
 <li>
-<p><strong>Agent Alignment Checks</strong>:: An experimental chain-of-thought auditor that inspects the agent&#8217;s reasoning process for signs of <strong>goal hijacking</strong> or <strong>prompt-injection induced misalignment</strong> .</p>
+<p>Offers Text and Image Moderation with severity scoring.</p>
 </li>
 <li>
-<p><strong>CodeShield</strong>:: An online static analysis engine that uses Semgrep and regex-based rules to prevent the generation of insecure or dangerous code by coding agents .
-LlamaFirewall unifies these components into a policy engine that supports custom pipelines, conditional remediation strategies, and the integration of new detectors .</p>
+<p>Provides a Content Safety Studio for testing, adjusting, and monitoring content moderation, including managing blocklists and exporting configurations.</p>
 </li>
 <li>
-<p><strong>Proprietary Solutions</strong>:: Major cloud providers such as AWS and Azure offer their own guardrail services.</p>
+<p>Features Customization Options to create custom moderation categories and fine-tune strictness for specific fields.</p>
 </li>
 <li>
-<p><strong>AWS Bedrock Guardrails</strong>:: Manages AI model output through various filter types, including content filters (for hate speech, insults, sexual material, violence, harmful behavior, prompt attacks), word filters (for specific blocked words or phrases), and sensitive information filters (for PII like SSNs, birthdates, addresses) . It also features a <strong>contextual grounding check</strong> to detect hallucinations and off-topic responses .</p>
+<p>Includes Smarter Detection tools like Prompt Shields (catching manipulative user inputs), Groundedness Checks (verifying AI answers against real sources), and Protected Content Detection (identifying copyrighted material).</p>
 </li>
 <li>
-<p><strong>Azure AI Content Safety</strong>:: A Microsoft cloud service for detecting and managing harmful content in text and images . It identifies hate speech, sexual content, violence, and self-harm, providing severity scores . Features include <strong>Prompt Shields</strong> (to catch manipulative inputs), <strong>Groundedness Checks</strong> (to verify AI-generated answers against real sources), and <strong>Protected Content Detection</strong> (for copyrighted material) .</p>
+<p>Offers Monitoring and Analytics for tracking system performance and trends.</p>
+</li>
+<li>
+<p>Prioritizes Security and Privacy through secure connections, encrypted data, and adherence to privacy standards.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="https://platform.openai.com/docs/guides/moderation" target="_blank" rel="noopener">OpenAI Moderation API</a>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>A GPT-based, multi-label classifier that assesses text for violations across content safety categories such as hate, harassment, self-harm, sexual content, and violence.</p>
+</li>
+<li>
+<p>Returns probability scores and binary labels per category, as well as an overall binary label for the content.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="https://www.constitutional.ai/#home" target="_blank" rel="noopener">Anthropic&#8217;s Constitutional AI</a>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>A proprietary system that embeds safety at the provider level, aiming to instill high-level normative constraints during model training.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_open_source_guardrails_frameworks_and_tools"><a class="anchor" href="#_open_source_guardrails_frameworks_and_tools"></a>Open-Source Guardrails Frameworks and Tools</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The following are some popular open source frameworks and libraries for adding Guardrails:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://trustyai.org/docs/main/main" target="_blank" rel="noopener">TrustyAI</a>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>An open-source toolkit providing Responsible AI-as-a-Service at an enterprise scale.</p>
+</li>
+<li>
+<p>Integrated into Open Data Hub and Red Hat OpenShift AI to streamline responsible AI workflows in MLOps.</p>
+</li>
+<li>
+<p>Offers tools for Bias Monitoring, Drift Monitoring, Explainability, Guardrails (moderating interactions between generative models and users), and LM-Eval.</p>
+</li>
+<li>
+<p>The Guardrails Orchestrator service (underpinned by IBM&#8217;s FMS-Guardrails Orchestrator) is a core component within TrustyAI for invoking detections on LLM text generation inputs and outputs, as well as standalone detections. It allows for configurable detector services and routes for specific pipelines.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="https://www.ibm.com/architectures/product-guides/granite-guardian" target="_blank" rel="noopener">IBM Granite Guardian</a>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>A collection of models designed to detect risks in prompts and responses, trained on instruction fine-tuned Granite language models.</p>
+</li>
+<li>
+<p>Can help with risk detection across dimensions cataloged in the IBM AI Risk Atlas, including harm, social bias, profanity, sexual content, unethical behavior, violence, harm engagement, evasiveness, jailbreaking, and RAG safety (groundedness, context relevance, answer relevance).</p>
+</li>
+<li>
+<p>Granite Guardian HAP model is a small (38 million parameter) language model specifically for detecting hateful language, aggressive language, and profanity.</p>
+</li>
+<li>
+<p>Useful for risk detection in enterprise applications, including use as guardrails, RAG assessment, and function calling risk detection in agentic workflows.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="https://www.llama.com/docs/model-cards-and-prompt-formats/llama-guard-3/" target="_blank" rel="noopener">Meta Llama Guard</a>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>An LLM-based input-output safeguard model for Human-AI conversations.</p>
+</li>
+<li>
+<p>A fine-tuned Llama2-7b model that classifies safety risks in prompts and responses based on a predefined safety risk taxonomy.</p>
+</li>
+<li>
+<p>Treats safety checks as instruction-following tasks and can be adapted to different categories or guidelines using zero-shot or few-shot learning.</p>
+</li>
+<li>
+<p>Distinguishes between classifying user messages ("prompts") and agent messages ("responses").</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="https://developer.nvidia.com/nemo-guardrails" target="_blank" rel="noopener">Nvidia NeMo Guardrails</a>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Adds a control layer between users and LLMs to improve safety and reliability.</p>
+</li>
+<li>
+<p>Uses Colang, a programming language by Nvidia, to set rules that guide LLM responses.</p>
+</li>
+<li>
+<p>Comes with pre-built tools for fact-checking, preventing hallucinations, and moderating harmful content.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="https://www.guardrailsai.com/docs" target="_blank" rel="noopener">Guardrails AI</a>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Allows users to add rules for structure, type, and quality to the outputs of LLMs using RAIL specifications (XML).</p>
+</li>
+<li>
+<p>Works by defining RAIL specs, integrating classifier models for tasks like toxic content detection, and performing error correction by re-prompting the LLM until rules are met.</p>
+</li>
+<li>
+<p>Primarily works for text-based outputs.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="https://github.com/meta-llama/PurpleLlama/tree/main/LlamaFirewall" target="_blank" rel="noopener">LlamaFirewall</a>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>An open-source security-focused guardrail framework designed as a final layer of defense against security risks in AI agents.</p>
+</li>
+<li>
+<p>Can be deployed locally on CPU and GPU for real-time processing.</p>
+</li>
+<li>
+<p>Mitigates risks such as prompt injection, agent misalignment, and insecure code risks.</p>
+</li>
+<li>
+<p>Integrates PromptGuard 2, Agent Alignment Checks (AlignmentCheck), and CodeShield.</p>
+</li>
+<li>
+<p>PromptGuard 2 specifically targets universal jailbreak attempts originating from user inputs or tool outputs. It is a lightweight classifier model built using BERT-based architectures (e.g., mDeBERTa-base, DeBERTa-xsmall) designed to detect explicit jailbreaking techniques.</p>
+</li>
+<li>
+<p>AlignmentCheck is an experimental chain-of-thought auditor that inspects agent reasoning for prompt injection and goal misalignment.</p>
+</li>
+<li>
+<p>CodeShield is an online static analysis engine for LLM-generated code, supporting Semgrep and regex-based rules for detecting insecure coding patterns.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="https://whylabs.ai/langkit" target="_blank" rel="noopener">WhyLabs’ LangKit</a>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>An open-source tool for monitoring Large Language Models. Compare and A/B test across different LLM and prompt versions</p>
+</li>
+<li>
+<p>Helps trace what an agent said or did. Validate and safeguard individual prompts and responses</p>
+</li>
+<li>
+<p>Evaluate that the LLM behavior is compliant with policy. Monitor user interactions inside LLM-powered applications</p>
+</li>
+</ul>
+</div>
 </li>
 </ul>
 </div>
