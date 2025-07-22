@@ -1,0 +1,10 @@
+# Lab: IBM Granite Guardian
+
+## Pre-requistes
+
+* foo
+
+## Steps
+
+. one
+. two

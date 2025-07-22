@@ -4,3 +4,7 @@ version: 1
 nav:
 - modules/ROOT/nav.adoc
 - modules/intro/nav.adoc
+- modules/ibm-guardian/nav.adoc
+- modules/guardrails-ai/nav.adoc
+- modules/meta-ai/nav.adoc
+- modules/trusty-ai/nav.adoc
