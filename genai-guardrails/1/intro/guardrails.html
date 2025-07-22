@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Why do you need Guardrails :: Guardrails for AI Applications</title>
+    <link rel="prev" href="index.html">
+    <link rel="next" href="unguarded.html">
+    <meta name="generator" content="Antora 3.1.3">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <script>var uiRootPath = '../../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://www.redhat.com" target="_blank"><img src="../../../_/img/redhat-logo.png" height="40px" alt="Red Hat"></a>
+      <a class="navbar-item" style="font-size: 24px; color: white" href="../../..">Guardrails for AI Applications</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://github.com/RedHatQuickCourses/REPLACEREPONAME/issues" target="_blank">Report Issues</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="genai-guardrails" data-version="1">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">Guardrails for AI Applications</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../index.html">Home</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="index.html">Introduction</a>
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="guardrails.html">Why Guardrails?</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="unguarded.html">Lab: LLMs with no Guardrails</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="implementation.html">Implementing Guardrails</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../ibm-guardian/index.html">IBM Granite Guardian</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../ibm-guardian/intro.html">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../ibm-guardian/lab.html">Lab: IBM Granite Guardian</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../guardrails-ai/index.html">Guardrails AI</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../guardrails-ai/intro.html">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../guardrails-ai/lab.html">Lab: Guardrails AI</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../meta-ai/index.html">Meta AI Guardrails</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../meta-ai/intro.html">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../meta-ai/lab.html">Lab: Meta AI Guardrails</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../trusty-ai/index.html">Trusty AI</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../trusty-ai/intro.html">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../trusty-ai/lab.html">Lab: Trusty AI</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Guardrails for AI Applications</span>
+    <span class="version">1</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="../index.html">Guardrails for AI Applications</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">1</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">Guardrails for AI Applications</a></li>
+    <li><a href="index.html">Introduction</a></li>
+    <li><a href="guardrails.html">Why Guardrails?</a></li>
+  </ul>
+</nav>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Why do you need Guardrails</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="_images/guardrails.png" alt="guardrails" width="600" height="250">
+</div>
+<div class="title">Figure 1. Guardrails</div>
+</div>
+<div class="paragraph">
+<p><strong>Guardrails are not just a luxury, but a fundamental necessity for building responsible AI applications</strong>. As AI, particularly generative AI and agentic AI, becomes increasingly integrated into our daily lives and business operations, understanding and mitigating its inherent risks is a critical task.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_what_are_guardrails"><a class="anchor" href="#_what_are_guardrails"></a>What are Guardrails?</h2>
+<div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="_images/guardrails-fig.png" alt="guardrails fig">
+</div>
+<div class="title">Figure 2. AI Guardrails</div>
+</div>
+<div class="paragraph">
+<p>At its core, an AI guardrail is a <em>set of rules, safeguards, and policies designed to guide how AI models, especially Large Language Models (LLMs), operate</em>. Their primary purpose is to ensure safe, ethical, and reliable outcomes. They act as a control mechanism, meticulously monitoring and regulating both the <strong>input</strong> that an AI model receives and the <strong>output</strong> it produces, thereby ensuring responses remain safe, accurate, and ethical.</p>
+</div>
+<div class="paragraph">
+<p>This proactive approach helps to prevent a range of undesirable behaviors, including misuse, inherent biases, the spread of misinformation, and various security risks, all while upholding compliance with industry standards and legal requirements.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_why_guardrails_are_indispensable_for_ai_applications"><a class="anchor" href="#_why_guardrails_are_indispensable_for_ai_applications"></a>Why Guardrails are Indispensable for AI Applications</h2>
+<div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="_images/gr-bullseye.png" alt="gr bullseye">
+</div>
+<div class="title">Figure 3. Why Guardrails?</div>
+</div>
+<div class="paragraph">
+<p>Just as a guardrail (fence) around a winding mountain road is used ensure safety of vehicles, AI guardrails channel the powerful capabilities of AI models along safe and productive pathways, preventing missteps and ensuring that the incredible potential of AI is realized responsibly.</p>
+</div>
+<div class="paragraph">
+<p>The deployment of AI applications, particularly those powered by large language models and exhibiting agentic behavior, fundamentally transforms the digital landscape. While the capabilities are immense, so too are the risks associated with bias, misuse, unintended outputs, and security vulnerabilities. Guardrails emerge as the critical infrastructure that bridges this gap, enabling the responsible and effective deployment of AI.</p>
+</div>
+<div class="paragraph">
+<p>They are not about stifling innovation but about guiding the AI&#8217;s behavior to keep interactions safe, useful, and aligned with intended purposes and ethical standards. By acting as a constant "digital immune system", vigilantly monitoring inputs and outputs, guardrails ensure that AI applications remain trustworthy and valuable tools, rather than becoming sources of unforeseen harm or liability. They are the essential framework for navigating the complex and evolving frontier of artificial intelligence.</p>
+</div>
+<div class="paragraph">
+<p>While large language models can process vast amounts of information and handle diverse queries, their responses can sometimes be unpredictable or even dangerous. This inherent unpredictability makes reliable guardrails critically important, especially for organizations that must prevent issues such as:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Harmful Advice</strong>: AI models could inadvertently provide guidance that leads to negative consequences, particularly in the health industry.</p>
+</li>
+<li>
+<p><strong>Biased Comments</strong>: Models may perpetuate or amplify societal biases present in their training data, leading to unfair or discriminatory outputs.</p>
+</li>
+<li>
+<p><strong>Privacy Violations</strong>: Without proper safeguards, AI could expose sensitive personal or confidential information.</p>
+</li>
+<li>
+<p><strong>Illegal Activities</strong>: An AI application could be manipulated into suggesting or promoting unlawful actions.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Guardrails are specifically designed to address these challenges by reducing the likelihood of generating inaccurate information, offensive content, or hallucinated responses, where the model fabricates information that appears plausible but is factually incorrect. By implementing guardrails, AI applications can provide users with reliable and ethically sound interactions, produce more accurate and context-aware responses, and proactively prevent harmful outputs, ultimately aligning AI behavior with legal and ethical standards.</p>
+</div>
+<div class="sect2">
+<h3 id="_specific_risks_necessitating_guardrails"><a class="anchor" href="#_specific_risks_necessitating_guardrails"></a>Specific Risks Necessitating Guardrails</h3>
+<div class="paragraph">
+<p>The IBM <a href="https://www.ibm.com/docs/en/watsonx/saas?topic=ai-risk-atlas">AI risk atlas</a> outlines various risks associated with agentic AI, generative AI, and machine learning models. These risks are categorized based on whether they are traditional, amplified by generative AI, specific to generative AI, amplified by agentic AI, or specific to agentic AI. Guardrails are crucial for mitigating these diverse and evolving threats.</p>
+</div>
+<div class="paragraph">
+<p>The appendices at the end of this section provide a brief overview of the different types of risks associated with AI applications (both generative AI and agentic AI applications) without guardrails.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_how_guardrails_work"><a class="anchor" href="#_how_guardrails_work"></a>How Guardrails Work</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In an unguarded system, user input flows directly to the generative model, and its output returns without intervention This direct path creates vulnerabilities for malicious inputs or unintended outputs Conversely, a guarded system introduces distinct "Input Guardrails" , "Retrieval Guardrails", and "Output Guardrails" that intercept and moderate the flow of information, ensuring safety and compliance.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/guardrailed-app.png" alt="guardrailed app">
+</div>
+<div class="title">Figure 4. Guardrails Placement in an LLM Application</div>
+</div>
+<div class="paragraph">
+<p>The figure above visually represents the strategic placement of guardrails within an LLM application, illustrating how they intercept and influence the flow of information at key stages: input, retrieval (especially for RAG systems), and output. This ensures continuous moderation and safety.</p>
+</div>
+<div class="paragraph">
+<p>Guardrails function by embedding a <strong>modular set of detectors along the input and output pathways of the AI model</strong> These detectors are configured to flag text based on predefined heuristics relevant to a specific use case This multi-layered approach provides granular control over the AI&#8217;s interactions.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Input Rails</strong>: These guardrails are positioned at the initial entry point, <strong>reviewing and processing incoming user messages</strong>. They can filter, adjust, or completely block messages based on defined rules, effectively preventing harmful or unwanted content from ever reaching the core AI model For example, a detector could identify and stop a <strong>prompt injection attack</strong> before it influences the model&#8217;s behavior</p>
+</li>
+<li>
+<p><strong>Retrieval Rails</strong>: For AI applications that leverage external information sources, such as through Retrieval-Augmented Generation (RAG), retrieval rails ensure that <strong>only safe and relevant data is retrieved and utilized</strong> by the model This helps to <strong>ground</strong> the model&#8217;s responses in vetted information and prevent the inclusion of unreliable or toxic external content.</p>
+</li>
+<li>
+<p><strong>Output Rails</strong>: Serving as the final checkpoint, these guardrails scrutinize the AI model&#8217;s generated response <strong>before it is delivered to the user</strong>. They verify that the output adheres to ethical guidelines, complies with content policies, and meets user expectations. An example would be a detector flagging and preventing the display of <strong>unacceptable language</strong> or <strong>hallucinated facts</strong> in the model&#8217;s output</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This comprehensive, layered strategy ensures that every message is thoroughly checked and refined throughout the interaction, fostering a safe and trustworthy conversation experience for users</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_additional_benefits_of_guardrailing"><a class="anchor" href="#_additional_benefits_of_guardrailing"></a>Additional Benefits of Guardrailing</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>While preventing harmful content and ensuring compliance are primary drivers, guardrails offer several other significant advantages:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Cost Savings</strong>: Guardrail detectors can be substantially smaller and less resource-intensive (tens of millions of parameters) than the large generative models they protect (tens of billions of parameters). This allows organizations to <strong>short-circuit irrelevant or off-topic queries</strong> before they consume expensive computational resources on the main generative model, leading to considerable cost efficiencies.</p>
+</li>
+<li>
+<p><strong>Ensuring Appropriate Language</strong>: Guardrails can enforce the use of language that is appropriate for the specific use case and brand For instance, they can detect and prompt the model to rephrase overly formal language if the application is intended to be friendly and conversational</p>
+</li>
+<li>
+<p><strong>Authoritative Responses</strong>: By integrating model evaluation, guardrails can ensure that the AI model only engages in discussions on subjects for which it has sufficient knowledge and authority. This prevents the model from generating unreliable information by limiting its scope to proven areas of expertise.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_appendix"><a class="anchor" href="#_appendix"></a>Appendix</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_risks_amplified_by_or_specific_to_agentic_ai"><a class="anchor" href="#_risks_amplified_by_or_specific_to_agentic_ai"></a>Risks Amplified by, or specific to Agentic AI</h3>
+<div class="paragraph">
+<p>AI agents are software entities that use AI techniques and possess the agency to act in their environment based on set goals, deciding and executing actions autonomously. Since recent agents are often built on large language models, generative AI risks are also applicable to them.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Fairness</strong>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Discriminatory actions</p>
+</li>
+<li>
+<p>Introduce data bias</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Privacy</strong>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Sharing IP/PI/confidential information with user</p>
+</li>
+<li>
+<p>Sharing IP/PI/confidential information with tools</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Value Alignment</strong>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Over or under reliance on AI agents</p>
+</li>
+<li>
+<p>Misaligned actions</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Robustness</strong> :</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Attack on AI agents’ external resources</p>
+</li>
+<li>
+<p>Unauthorized use</p>
+</li>
+<li>
+<p>Exploit trust mismatch</p>
+</li>
+<li>
+<p>Function calling <strong>hallucination</strong></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Computational Inefficiency</strong>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Redundant actions</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Governance</strong>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Incomplete AI agent evaluation</p>
+</li>
+<li>
+<p>Mitigation and maintenance</p>
+</li>
+<li>
+<p>Lack of AI agent transparency</p>
+</li>
+<li>
+<p>Reproducibility</p>
+</li>
+<li>
+<p>Accountability of AI agent actions</p>
+</li>
+<li>
+<p>AI agent compliance</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Societal Impact</strong>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Impact on human dignity</p>
+</li>
+<li>
+<p>AI agents' impact on human agency</p>
+</li>
+<li>
+<p>AI agents' impact on jobs</p>
+</li>
+<li>
+<p>AI agents' impact on environment</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Explainability</strong>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Unexplainable and untraceable actions</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_risks_applicable_to_generative_ai_models_and_traditional_ai"><a class="anchor" href="#_risks_applicable_to_generative_ai_models_and_traditional_ai"></a>Risks Applicable to Generative AI Models (and Traditional AI)</h3>
+<div class="paragraph">
+<p>These risks are broadly applicable to generative AI models, which form the foundation for many AI applications today.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Training Data Risks</strong>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Accuracy</strong>: Unrepresentative data, Data contamination</p>
+</li>
+<li>
+<p><strong>Fairness</strong>: Data bias</p>
+</li>
+<li>
+<p><strong>Value Alignment</strong>: Improper data curation, Improper retraining</p>
+</li>
+<li>
+<p><strong>Robustness</strong>: Data poisoning</p>
+</li>
+<li>
+<p><strong>Privacy</strong>: Personal information in data, Reidentification, Data privacy rights alignment</p>
+</li>
+<li>
+<p><strong>Transparency</strong>: Lack of training data transparency, Uncertain data provenance</p>
+</li>
+<li>
+<p><strong>Data Laws</strong>: Data acquisition restrictions, Data usage restrictions, Data transfer restrictions</p>
+</li>
+<li>
+<p><strong>Intellectual Property</strong>: Confidential information in data, Data usage rights restrictions</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Inference Risks</strong>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Accuracy</strong>: Poor model accuracy</p>
+</li>
+<li>
+<p><strong>Robustness (Model Behavior Manipulation)</strong>: Evasion attack, Extraction attack, <strong>Jailbreaking</strong></p>
+</li>
+<li>
+<p><strong>Intellectual Property</strong>: IP information in prompt, Confidential data in prompt</p>
+</li>
+<li>
+<p><strong>Robustness (Prompt Attacks)</strong>: <strong>Prompt injection attack</strong>, Prompt leaking, Prompt priming, Context overload attack, Direct instructions attack, Encoded interactions attack, Indirect instructions attack, Social hacking attack, Specialized tokens attack</p>
+</li>
+<li>
+<p><strong>Privacy</strong>: Personal information in prompt, Attribute inference attack, Membership inference attack</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Output Risks</strong> :</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Fairness</strong>: Decision bias, Output bias</p>
+</li>
+<li>
+<p><strong>Value Alignment</strong>: Harmful output, Harmful code generation, Toxic output, Incomplete advice, Over or under reliance</p>
+</li>
+<li>
+<p><strong>Misuse</strong>: Dangerous use, Spreading disinformation, Nonconsensual use, Spreading toxicity, Improper usage, Non-disclosure</p>
+</li>
+<li>
+<p><strong>Robustness</strong>: <strong>Hallucination</strong></p>
+</li>
+<li>
+<p><strong>Privacy</strong>: Exposing personal information</p>
+</li>
+<li>
+<p><strong>Intellectual Property</strong>: Copyright infringement, Revealing confidential information</p>
+</li>
+<li>
+<p><strong>Explainability</strong>: Unexplainable output, Unreliable source attribution, Untraceable attribution, Inaccessible training data</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Non-Technical Risks</strong>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Governance</strong>: Lack of data transparency, Lack of model transparency, Lack of system transparency, Incomplete usage definition, Incorrect risk testing, Unrepresentative risk testing, Lack of testing diversity</p>
+</li>
+<li>
+<p><strong>Legal Compliance</strong>: Model usage rights restrictions, Legal accountability, Generated content ownership and IP</p>
+</li>
+<li>
+<p><strong>Societal Impact</strong>: Impact on the environment, Impact on affected communities, Human exploitation, Impact on Jobs, AI agents' Impact on human agency, Impact on cultural diversity</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="index.html">Introduction</a></span>
+  <span class="next"><a href="unguarded.html">Lab: LLMs with no Guardrails</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <img src="../../../_/img/rhl-logo-red.png" height="40px" alt="Red Hat"  href="https://redhat.com" >
+</footer><script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>
