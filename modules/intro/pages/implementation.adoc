@@ -2,9 +2,11 @@
 
 In the previous section, you learnt about the importance of adding Guardrails to your AI applications. Rather than manually coding the Guardrail rails and workflows, there are specialized LLMs that can analyze inputs and outputs to and from the LLM (inference) that you are using for your applications. There are multiple options when it comes to Guardrails implementation using a mixture of specialized models and SDKs targeting programming languages like Python, Node.js and Java.
 
-Here are some of the most popular guardrails libraries, frameworks, and tools for AI applications, covering both input and output guardrails.
+At their core, AI guardrails are *rules*, *safeguards*, and *policies* that govern how AI models function. Their primary purpose is to provide users with reliable and ethically sound AI interactions, guide the model towards accurate and context-aware responses, proactively prevent harmful outputs, and minimize unintended consequences.
 
-NOTE: In this course, we will mostly focus on a few open source Guardrails frameworks and libraries.
+This section lists some of the most popular guardrails libraries, frameworks, and tools for AI applications, covering both input and output guardrails.
+
+NOTE: In this course, we will mostly focus on a few free and open source (FOSS) Guardrails frameworks and libraries.
 
 == Proprietary Guardrails Frameworks and Tools
 

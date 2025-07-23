@@ -12,7 +12,7 @@ This lab demonstrates the risks and concerns associated with running LLMs withou
 
 ## Steps
 
-. Start by launching ollama to run the IBM Granite model. If you have not already downloaded the model from ollama catalog, this command will download the model and then run it. It may take a few minutes to download and run the model depending on your hardware. Running this command will put you in a prompt where you can chat with the LLM. Use triple quotes (`""""`) to enter multiline text at the prompt
+. Start by launching ollama to run the IBM Granite model. If you have not already downloaded the model from ollama catalog, this command will download the model and then run it. It may take a few minutes to download and run the model depending on your hardware. Running this command will put you in a prompt where you can chat with the LLM. Use triple quotes (`"""`) to enter multiline text at the prompt
 +
 [source,subs="verbatim,quotes"]
 --
