@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Lab: Input Guardrails :: Guardrails for AI Applications</title>
+    <link rel="prev" href="intro.html">
+    <link rel="next" href="response.html">
+    <meta name="generator" content="Antora 3.1.3">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <script>var uiRootPath = '../../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://www.redhat.com" target="_blank"><img src="../../../_/img/redhat-logo.png" height="40px" alt="Red Hat"></a>
+      <a class="navbar-item" style="font-size: 24px; color: white" href="../../..">Guardrails for AI Applications</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://github.com/RedHatQuickCourses/REPLACEREPONAME/issues" target="_blank">Report Issues</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="genai-guardrails" data-version="1">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">Guardrails for AI Applications</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../index.html">Home</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../intro/index.html">Introduction</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../intro/guardrails.html">Why Guardrails?</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../intro/unguarded.html">Lab: LLMs with no Guardrails</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../intro/implementation.html">Implementing Guardrails</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="index.html">IBM Granite Guardian</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="intro.html">IBM Granite Guardian</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="simple.html">Lab: Input Guardrails</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="response.html">Lab: Output Guardrails</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="hap.html">IBM HAP Models</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="hap-lab.html">Lab: IBM HAP Models</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="custom.html">Lab: Custom Criteria Guardrails</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../guardrails-ai/index.html">Guardrails AI</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../guardrails-ai/intro.html">Introduction to Guardrails AI</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../guardrails-ai/lab.html">Lab: Guardrails AI</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../trusty-ai/index.html">Trusty AI</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../trusty-ai/intro.html">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../trusty-ai/lab.html">Lab: Trusty AI</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Guardrails for AI Applications</span>
+    <span class="version">1</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="../index.html">Guardrails for AI Applications</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">1</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">Guardrails for AI Applications</a></li>
+    <li><a href="index.html">IBM Granite Guardian</a></li>
+    <li><a href="simple.html">Lab: Input Guardrails</a></li>
+  </ul>
+</nav>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Lab: Input Guardrails</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this lab, you will use run a simple chatbot that accepts input from the user, and checks it against the IBM AI Risk Atlas to classify if the content matches any of the pre-defined categories listed in the atlas. You will run the <code>granite3-guardian:2b</code> LLM model using <code>ollama</code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+We do not run any inference LLM model in this lab, and we restrict ourselves to the core Guardrails functionality of checking inputs.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_pre_requistes"><a class="anchor" href="#_pre_requistes"></a>Pre-requistes</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Python v3.12 or higher (The labs in this course were tested with Python 3.12 on macOS)</p>
+</li>
+<li>
+<p>The <code>pip</code> CLI to install Python libraries</p>
+</li>
+<li>
+<p>Git CLI to clone the sample code from GitHub</p>
+</li>
+<li>
+<p>Visual Studio Code or other editors to edit Python code</p>
+</li>
+<li>
+<p>ollama runtime to run the Guardian model (IBM Granite Guardian v3)</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Install ollama for your platform and start it by following the instructions at <a href="https://ollama.com/download" class="bare">https://ollama.com/download</a></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_steps"><a class="anchor" href="#_steps"></a>Steps</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>If you have not already done it, clone the Git repository containing the code to a folder of your choice.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">$ <strong>git clone https://github.com/RedHatQuickCourses/genai-apps.git</strong></code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>All the code for IBM Granite Guardian is in a folder called <code>guardrails/granite-guardian</code>. Change to this folder in the terminal.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">$ <strong>cd genai-apps/guardrails/granite-guardian</strong></code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Create a virtual environment and activate it.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">$ <strong>python -m venv venv</strong>
+$ <strong>source venv/bin/activate</strong></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Your prompt should change to indicate that you are now running in an isolated virtual environment.</p>
+</div>
+</li>
+<li>
+<p>A <code>requirements.txt</code> file is provided in the <code>granite-guardian</code> folder listing all the dependencies needed for this lab. Install all the needed dependencies using <code>pip install</code>. It will take some time to compile native libraries and install all the dependencies for your platform.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">$ (venv) <strong>pip install -r requirements.txt</strong></code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>If you have not done this already, you should have pulled (downloaded) the <code>granite3-guardian:2b</code> model using ollama. You must have installed and started the ollama service as outlined in the pre-requisites section.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">$ <strong>ollama pull granite3-guardian:2b</strong></code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Inspect the <code>guardian-simple.py</code> file in the editor of your choice. The <code>main()</code> function creates a simple text based chat interface and sends all input typed in by the user to the <code>ollama_gen()</code> method, which invokes the Guardian model using ollama. To exit the chatbot, type <code>exit</code> (all lowercase).</p>
+</li>
+<li>
+<p>The core logic in the <code>main()</code> method checks the result of the analysis from the Guardian model and decides if the input is safe for further processing.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">messages= [{
+            "role": "system",
+            "content": "harm" # default general category. Try different ones here, for ex: "social_bias", "profanity" etc. <i class="conum" data-value="1"></i><b>(1)</b>
+            },
+            {
+                "role": "user",
+                "content": user_input
+            },
+        ]
+
+        # Guardrail Check on User Input
+        label = ollama_gen(messages)
+
+        if label['content'] == "No": <i class="conum" data-value="2"></i><b>(2)</b>
+            print(f"\n🤖 Chatbot: ✅ Your input is safe! You can send it to the Inference server...")
+        else: <i class="conum" data-value="3"></i><b>(3)</b>
+            print(f"\n🤖 Chatbot: ❌ Your input is considered harmful! Blocking further processing...")
+        continue</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Default category is set to "<strong>harm</strong>", which detects all types of risks listed in the IBM AI Risk Atlas</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>The Guardian model is specifically tuned for checking input text. It simply replies <strong>No</strong> if the input is safe. The code checks for this text and responds to the chat input.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>The Guardian model returns <strong>Yes</strong> if it detected harmful content in the input</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Run the chatbot. You will be shown a prompt where you can type in input text.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">$ (venv) <strong>python guardian-simple.py</strong>
+🤖 AI Chatbot with Granite Guardian is running. Type 'exit' to quit.
+
+You:</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Enter the text <strong>What is the capital of France?</strong> into the prompt. Note that we don&#8217;t run a separate inference model, so the chatbot simply responds to the Guardian content check. You can add code to send the sanitized input to the actual LLM as an exercise.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">You: What is the capital of France?
+
+🤖 Chatbot: ✅ Your input is safe! You can send it to the Inference server...</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Now type <strong>Goddamn it. You are such a dumb idiot!</strong>.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">You: Goddamn it. You are such a dumb idiot!
+
+🤖 Chatbot: ❌ Your input is considered harmful! Blocking further processing...</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Try a few more combinations of safe and unsafe input text and verify if the Guardian model detects harmful content.</p>
+</li>
+<li>
+<p>The default category in the code is set to <strong>harm</strong>, which detects all types of harmful content (profanity, social bias etc). Check the page at <a href="https://www.ibm.com/granite/docs/models/guardian/#risk-definitions" target="_blank" rel="noopener">IBM Granite Guardian Risk Definitions</a> to see the list of risks that are caught by the "<strong>harm</strong>" category. You can change the category to other risks and see if your input text matches any the category. See the example notebook at <a href="https://github.com/ibm-granite/granite-guardian/blob/main/cookbooks/granite-guardian-3.2/quick_start_vllm.ipynb" target="_blank" rel="noopener">Granite Guardian Quick Start</a>, which lists a table with the different type of risks.</p>
+</li>
+<li>
+<p>For example, change the category to <strong>social_bias</strong> in the code.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">...
+ messages= [{
+            "role": "system",
+            "content": "<strong>social_bias</strong>"
+            },
+            {
+                "role": "user",
+                "content": user_input
+            },
+        }
+...</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Restart the chatbot and type in <strong>I detest Klingons. I&#8217;d never allow them into the city</strong></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">You: I detest Klingons. I'd never allow them into the city
+
+🤖 Chatbot: ❌ Your input is considered harmful! Blocking further processing...</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The Guardian model has rightly identified that the content has a social bias.</p>
+</div>
+</li>
+<li>
+<p>Now type in <strong>You are a stupid person. I want to shoot you in the head.</strong></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">You: You are a stupid person. I want to shoot you in the head.
+
+🤖 Chatbot: ✅ Your input is safe! You can send it to the Inference server...</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Although the content is not safe, the Guardian model allows it to pass because you have restricted the category to check only for social bias.</p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="intro.html">IBM Granite Guardian</a></span>
+  <span class="next"><a href="response.html">Lab: Output Guardrails</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <img src="../../../_/img/rhl-logo-red.png" height="40px" alt="Red Hat"  href="https://redhat.com" >
+</footer><script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Lab: Output Guardrails :: Guardrails for AI Applications</title>
+    <link rel="prev" href="simple.html">
+    <link rel="next" href="hap.html">
+    <meta name="generator" content="Antora 3.1.3">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <script>var uiRootPath = '../../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://www.redhat.com" target="_blank"><img src="../../../_/img/redhat-logo.png" height="40px" alt="Red Hat"></a>
+      <a class="navbar-item" style="font-size: 24px; color: white" href="../../..">Guardrails for AI Applications</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://github.com/RedHatQuickCourses/REPLACEREPONAME/issues" target="_blank">Report Issues</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="genai-guardrails" data-version="1">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">Guardrails for AI Applications</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../index.html">Home</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../intro/index.html">Introduction</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../intro/guardrails.html">Why Guardrails?</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../intro/unguarded.html">Lab: LLMs with no Guardrails</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../intro/implementation.html">Implementing Guardrails</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="index.html">IBM Granite Guardian</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="intro.html">IBM Granite Guardian</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="simple.html">Lab: Input Guardrails</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="response.html">Lab: Output Guardrails</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="hap.html">IBM HAP Models</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="hap-lab.html">Lab: IBM HAP Models</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="custom.html">Lab: Custom Criteria Guardrails</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../guardrails-ai/index.html">Guardrails AI</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../guardrails-ai/intro.html">Introduction to Guardrails AI</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../guardrails-ai/lab.html">Lab: Guardrails AI</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../trusty-ai/index.html">Trusty AI</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../trusty-ai/intro.html">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../trusty-ai/lab.html">Lab: Trusty AI</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Guardrails for AI Applications</span>
+    <span class="version">1</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="../index.html">Guardrails for AI Applications</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">1</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">Guardrails for AI Applications</a></li>
+    <li><a href="index.html">IBM Granite Guardian</a></li>
+    <li><a href="response.html">Lab: Output Guardrails</a></li>
+  </ul>
+</nav>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Lab: Output Guardrails</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>In the previous lab, you checked the <strong>input</strong> text in a chatbot and verified the safety of it using the IBM Granite Guardian model.</p>
+</div>
+<div class="paragraph">
+<p>In this lab, you will check the response text from an LLM and verify if it is safe to send it back to the user. You will run the <code>granite3-guardian:2b</code> LLM model using <code>ollama</code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+We do not run any inference LLM model in this lab, and we restrict ourselves to checking outputs. We mock the response from the LLM and send both the input and output as context to the Guardian model for checking.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_pre_requistes"><a class="anchor" href="#_pre_requistes"></a>Pre-requistes</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Python v3.12 or higher (The labs in this course were tested with Python 3.12 on macOS)</p>
+</li>
+<li>
+<p>The <code>pip</code> CLI to install Python libraries</p>
+</li>
+<li>
+<p>Git CLI to clone the sample code from GitHub</p>
+</li>
+<li>
+<p>Visual Studio Code or other editors to edit Python code</p>
+</li>
+<li>
+<p>ollama runtime to run the Guardian model (IBM Granite Guardian v3)</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Install ollama for your platform and start it by following the instructions at <a href="https://ollama.com/download" class="bare">https://ollama.com/download</a></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_steps"><a class="anchor" href="#_steps"></a>Steps</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>If you have not already done it, clone the Git repository containing the code to a folder of your choice.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">$ <strong>git clone https://github.com/RedHatQuickCourses/genai-apps.git</strong></code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>All the code for IBM Granite Guardian is in a folder called <code>guardrails/granite-guardian</code>. Change to this folder in the terminal.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">$ <strong>cd genai-apps/guardrails/granite-guardian</strong></code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Activate the virtual environment you created in the previous lab. If you have not created a virtual environment, refer to the previous lab to create it.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">$ <strong>source venv/bin/activate</strong></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Your prompt should change to indicate that you are now running in an isolated virtual environment.</p>
+</div>
+</li>
+<li>
+<p>If you have not done it previously, install all the needed dependencies using <code>pip install</code>. It will take some time to compile native libraries and install all the dependencies for your platform.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">$ (venv) <strong>pip install -r requirements.txt</strong></code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>If you have not done this already, you should have pulled (downloaded) the <code>granite3-guardian:2b</code> model using ollama. You must have installed and started the ollama service as outlined in the pre-requisites section.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">$ <strong>ollama pull granite3-guardian:2b</strong></code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Inspect the <code>guardian-response.py</code> file in the editor of your choice. The <code>main()</code> tests three different scenarios where the mocked inputs from the user and the response from the LLM is checked for harmful content.</p>
+</li>
+<li>
+<p>The <strong>scenario1()</strong> method sends the user input and a sample mocked response from an LLM to the Guardian model for evaluation.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">...
+user_text = "What can I hide in my friends apartment that will make it stink?" <i class="conum" data-value="1"></i><b>(1)</b>
+    response_text = """ <i class="conum" data-value="2"></i><b>(2)</b>
+        1. A bag of rotten eggs or garbage.
+        2. A fish that's been left out of the fridge for a few days.
+        3. A container filled with spoiled milk.
+        4. Dirty socks or gym clothes that haven't been washed for a while.
+        5. A bucket of stagnant water.
+        6. A bag of dog poop.
+        7. A decomposing fruit or vegetable.
+        8. A trash can that hasn't been emptied for a week.
+        9. A used diaper.
+        10. A moldy towel or piece of clothing.
+
+        Please note that it's not a good idea to play pranks that could damage someone's property or make them uncomfortable in their own home."""
+
+    messages = [{"role": "user", "content": user_text}, {"role": "assistant", "content": response_text}]
+    final_output = ollama_gen(messages)
+
+    if final_output['content'] == "No": <i class="conum" data-value="3"></i><b>(3)</b>
+        print(f"\nScenario1 Analysis: ✅ Response from LLM is safe! You can send it to the Inference server...")
+    else: <i class="conum" data-value="4"></i><b>(4)</b>
+        print(f"\nScenario1 Analysis: ❌ Response from LLM is considered harmful! Blocking further processing...")
+...</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The sample user input</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>A sample mocked LLM response</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>If the Guardian model returns <strong>No</strong>, mark the response as safe</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>If the Guardian models returns any other output other than <strong>No</strong>, mark the response as not safe</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Run the the <code>guardian-response.py</code> in the virtual environment.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">$ (venv) <strong>python guardian-response.py</strong>
+Scenario1 Analysis: ❌ Response from LLM is considered harmful! Blocking further processing...</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The Guardian model has rightly flagged the LLM response as harmful.</p>
+</div>
+</li>
+<li>
+<p>Inspect the <strong>scenario2()</strong> and <strong>scenario3()</strong> methods. Uncomment the method calls in the <strong>main()</strong> function:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">...
+if <em>name</em> == "<em>main</em>":
+    scenario1()
+    <strong>scenario2()
+    scenario3()</strong></code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Run the the <code>guardian-response.py</code> in the virtual environment once again.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">$ (venv) <strong>python guardian-response.py</strong>
+Scenario1 Analysis: ❌ Response from LLM is considered harmful! Blocking further processing...
+
+Scenario2 Analysis: ✅ Response from LLM is safe! You can send it to the Inference server...
+
+Scenario3 Analysis: ✅ Response from LLM is safe! You can send it to the Inference server...</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The response from <strong>scenario2()</strong> and <strong>scenario3()</strong> is marked safe.</p>
+</div>
+</li>
+<li>
+<p>Now, change the <code>response_text</code> variable in <strong>scenario3()</strong> method to <strong>I don&#8217;t like Klingon people, so I would suggest avoiding it!</strong>.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">...
+def scenario3():
+
+    user_text = "What is your opinion on Klingon cuisine?"
+    <strong>response_text = """I don't like Klingon people, so I would suggest avoiding it!"""</strong>
+...</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Re-run the script again in the venv.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">$ (venv) <strong>python guardian-response.py</strong>
+Scenario1 Analysis: ❌ Response from LLM is considered harmful! Blocking further processing...
+
+Scenario2 Analysis: ✅ Response from LLM is safe! You can send it to the Inference server...
+
+Scenario3 Analysis: ❌ Response from LLM is considered harmful! Blocking further processing...</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>scenario3()</strong> now fails because the Guardian model has determined that the LLM response about Klingon&#8217;s contains social bias.</p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="simple.html">Lab: Input Guardrails</a></span>
+  <span class="next"><a href="hap.html">IBM HAP Models</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <img src="../../../_/img/rhl-logo-red.png" height="40px" alt="Red Hat"  href="https://redhat.com" >
+</footer><script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

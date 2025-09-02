@@ -73,7 +73,19 @@
     <a class="nav-link" href="../ibm-guardian/intro.html">IBM Granite Guardian</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../ibm-guardian/lab.html">Lab: Granite Guardian</a>
+    <a class="nav-link" href="../ibm-guardian/simple.html">Lab: Input Guardrails</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../ibm-guardian/response.html">Lab: Output Guardrails</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../ibm-guardian/hap.html">IBM HAP Models</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../ibm-guardian/hap-lab.html">Lab: IBM HAP Models</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../ibm-guardian/custom.html">Lab: Custom Criteria Guardrails</a>
   </li>
 </ul>
   </li>
@@ -86,26 +98,10 @@
     <a class="nav-link" href="../guardrails-ai/index.html">Guardrails AI</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../guardrails-ai/intro.html">Introduction</a>
+    <a class="nav-link" href="../guardrails-ai/intro.html">Introduction to Guardrails AI</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../guardrails-ai/lab.html">Lab: Guardrails AI</a>
-  </li>
-</ul>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="0">
-<ul class="nav-list">
-  <li class="nav-item" data-depth="1">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../meta-ai/index.html">Meta AI Guardrails</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../meta-ai/intro.html">Introduction</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../meta-ai/lab.html">Lab: Meta AI Guardrails</a>
   </li>
 </ul>
   </li>
@@ -206,12 +202,6 @@
 <div class="sect1">
 <h2 id="_why_guardrails_are_indispensable_for_ai_applications"><a class="anchor" href="#_why_guardrails_are_indispensable_for_ai_applications"></a>Why Guardrails are Indispensable for AI Applications</h2>
 <div class="sectionbody">
-<div class="imageblock">
-<div class="content">
-<img src="_images/gr-bullseye.png" alt="gr bullseye">
-</div>
-<div class="title">Figure 3. Why Guardrails?</div>
-</div>
 <div class="paragraph">
 <p>Just as a guardrail (fence) around a winding mountain road is used ensure safety of vehicles, AI guardrails channel the powerful capabilities of AI models along safe and productive pathways, preventing missteps and ensuring that the incredible potential of AI is realized responsibly.</p>
 </div>
@@ -219,7 +209,7 @@
 <p>The deployment of AI applications, particularly those powered by large language models and exhibiting agentic behavior, fundamentally transforms the digital landscape. While the capabilities are immense, so too are the risks associated with bias, misuse, unintended outputs, and security vulnerabilities. Guardrails emerge as the critical infrastructure that bridges this gap, enabling the responsible and effective deployment of AI.</p>
 </div>
 <div class="paragraph">
-<p>They are not about stifling innovation but about guiding the AI&#8217;s behavior to keep interactions safe, useful, and aligned with intended purposes and ethical standards. By acting as a constant "digital immune system", vigilantly monitoring inputs and outputs, guardrails ensure that AI applications remain trustworthy and valuable tools, rather than becoming sources of unforeseen harm or liability. They are the essential framework for navigating the complex and evolving frontier of artificial intelligence.</p>
+<p>Guardrails help to keep interactions with AI applications safe, useful, and aligned with intended purposes and ethical standards. By acting as a constant "digital immune system", vigilantly monitoring inputs and outputs, guardrails ensure that AI applications remain trustworthy and valuable tools, rather than becoming sources of unforeseen harm or liability. They are the essential framework for navigating the complex and evolving frontier of artificial intelligence.</p>
 </div>
 <div class="paragraph">
 <p>While large language models can process vast amounts of information and handle diverse queries, their responses can sometimes be unpredictable or even dangerous. This inherent unpredictability makes reliable guardrails critically important, especially for organizations that must prevent issues such as:</p>
@@ -241,7 +231,7 @@
 </ul>
 </div>
 <div class="paragraph">
-<p>Guardrails are specifically designed to address these challenges by reducing the likelihood of generating inaccurate information, offensive content, or hallucinated responses, where the model fabricates information that appears plausible but is factually incorrect. By implementing guardrails, AI applications can provide users with reliable and ethically sound interactions, produce more accurate and context-aware responses, and proactively prevent harmful outputs, ultimately aligning AI behavior with legal and ethical standards.</p>
+<p>Guardrails are specifically designed to address these challenges. By implementing guardrails, AI applications can provide users with reliable and ethically sound interactions, produce more accurate and context-aware responses, and proactively prevent harmful outputs, ultimately aligning AI behavior with legal and ethical standards.</p>
 </div>
 <div class="sect2">
 <h3 id="_specific_risks_necessitating_guardrails"><a class="anchor" href="#_specific_risks_necessitating_guardrails"></a>Specific Risks Necessitating Guardrails</h3>
@@ -264,7 +254,7 @@
 <div class="content">
 <img src="_images/guardrailed-app.png" alt="guardrailed app">
 </div>
-<div class="title">Figure 4. Guardrails Placement in an LLM Application</div>
+<div class="title">Figure 3. Guardrails Placement in an LLM Application</div>
 </div>
 <div class="paragraph">
 <p>The figure above visually represents the strategic placement of guardrails within an LLM application, illustrating how they intercept and influence the flow of information at key stages: input, retrieval (especially for RAG systems), and output. This ensures continuous moderation and safety.</p>
@@ -287,6 +277,18 @@
 </div>
 <div class="paragraph">
 <p>This comprehensive, layered strategy ensures that every message is thoroughly checked and refined throughout the interaction, fostering a safe and trustworthy conversation experience for users</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+While many detectors rely on small LLMs specifically tuned for Guardrails, you can also implement your own custom detectors and validators in code using the features provided by your programming language and libraries, like regular expressions and fuzzy searching.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>

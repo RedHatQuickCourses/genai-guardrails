@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>IBM HAP Models :: Guardrails for AI Applications</title>
+    <link rel="prev" href="response.html">
+    <link rel="next" href="hap-lab.html">
+    <meta name="generator" content="Antora 3.1.3">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <script>var uiRootPath = '../../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://www.redhat.com" target="_blank"><img src="../../../_/img/redhat-logo.png" height="40px" alt="Red Hat"></a>
+      <a class="navbar-item" style="font-size: 24px; color: white" href="../../..">Guardrails for AI Applications</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://github.com/RedHatQuickCourses/REPLACEREPONAME/issues" target="_blank">Report Issues</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="genai-guardrails" data-version="1">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">Guardrails for AI Applications</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../index.html">Home</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../intro/index.html">Introduction</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../intro/guardrails.html">Why Guardrails?</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../intro/unguarded.html">Lab: LLMs with no Guardrails</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../intro/implementation.html">Implementing Guardrails</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="index.html">IBM Granite Guardian</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="intro.html">IBM Granite Guardian</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="simple.html">Lab: Input Guardrails</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="response.html">Lab: Output Guardrails</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="hap.html">IBM HAP Models</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="hap-lab.html">Lab: IBM HAP Models</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="custom.html">Lab: Custom Criteria Guardrails</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../guardrails-ai/index.html">Guardrails AI</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../guardrails-ai/intro.html">Introduction to Guardrails AI</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../guardrails-ai/lab.html">Lab: Guardrails AI</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../trusty-ai/index.html">Trusty AI</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../trusty-ai/intro.html">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../trusty-ai/lab.html">Lab: Trusty AI</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Guardrails for AI Applications</span>
+    <span class="version">1</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="../index.html">Guardrails for AI Applications</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">1</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">Guardrails for AI Applications</a></li>
+    <li><a href="index.html">IBM Granite Guardian</a></li>
+    <li><a href="hap.html">IBM HAP Models</a></li>
+  </ul>
+</nav>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">IBM HAP Models</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>IBM&#8217;s HAP (Hate, Abuse and Profanity) models are a specialized category of natural language processing (NLP) classifiers. Their primary function is to analyze a piece of text (like a comment, a message, or a post) and determine if it contains elements of hate speech, abuse, or profanity.</p>
+</div>
+<div class="paragraph">
+<p>Unlike the full sized Granite Guardian models with billions of parameters that require dedicated graphics processing units (GPU), the HAP models are smaller, and available in 38 million and 125 million sizes for <em>deployment to edge nodes without dedicated GPUs</em>. They are trained specifically to detect hate, abuse and profanity in text. They use sophisticated neural network architectures that can process natural language text and understand the contextual relationships between words in a sentence.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_classification_of_hap_content"><a class="anchor" href="#_classification_of_hap_content"></a>Classification of HAP Content</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Content is classified as follows:</p>
+</div>
+<div class="paragraph">
+<p><strong>Hate speech</strong>: Expressions of hatred toward an individual or group based on attributes such as race, religion, ethnic origin, sexual orientation, disability or gender. Hate speech shows an intent to hurt, humiliate or insult the members of a group, or to promote violence or social disorder.</p>
+</div>
+<div class="paragraph">
+<p><strong>Abusive language</strong>: Rude or hurtful language that is meant to bully, debase or demean someone or something.</p>
+</div>
+<div class="paragraph">
+<p><strong>Profanity</strong>: Toxic words such as expletives, insults or sexually explicit language.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_contextual_understanding"><a class="anchor" href="#_contextual_understanding"></a>Contextual Understanding</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>These small models have a nuanced understanding of context in natural language text. Consider the word "queer."</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><em>"He was wearing a queer hat."</em> &#8594; Old-fashioned usage, meaning 'strange'. <strong>Not HAP.</strong></p>
+</li>
+<li>
+<p><em>"He is a proud member of the queer community."</em> &#8594; A reclaimed term of identity. <strong>Not HAP.</strong></p>
+</li>
+<li>
+<p><em>"I can&#8217;t stand that queer person."</em> &#8594; A derogatory slur. <strong>HAP.</strong></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>A simple keyword filter would fail this test. An advanced, context-aware model understands the surrounding words ("proud member," "community," "can&#8217;t stand") to make the correct classification.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_content_filtering_and_assessment"><a class="anchor" href="#_content_filtering_and_assessment"></a>Content Filtering and Assessment</h2>
+<div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="_images/hap-classifier.png" alt="hap classifier">
+</div>
+<div class="title">Figure 1. HAP Classifier</div>
+</div>
+<div class="paragraph">
+<p>In practice, a HAP filtering sentence classifier assesses each word of a models input or output text to determine whether it contains HAP content. Then, it assigns a score that represents the likelihood that HAP content is present, perhaps from 0 to 1. In this case, a score closer to 1 indicates a higher likelihood of HAP content. Depending on the threshold that the user sets for HAP content (such as "a score greater than 0.5 = HAP"), the model would then assign a label to each sentence indicating whether or not it contains HAP.</p>
+</div>
+<div class="paragraph">
+<p>Finally, the HAP content could either be flagged and removed if it is in pretraining data. Or, if the HAP content is an output, it could be replaced with a guardrail message indicating that the output contained harmful text that was removed.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_available_hap_models"><a class="anchor" href="#_available_hap_models"></a>Available HAP Models</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>There are two HAP models available:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Granite-Guardian-HAP-125m</strong>: A larger model with higher accuracy, comparable to industry standard classifiers in toxic language benchmarks</p>
+</li>
+<li>
+<p><strong>Granite-Guardian-HAP-38m</strong>: A compact, efficient model (38 million parameters) derived via neural architecture search. Runs:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>~8× faster than the 125m model on CPU</p>
+</li>
+<li>
+<p>~2× faster on GPU</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This makes it suitable for real-time filtering at all stages of the LLM pipeline.</p>
+</div>
+<div class="paragraph">
+<p>Both models are open-source and available on Hugging Face. Consult the resources in the <strong>References</strong> section for the model details and the rationale for its usage.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The HAP models are mulit-lingual and support 11 languages: Arabic, Chinese (standard and traditional), Dutch, English, French, German, Hindi, Italian, Japanese, Portuguese, Spanish.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_references"><a class="anchor" href="#_references"></a>References</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://www.ibm.com/think/insights/hap-filtering" target="_blank" rel="noopener">Purifying AI: HAP filtering against harmful content</a></p>
+</li>
+<li>
+<p><a href="https://huggingface.co/ibm-granite/granite-guardian-hap-125m" target="_blank" rel="noopener">Granite-Guardian-HAP-125m model card on Hugging Face</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="response.html">Lab: Output Guardrails</a></span>
+  <span class="next"><a href="hap-lab.html">Lab: IBM HAP Models</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <img src="../../../_/img/rhl-logo-red.png" height="40px" alt="Red Hat"  href="https://redhat.com" >
+</footer><script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

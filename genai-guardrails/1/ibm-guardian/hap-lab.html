@@ -3,9 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>IBM Granite Guardian :: Guardrails for AI Applications</title>
-    <link rel="prev" href="../intro/implementation.html">
-    <link rel="next" href="intro.html">
+    <title>Lab: IBM HAP Models :: Guardrails for AI Applications</title>
+    <link rel="prev" href="hap.html">
+    <link rel="next" href="custom.html">
     <meta name="generator" content="Antora 3.1.3">
     <link rel="stylesheet" href="../../../_/css/site.css">
     <script>var uiRootPath = '../../../_'</script>
@@ -65,7 +65,7 @@
   </li>
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="1">
+  <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="index.html">IBM Granite Guardian</a>
 <ul class="nav-list">
@@ -81,7 +81,7 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="hap.html">IBM HAP Models</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="hap-lab.html">Lab: IBM HAP Models</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -153,6 +153,7 @@
   <ul>
     <li><a href="../index.html">Guardrails for AI Applications</a></li>
     <li><a href="index.html">IBM Granite Guardian</a></li>
+    <li><a href="hap-lab.html">Lab: IBM HAP Models</a></li>
   </ul>
 </nav>
 </div>
@@ -161,38 +162,150 @@
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">IBM Granite Guardian</h1>
+<h1 class="page">Lab: IBM HAP Models</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>This chapter will introduce you to <strong>IBM Granite Guardian</strong>, a collection of AI models specifically designed to detect and mitigate a wide range of risks in prompts and responses for AI applications. You will gain an understanding of how these models function as critical guardrails, helping to ensure that your LLM powered solutions remain safe, ethical, and aligned with desired behaviors.</p>
+<p>In this lab, you will use the <code>granite-guardian-hap-125m</code> IBM HAP model to analyze text for hate, abuse and profanity. You will download and run this model from Hugging Face.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+We do not run any inference LLM model in this lab, and we restrict ourselves to checking input/output text.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_objectives"><a class="anchor" href="#_objectives"></a>Objectives</h2>
+<h2 id="_pre_requistes"><a class="anchor" href="#_pre_requistes"></a>Pre-requistes</h2>
 <div class="sectionbody">
 <div class="ulist">
 <ul>
 <li>
-<p>Learn how Granite Guardian models detect risks in prompts (user input), responses (LLM output), and conversations, and their application in Retrieval-Augmented Generation (RAG) and agentic workflows.</p>
+<p>Python v3.12 or higher (The labs in this course were tested with Python 3.12 on macOS)</p>
 </li>
 <li>
-<p>Implement Granite Guardian as a programmatic guardrail within applications, either directly or as part of an orchestration framework.</p>
+<p>The <code>pip</code> CLI to install Python libraries</p>
 </li>
 <li>
-<p>Recognize the scope and limitations of Granite Guardian models, and their optimal use cases.</p>
+<p>Git CLI to clone the sample code from GitHub</p>
 </li>
 <li>
-<p>Explore practical applications of Granite Guardian, including its use in real-world scenarios for content moderation and safety checks.</p>
+<p>Visual Studio Code or other editors to edit Python code</p>
 </li>
 </ul>
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="_steps"><a class="anchor" href="#_steps"></a>Steps</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>If you have not already done it, clone the Git repository containing the code to a folder of your choice.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">$ <strong>git clone https://github.com/RedHatQuickCourses/genai-apps.git</strong></code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>All the code for IBM Granite Guardian is in a folder called <code>guardrails/granite-guardian</code>. Change to this folder in the terminal.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">$ <strong>cd genai-apps/guardrails/granite-guardian</strong></code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Activate the virtual environment you created in the previous labs. If you have not created a virtual environment, create a new one and active it.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">$ <strong>source venv/bin/activate</strong></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Your prompt should change to indicate that you are now running in an isolated virtual environment.</p>
+</div>
+</li>
+<li>
+<p>If you have not done it previously, install all the needed dependencies using <code>pip install</code>. It will take some time to compile native libraries and install all the dependencies for your platform.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">$ (venv) <strong>pip install -r requirements.txt</strong></code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Inspect the <code>guardian-hap.py</code> file in the editor of your choice. We download and instantiate the 125m HAP model from Hugging Face repository:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">...
+<strong>hap_model_id = "ibm-granite/granite-guardian-hap-125m"</strong>
+
+tokenizer = AutoTokenizer.from_pretrained(hap_model_id)
+model = AutoModelForSequenceClassification.from_pretrained(<strong>hap_model_id</strong>)
+...</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>hap_scorer()</code> method assigns a probability score between (<code>0</code> and <code>1</code>) for each input text to the HAP model. The <code>prompt_list</code> variable contains the list of input texts that we want the HAP model to analyze and score. You can add your own text to this list.</p>
+</div>
+</li>
+<li>
+<p>We simply loop through each input prompt, collect the HAP prediction (if it is safe or not), and the probability score into a Pandas dataframe object and then print a nicely formatted table</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">...
+for i in range(len(split_prompt_list)):
+    <strong>hap_score = hap_scorer(device, split_prompt_list[i], model, tokenizer)</strong>
+    label, max_score = aggregate_score(hap_score)
+
+    results_data.append({
+        "Prompt": prompt_list[i],
+        "HAP Probability": f"{max_score:.4f}",
+        "Prediction": "❌ HAP" if label == 1 else "✅ Safe"
+    })
+
+<strong>df = pd.DataFrame(results_data)</strong>
+
+print("\n&gt;&gt;&gt;  HAP Analysis Results  &lt;&lt;&lt;")
+print(df.to_string(index=False))
+...</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Run the <code>guardian-hap.py</code> script in the virtual environment.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">$ (venv) python guardian-hap.py</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Output should be as follows:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/hap-table.png" alt="hap table">
+</div>
+<div class="title">Figure 1. Output of program</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
 <nav class="pagination">
-  <span class="prev"><a href="../intro/implementation.html">Implementing Guardrails</a></span>
-  <span class="next"><a href="intro.html">IBM Granite Guardian</a></span>
+  <span class="prev"><a href="hap.html">IBM HAP Models</a></span>
+  <span class="next"><a href="custom.html">Lab: Custom Criteria Guardrails</a></span>
 </nav>
 </article>
   </div>
