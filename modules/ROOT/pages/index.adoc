@@ -17,11 +17,9 @@ On completing this course, you should be able to:
 
 * Identify and categorize various AI risks, including inherent model biases, unintended outputs, misuse, and security threats such as misinformation, prompt injection, and hallucinations.
 
-* Learn and apply different methods for implementing AI guardrails, leveraging specialized models like **Granite Guardian**, **Llama Guard**, and **PromptGuard**, as well as orchestrator frameworks such as **TrustyAI Guardrails Orchestrator**.
+* Learn and apply different methods for implementing AI guardrails, leveraging specialized models like **Granite Guardian**, and libraries like **Guardrails AI**.
 
-* Gain hands-on experience with local development environments and Red Hat OpenShift AI for deploying, configuring, and managing guardrails.
-
-* Develop skills in evaluating the effectiveness of guardrails and continuously iterating on their implementation using various evaluation metrics and tools.
+* Gain hands-on experience with local development environments for deploying, configuring, and managing guardrails.
 
 == Prerequisites
 

@@ -1,3 +1,7 @@
 * xref:index.adoc[]
 ** xref:intro.adoc[]
-** xref:lab.adoc[]
+** xref:simple.adoc[]
+** xref:response.adoc[]
+** xref:hap.adoc[]
+** xref:hap-lab.adoc[]
+** xref:custom.adoc[]

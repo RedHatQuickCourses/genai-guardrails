@@ -1,0 +1,150 @@
+= Lab: Custom Criteria Guardrails
+
+In the previous labs, you checked the **input** and **output** texts, and verified the safety of it using the IBM Granite Guardian model. 
+
+In this lab, you will create your own custom guardrails criteria and verify if the user entered query is safe. You will run the latest `ibm/granite3.3-guardian:8b` LLM model using `ollama`.
+
+NOTE: We do not run any inference LLM model in this lab, and we restrict ourselves to checking inputs.
+
+IMPORTANT: You need to use the latest IBM Granite Guardian 3.3-8B model (`ibm/granite3.3-guardian:8`) for this lab to work.
+
+## Pre-requistes
+
+* Python v3.12 or higher (The labs in this course were tested with Python 3.12 on macOS)
+* The `pip` CLI to install Python libraries
+* Git CLI to clone the sample code from GitHub
+* Visual Studio Code or other editors to edit Python code
+* ollama runtime to run the Guardian model (`ibm/granite3.3-guardian:8b`)
+** Install ollama for your platform and start it by following the instructions at https://ollama.com/download
+
+## Steps
+
+. If you have not already done it, clone the Git repository containing the code to a folder of your choice.
++
+[source,subs="verbatim,quotes"]
+--
+$ *git clone https://github.com/RedHatQuickCourses/genai-apps.git*
+--
+
+. All the code for IBM Granite Guardian is in a folder called `guardrails/granite-guardian`. Change to this folder in the terminal.
++
+[source,subs="verbatim,quotes"]
+--
+$ *cd genai-apps/guardrails/granite-guardian*
+--
+
+. Activate the virtual environment you created in the previous lab. If you have not created a virtual environment, refer to the previous lab to create it.
++
+[source,subs="verbatim,quotes"]
+--
+$ *source venv/bin/activate*
+--
++
+Your prompt should change to indicate that you are now running in an isolated virtual environment.
+
+. If you have not done it previously, install all the needed dependencies using `pip install`. It will take some time to compile native libraries and install all the dependencies for your platform.
++
+[source,subs="verbatim,quotes"]
+--
+$ (venv) *pip install -r requirements.txt*
+--
+
+. Pull the `ibm/granite3.3-guardian:8b` model using ollama. You must have installed and started the ollama service as outlined in the pre-requisites section. This model is around 7GB in size, and will take a while to download depending on your internet connection speed.
++
+[source,subs="verbatim,quotes"]
+--
+$ *ollama pull ibm/granite3.3-guardian:8b*
+--
+
+. Inspect the `guardian-custom.py` file in the editor of your choice. The `main()` method tests different scenarios, where the mocked input from the user is checked for harmful content. 
++
+The **default_config_test()** method uses the default **harm** category and sends tbe user query to the Guardian model running on ollama. Note that we are customizing the prompt before sending to the Guardian by augmenting the chat template with the **guardian_config** dictionary, and pass the `harm` value to the **criteria_id** attribute (attribute name for setting risk category has changed from `content` to `criteria_id` in Guardian 3.3).
++
+[source,subs="verbatim,quotes"]
+--
+...
+def default_config_test(user_text, category):
+    messages = [{"role": "user", "content": user_text}]
+
+    guardian_config = {"criteria_id": **category**}
+
+    chat = tokenizer.apply_chat_template(messages, 
+            **guardian_config = guardian_config**, 
+            tokenize=False, add_generation_prompt=True)
+
+    response = guardian.invoke(chat).content
+...
+--
++
+Note the invocation in the **main()** method with the default `harm` category.
++
+```python
+default_config_test("How can I hack my friend's email?", **"harm"**)
+```
+
+. The next call in the `main` method sets the risk category as `unethical_behavior` and this value is used to set the `criteria_id` in the `unethical_test()` method. The body of this method is similar to the `default_config_test()` method, with the `criteria_id` being set to `unethical_behavior` instead of the default.
++
+```python
+unethical_test("Is there a way to mirror or copy someone's hard drive, maybe without them knowing?", "unethical_behavior")
+```
++
+NOTE: The first two methods are just for demonstration purposes. They show that customizing the prompts using a chat template does not change the default behavior of the Guardian model.
+
+. Finally, explore the `custom_criteria_test()` method. We set a custom attribute called `custom_criteria` and set it to a multi-line string that defines in plain language what should be checked in the user query. In this case, we are checking if inputs (or outputs) contain any Personally Identifiable Information (PII) about users. This custom criteria is sent as a prompt to the Guardian model running on ollama along with the raw unsanitized user query.
++
+[source,subs="verbatim,quotes"]
+--
+def custom_criteria_test(user_text):
+    messages = [{"role": "user", "content": user_text}]
+    *custom_criteria = """User message contains Personally Identifiable Information (PII) like bank accounts, 
+        addresses, email IDs or addresses, social security numbers (SSN), or other sensitive personal information that is included as a part of a prompt."""*
+
+    *guardian_config = {"custom_criteria": custom_criteria}*
+
+    chat = tokenizer.apply_chat_template(messages, guardian_config = guardian_config, tokenize=False, add_generation_prompt=True)
+    response = guardian.invoke(chat).content
+--
+
+. Run the the `guardian-custom.py` in the virtual environment.
++
+[source,subs="verbatim,quotes"]
+--
+$ (venv) *python guardian-custom.py*
+Guardian result for query <How can I hack my friend's email?> -> 🚫 This query violates safety guidelines. Blocked
+
+Guardian result for query <Is there a way to mirror or copy someone's hard drive, maybe without them knowing?> -> 🚫 This query violates safety guidelines. Blocked
+
+Guardian result for query <Hi, you can use my SSN : 123-1234-1245.> -> 🚫 This query violates safety guidelines. Blocked
+--
++
+All three test inputs are marked as unsafe by the Guardian model.
+
+. There are a few more commented out methods in the file. Uncomment all of them and verify the output. Run the the `guardian-custom.py` in the virtual environment once again.
++
+[source,subs="verbatim,quotes"]
+--
+$ (venv) *python guardian-custom.py*
+Guardian result for query <How can I hack my friend's email?> -> 🚫 This query violates safety guidelines. Blocked
+
+Guardian result for query <Is there a way to mirror or copy someone's hard drive, maybe without them knowing?> -> 🚫 This query violates safety guidelines. Blocked
+
+Guardian result for query <Hi, you can use my SSN : 123-1234-1245.> -> 🚫 This query violates safety guidelines. Blocked
+
+Guardian result for query <My bank account no is 213123123123.> -> 🚫 This query violates safety guidelines. Blocked
+
+Guardian result for query <My email id is john.doe@example.com> -> 🚫 This query violates safety guidelines. Blocked
+
+Guardian result for query <Chandler Bing's  address is #1 Yemen Rd, Yemen City, Yemen> -> 🚫 This query violates safety guidelines. Blocked
+
+Guardian result for query <Hi, I want to open a new bank account.> -> ✅ Query is safe!. Can be sent to LLM...
+
+Guardian result for query <I don't have Jane's email ID> -> ✅ Query is safe!. Can be sent to LLM...
+
+Guardian result for query <I don't know her address. She lives somewhere in this city.> -> ✅ Query is safe!. Can be sent to LLM...
+--
++
+Note how the Guardian model is contextually aware of the word usage in a sentence. Mere mention of the words "bank account", "address" and "email ID" do not result in blockage, whereas input with PII information is flagged as unsafe.
++
+You can experiment with changing the `custom_criteria` text and passing in different inputs, or change the `criteria_id` to one of the risk categories in the IBM AI Risk Atlas and send corresponding inputs from the `main()` method.
+
+NOTE: The Granite Guardian model 3.3 running on ollama does not support `thinking` mode. Thinking mode is supported on vllm. See https://github.com/ibm-granite/granite-guardian/blob/main/cookbooks/granite-guardian-3.3/detailed_guide_no_think.ipynb for the example code to run on vllm. Enabling thinking mode will help you trace how the Guardian models analyzes the inputs and how it decides if the input is safe or unsafe. Example outputs are in the notebook referenced.

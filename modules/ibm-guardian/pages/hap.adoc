@@ -1,0 +1,53 @@
+= IBM HAP Models
+
+IBM's HAP (Hate, Abuse and Profanity) models are a specialized category of natural language processing (NLP) classifiers. Their primary function is to analyze a piece of text (like a comment, a message, or a post) and determine if it contains elements of hate speech, abuse, or profanity. 
+
+Unlike the full sized Granite Guardian models with billions of parameters that require dedicated graphics processing units (GPU), the HAP models are smaller, and available in 38 million and 125 million sizes for __deployment to edge nodes without dedicated GPUs__. They are trained specifically to detect hate, abuse and profanity in text. They use sophisticated neural network architectures that can process natural language text and understand the contextual relationships between words in a sentence.
+
+== Classification of HAP Content
+
+Content is classified as follows:
+
+**Hate speech**: Expressions of hatred toward an individual or group based on attributes such as race, religion, ethnic origin, sexual orientation, disability or gender. Hate speech shows an intent to hurt, humiliate or insult the members of a group, or to promote violence or social disorder.
+
+**Abusive language**: Rude or hurtful language that is meant to bully, debase or demean someone or something.
+
+**Profanity**: Toxic words such as expletives, insults or sexually explicit language.
+
+== Contextual Understanding
+
+These small models have a nuanced understanding of context in natural language text. Consider the word "queer."
+
+* _"He was wearing a queer hat."_ -> Old-fashioned usage, meaning 'strange'. **Not HAP.**
+* _"He is a proud member of the queer community."_ -> A reclaimed term of identity. **Not HAP.**
+* _"I can't stand that queer person."_ -> A derogatory slur. **HAP.**
+
+A simple keyword filter would fail this test. An advanced, context-aware model understands the surrounding words ("proud member," "community," "can't stand") to make the correct classification.
+
+== Content Filtering and Assessment
+
+image::hap-classifier.png[title=HAP Classifier]
+
+In practice, a HAP filtering sentence classifier assesses each word of a models input or output text to determine whether it contains HAP content. Then, it assigns a score that represents the likelihood that HAP content is present, perhaps from 0 to 1. In this case, a score closer to 1 indicates a higher likelihood of HAP content. Depending on the threshold that the user sets for HAP content (such as "a score greater than 0.5 = HAP"), the model would then assign a label to each sentence indicating whether or not it contains HAP.
+
+Finally, the HAP content could either be flagged and removed if it is in pretraining data. Or, if the HAP content is an output, it could be replaced with a guardrail message indicating that the output contained harmful text that was removed.
+
+== Available HAP Models
+
+There are two HAP models available:
+
+* **Granite-Guardian-HAP-125m**: A larger model with higher accuracy, comparable to industry standard classifiers in toxic language benchmarks
+* **Granite-Guardian-HAP-38m**: A compact, efficient model (38 million parameters) derived via neural architecture search. Runs:
+** ~8× faster than the 125m model on CPU  
+** ~2× faster on GPU 
+
+This makes it suitable for real-time filtering at all stages of the LLM pipeline.
+
+Both models are open-source and available on Hugging Face. Consult the resources in the **References** section for the model details and the rationale for its usage.
+
+NOTE: The HAP models are mulit-lingual and support 11 languages: Arabic, Chinese (standard and traditional), Dutch, English, French, German, Hindi, Italian, Japanese, Portuguese, Spanish.
+
+== References
+
+* https://www.ibm.com/think/insights/hap-filtering[Purifying AI: HAP filtering against harmful content^]
+* https://huggingface.co/ibm-granite/granite-guardian-hap-125m[Granite-Guardian-HAP-125m model card on Hugging Face^]
