@@ -1,5 +1,14 @@
 # Lab: Adding a Simple Guardrail to an AI Application
-:navtitle: Simple Guardrails
+:navtitle: Lab: Simple Guardrails
+
+++++
+<style>
+.red { color: red; }
+.blue { color: blue; }
+.green { color: green; }
+.highlight { background-color: yellow; }
+</style>
+++++
 
 In this lab, you will use add a simple guardrail to an AI application that accepts input from the user, and checks if it contains any Personal Identifiable Information (PII) in the input.
 
@@ -154,7 +163,7 @@ Get more info:
 https://hub.guardrailsai.com/validator/guardrails/detect_pii
 
 
-valid_response(): Response from LLM is valid...
+[.green]#valid_response(): Response from LLM is valid...#
 --
 +
 Since there are no visible PII in the input text, the validator allows this text to be processed further in our AI application.
@@ -214,9 +223,9 @@ if __name__ == "__main__":
 --
 $ (venv) *python gai-basic.py*
 ...
-valid_response(): Response from LLM is valid...
+[.green]#valid_response(): Response from LLM is valid...#
 
-invalid_response1(): Response from LLM is invalid
+[.red]#invalid_response1(): Response from LLM is invalid
 
 Validation failed for field with errors: The following text in your response contains PII:
 Hi John Doe! Can you please verify your email ID john.doe@example.com
@@ -229,7 +238,7 @@ Hi John Doe! Can you please verify your if your social security number is 615-49
 invalid_response3(): Response from LLM is invalid
 
 Validation failed for field with errors: The following text in your response contains PII:
-You can contact John Doe at +1 408-447-4433
+You can contact John Doe at +1 408-447-4433#
 --
 +
 The validator has correctly identified that the text in these method calls have PII in them, and thows an exception. We catch these exceptions and display the validator error messages in red font.

@@ -1,6 +1,6 @@
 = Guardrails AI
 
-This chapter introduces the terminology, concepts, and implementing protective guardrails in AI applications using the `Guardrails AI` library.
+This chapter introduces the terminology, architecture, concepts, and implementation of protective guardrails in AI applications using the `Guardrails AI` library.
 
 == Objectives
 

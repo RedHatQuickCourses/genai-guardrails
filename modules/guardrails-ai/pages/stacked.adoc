@@ -1,0 +1,152 @@
+= Lab: Stacking Multiple Validators
+
+++++
+<style>
+.red { color: red; }
+.blue { color: blue; }
+.green { color: green; }
+.highlight { background-color: yellow; }
+</style>
+++++
+
+In the previous exercise, you created a simple Guardrail using only a single validator. In this hands-on lab, you will create a `Guard` object and stack (attach) multiple validators to it.
+
+For this lab, you will install the following validators from the Guardrails AI Hub:
+
+* https://hub.guardrailsai.com/validator/guardrails/gibberish_text to detect nonsensical gibberish in text
+* https://hub.guardrailsai.com/validator/guardrails/profanity_free to detect profanity and swearing in text
+* https://hub.guardrailsai.com/validator/guardrails/competitor_check to detect the mention of competitor companies
+
+== Pre-requisites
+
+* Python v3.12 (The labs in this course were tested with Python 3.12 on macOS. Note that Python >3.12 is not supported for now)
+* The `pip` CLI to install Python libraries. In this lab, you should have installed the `termcolor` library
+* Git CLI to clone the sample code from GitHub
+* Visual Studio Code or other editors to edit Python code
+* You should have created an account at the Guardrails AI Hub (https://hub.guardrailsai.com), and created an API key as outlined in the first hands-on lab exercise in this course
+* You should have a working `guardrails` CLI command configured to use your Guardrails Hub API key to download validators
+
+== Steps
+
+. If you have not already done it, clone the Git repository containing the code to a folder of your choice.
++
+[source,subs="verbatim,quotes"]
+--
+$ *git clone https://github.com/RedHatQuickCourses/genai-apps.git*
+--
+
+. All the code for Guardrails AI is in a folder called `guardrails/guardrails-ai`. Change to this folder in the terminal.
++
+[source,subs="verbatim,quotes"]
+--
+$ *cd genai-apps/guardrails/guardrails-ai*
+--
+
+. Activate the virtual environment you created previously
++
+[source,subs="verbatim,quotes"]
+--
+$ *source venv/bin/activate*
+--
++
+Your prompt should change to indicate that you are now running in an isolated virtual environment.
+
+. Inspect the `gai-stacked.py` file in a text editor of your choice. use the `install` class from the `guardrails-ai` library to install the three validators.
++
+[source,python]
+--
+...
+# Import Guard and Validators
+from guardrails import Guard, install
+
+install(
+    "hub://guardrails/gibberish_text",
+    install_local_models=True,
+    quiet=False
+)
+
+install(
+    "hub://guardrails/profanity_free",
+    install_local_models=True,
+    quiet=False
+)
+
+install(
+    "hub://guardrails/competitor_check",
+    install_local_models=True,
+    quiet=False
+)
+...
+--
+
+. We then import all the validator classes and set up the `Guard` object. The default behavior of a validator that fails is to throw an exception (You can change this behavior by changing the `on_fail` attribute to the individual validators).
++
+[source,python]
+--
+...
+from guardrails.hub import ProfanityFree, GibberishText, CompetitorCheck
+from guardrails.errors import ValidationError
+from termcolor import colored
+
+# Setup Guard
+guard = Guard().use_many( <1>
+    ProfanityFree(), <2>
+    CompetitorCheck(competitors=["Microsoft", "Oracle"]), <3>
+    GibberishText(threshold=0.5, validation_method="sentence", on_fail="exception") <4>
+)
+...
+--
+<1> Invoke the `use_many()` method to use (stack) multiple validators
+<2> Use the profanity detection validator with default settings
+<3> Use the competitor check validator. Takes list of strings (competitor names) as argument
+<4> Use the gibberish detection validator. Validate gibberish at the sentence level with a low threshold (probabilistic score of a sentence being gibberish). Explicit declaration to throw exception in case gibberish is detected
+
+. The `main()` method invokes different methods to test the Guard object with specific texts that trigger the respective validators
+
+. Inspect the `test_valid_response()` method. It contains valid, safe text that should not trigger any of the attached validators
+
+. Inspect the `test_profanity_check()` method. It contains some text with profanity.
+
+. Inspect the `test_competitor_check()` method. It contains some text with competitor names in it.
+
+. Inspect the `test_gibberish_sentence()` method. It contains both a valid sentence and another with gibberish text.
+
+. Run the script in the virtual environment.
++
+[source,subs="verbatim,quotes"]
+--
+$ (venv) *python gai-stacked.py*
+...
+✅Successfully installed guardrails/gibberish_text version 0.0.1!
+...
+✅Successfully installed guardrails/profanity_free version 0.0.0!
+...
+✅Successfully installed guardrails/competitor_check version 0.0.1!
+...
+[.green]#test_valid_response(): Response from LLM is valid...#
+
+[.red]#test_profanity_check(): Response from LLM is invalid
+Validation failed for field with errors:
+            Goddamn you! Go to Hell!
+             contains profanity. Please return profanity-free output.#
+
+[.red]#test_competitor_check(): Response from LLM is invalid
+
+Validation failed for field with errors: Found the following competitors: MICROSOFT. Please avoid naming those competitors next time#
+
+[.red]#test_gibberish_sentence(): Response from LLM is invalid
+
+Validation failed for field with errors: The following sentences in your response were found to be gibberish:
+
+-
+            FLoop goop loop doop ba da bing.#
+--
+
++
+The script takes a while to run. It downloads the validators and the associated fine-tuned small models for the validators. The corresponding test methods should have trigerred the appropriate validators and the exception messages identify why the input texts failed validation.
++
+NOTE: If the script fails during validator install and post-install setup due to transient network issues, try running it again.
+
+. Experiment by changing the text in the variable `llm_response` in the test methods and see if the validators are trigerred.
+
+. Experiment by checking the Guardrails AI hub and installing a few validators. Read their documentation and attach the validators to the `Guard` object. Add more test methods to trigger the validator and test for false positives.

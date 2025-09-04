@@ -1,2 +1,93 @@
 = Introduction to Guardrails AI
 
+This section discusses the architecture and practical application of the **Guardrails AI** library, a powerful tool for structuring, validating, checking inputs, and validating the outputs of Large Language Models (LLMs).
+
+The Guardrails AI library is a Python framework that helps build reliable AI applications by performing two key functions: running Input/Output Guards in applications that detect, quantify and mitigate the presence of specific types of risks, and helping generate structured data from LLMs. The framework has evolved from its early XML-based RAIL (Reliable AI Markup Language) approach to a modern Pydantic-integrated architecture that provides more robust validation and structured data generation capabilities.
+
+== Core Architecture and Components
+
+At its core, Guardrails AI orchestrates a multi-step process to ensure that the inputs and outputs to and from an LLM do not contain harmful content, and that itconforms to a predefined structure and meets specific quality criteria. The process is managed by a central object, called the `Guard`.
+
+The primary components are:
+
+* **The `Guard` Object**: This is the main entry point and orchestrator. You instantiate a `Guard` object, which takes your input and the desired output structure, plus some validation rules, and then you use it to wrap your LLM calls. It manages the entire process from prompting the LLM to validating and correcting its response.
+
+* **Validators**: These are the individual rule-checking components. A validator is a callable class or function that takes a piece of data and returns a validation outcome (**pass** or **fail**). Validators can be applied to both inputs and outputs to enforce constraints, such as checking if a string is a valid email, if a number falls within a specific range, or if a generated summary is free of hate, bias, abuse and profanity.
+
+* **Pydantic Integration**: The modern approach leverages Pydantic models for schema definition and validation, replacing the legacy XML-based RAIL files with Python-native type definitions.
+
+The interaction between these components follows a reliable, three-step loop when you use the `Guard` to call an LLM:
+
+.  **Prompt Engineering**: The `Guard` object introspects inputs and outputs, and its associated validators. It uses this information to automatically construct a detailed, model-specific prompt. This prompt instructs the LLM not only on the task but also on how it must return the response, including data types and structural rules. This significantly increases the likelihood of getting a correctly formatted response on the first try.
+
+.  **LLM API Call**: The `Guard` takes this augmented prompt and sends it to the configured LLM (e.g., a model from OpenAI, Anthropic, or a self-hosted one). The LLM processes the request and generates a response.
+
+.  **Validation and Correction Loop**: This is the most critical step.
+    * The `Guard` first parses the LLM's raw output, attempting to validate it against the attached validators. If the output does not conform to the validators, this step fails.
+    * If parsing is successful, the `Guard` then returns control back to your application.
+    * If any validator __fails__, the `Guard` throws an exception and returns control back to the application. You can also configure it so that it doesn't just give up, instead it collects all the validation failures, formulates a new request to the LLM that includes the original prompt, the erroneous output, and specific instructions on how to fix the errors, and then re-calls the LLM. This "re-asking" process can be repeated a configurable number of times until the output passes all validations or the maximum number of retries is reached.
+
+== Guardrails Hub and Validators
+
+You don't always have to write your own validators from scratch. The **Guardrails Hub** is a centralized, community-driven registry of pre-built validators that you can easily integrate into your projects. This saves significant development time by providing ready-made solutions for common validation tasks.
+
+Validators in the Hub cover a wide range of use cases, from simple checks like `IsProfane` or `ValidEmail` to more complex ones like `SqlColumnPresence` or `CompetitorCheck`.
+
+=== Installing Validators from the Hub
+
+Integrating a validator from the Hub is managed through the **guardrails** Command Line Interface (CLI). The process is straightforward:
+
+.  **Find a Validator**: You can browse the available validators on the https://hub.guardrailsai.com/[Guardrails AI Hub^] website.
+.  **Install the Validator**: Once you identify a validator you need, you use the CLI to install it directly into your project. 
+
+The CLI command structure for installing validators follows the pattern:
+
+```bash
+$ guardrails hub install hub://guardrails/validator_name
+```
+
+This `guardrails` CLI fetches the validator and makes it available in your project as a `pip` dependency, making it immediately available for import and use in your application. This local copy approach ensures that your project's dependencies are self-contained and not reliant on a remote service at runtime.
+
+== Creating and Using Custom Validators
+
+While the Hub is extensive, you will inevitably encounter situations where you need a unique validation rule specific to your application's domain. Guardrails AI is designed to be highly extensible, making it simple to create your own custom validators.
+
+Let's imagine you want to ensure that a generated text response from an LLM does not contain the word "synergy". Here's how you would create and use a custom validator for this purpose.
+
+=== Building the Custom Validator
+
+A custom validator is a Python class that inherits from the base `Validator` class. The core logic resides within the `validate` method.
+
+1.  **Inherit from `Validator`**: You create a new class that inherits from `guardrails.validators.Validator`.
+2.  **Define the `validate` Method**: This method is the heart of your validator. It receives two arguments: `value`, which is the data from the LLM output that needs to be checked, and `metadata`, a dictionary containing any additional context or parameters passed to the validator.
+3.  **Implement Validation Logic**: Inside the `validate` method, you write the Python code to check the `value` against your rule.
+4.  **Return a `ValidationResult`**: The method must return a `ValidationResult` object. If the validation passes, you return a successful result. If it fails, you return a failure result, which includes an `error_message` explaining what went wrong and a `fix_value` that suggests a corrected version of the data. The `fix_value` is crucial for the automated correction loop.
+
+Following this pattern, our "NoSynergy" validator would check if the input string `value` contains the substring "synergy". If it does, it would return a `FailResult` with an error message and a suggested fix, perhaps the original string with the word "synergy" removed or replaced.
+
+=== Registering and Using the Validator
+
+Once your custom validator class is defined, you need to register it so Guardrails knows it exists. This is typically done with a simple registration function call. After registration, you can use it directly within your Pydantic model. You attach your custom validator to a field by using Pydantic's `Field` function and passing an instance of your validator to the `validators` argument.
+
+When the `Guard` object processes the LLM output for this model, it will automatically discover and run your `NoSynergy` validator on the corresponding field. If the LLM generates a response containing "synergy", the validator will fail, and the correction loop will be triggered.
+
+== The Guardrails CLI
+
+The Guardrails Command Line Interface (CLI) is a utility that helps manage your Guardrails project. Its key functions include:
+
+* **`guardrails configure`**: This command initializes a Guardrails configuration file in your project. This file can store global settings, such as your API keys, making them accessible to your `Guard` objects without hardcoding them in your script.
+
+* **`guardrails hub`**: This is the subcommand for interacting with the Guardrails Hub. As mentioned earlier, `guardrails hub install <validator_name>` is used to download and install validators. You can also list and manage your installed validators.
+
+== References
+
+* Guardrails AI Official Documentation - https://www.guardrailsai.com/docs
+* Guardrails AI GitHub Repository - https://github.com/guardrails-ai/guardrails
+* Guardrails Hub - https://hub.guardrailsai.com/
+* PyPI Package Documentation - https://pypi.org/project/guardrails-ai/
+* Guardrails AI CLI Documentation - https://www.guardrailsai.com/docs/cli
+* Custom Validators Guide - https://www.guardrailsai.com/docs/how_to_guides/custom_validators
+* Validators Concepts Documentation - https://www.guardrailsai.com/docs/hub/concepts/validators
+* Hub Validator Creation Guide - https://www.guardrailsai.com/docs/hub/how_to_guides/custom_validator
+* Input Validation Documentation - https://www.guardrailsai.com/docs/hub/how_to_guides/input_validation
+* **GitHub Repository**: https://github.com/guardrails-ai/guardrails
