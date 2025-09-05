@@ -2,3 +2,5 @@
 ** xref:intro.adoc[]
 ** xref:simple.adoc[]
 ** xref:stacked.adoc[]
+** xref:fix.adoc[]
+** xref:server.adoc[]

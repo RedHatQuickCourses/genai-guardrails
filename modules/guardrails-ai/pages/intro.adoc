@@ -48,6 +48,8 @@ $ guardrails hub install hub://guardrails/validator_name
 
 This `guardrails` CLI fetches the validator and makes it available in your project as a `pip` dependency, making it immediately available for import and use in your application. This local copy approach ensures that your project's dependencies are self-contained and not reliant on a remote service at runtime.
 
+IMPORTANT: Several stability and consistency issues in the `guardrails` CLI were observed during the implementation of the hands-on labs in this course. To ensure reproducability of the labs on student machines, the approach taken was to use the `install` class in the `guardrails-cli` library to install validators in the Python script itself. There were also several issues with using `pip freeze > requirements.txt` and trying to install the dependencies for a script from the `requirements.txt` file. The recommendation is to complete development using the `install` class embedded in code approach, and then once you decide to deploy the application, explore automation via the `guardrails install` CLI command, or requirements.txt route.
+
 == Creating and Using Custom Validators
 
 While the Hub is extensive, you will inevitably encounter situations where you need a unique validation rule specific to your application's domain. Guardrails AI is designed to be highly extensible, making it simple to create your own custom validators.
@@ -64,6 +66,8 @@ A custom validator is a Python class that inherits from the base `Validator` cla
 4.  **Return a `ValidationResult`**: The method must return a `ValidationResult` object. If the validation passes, you return a successful result. If it fails, you return a failure result, which includes an `error_message` explaining what went wrong and a `fix_value` that suggests a corrected version of the data. The `fix_value` is crucial for the automated correction loop.
 
 Following this pattern, our "NoSynergy" validator would check if the input string `value` contains the substring "synergy". If it does, it would return a `FailResult` with an error message and a suggested fix, perhaps the original string with the word "synergy" removed or replaced.
+
+See https://www.guardrailsai.com/docs/how_to_guides/custom_validators for more implementation details.
 
 === Registering and Using the Validator
 
@@ -90,4 +94,4 @@ The Guardrails Command Line Interface (CLI) is a utility that helps manage your 
 * Validators Concepts Documentation - https://www.guardrailsai.com/docs/hub/concepts/validators
 * Hub Validator Creation Guide - https://www.guardrailsai.com/docs/hub/how_to_guides/custom_validator
 * Input Validation Documentation - https://www.guardrailsai.com/docs/hub/how_to_guides/input_validation
-* **GitHub Repository**: https://github.com/guardrails-ai/guardrails
+* Guardrails AI Example Notebooks - https://github.com/guardrails-ai/guardrails/tree/main/docs/examples

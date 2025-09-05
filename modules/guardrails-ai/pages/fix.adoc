@@ -1,0 +1,154 @@
+= Lab: Redacting and Filtering Content
+
+In the previous exercises, a failed validation results in an exception being thrown, which has to be handled by the application. In this hands-on lab, you will create `Guard` objects and configure them to automatically filter out and redact unsafe content.
+
+The mechanism used to achieve this is to pass the `fix` argument to the `on_fail` atttribute of the Guard to change it from the default `exception` value, which simply throws an exception and hands control back to the application.
+
+== Pre-requisites
+
+* Python v3.12 (The labs in this course were tested with Python 3.12 on macOS. Note that Python >3.12 is not supported for now)
+* The `pip` CLI to install Python libraries.
+* Git CLI to clone the sample code from GitHub
+* Visual Studio Code or other editors to edit Python code
+* You should have created an account at the Guardrails AI Hub (https://hub.guardrailsai.com), and created an API key as outlined in the first hands-on lab exercise in this course
+* You should have a working `guardrails` CLI command configured to use your Guardrails Hub API key to download validators
+
+== Steps
+
+. If you have not already done it, clone the Git repository containing the code to a folder of your choice.
++
+[source,subs="verbatim,quotes"]
+--
+$ *git clone https://github.com/RedHatQuickCourses/genai-apps.git*
+--
+
+. All the code for Guardrails AI is in a folder called `guardrails/guardrails-ai`. Change to this folder in the terminal.
++
+[source,subs="verbatim,quotes"]
+--
+$ *cd genai-apps/guardrails/guardrails-ai*
+--
+
+. Activate the virtual environment you created previously
++
+[source,subs="verbatim,quotes"]
+--
+$ *source venv/bin/activate*
+--
++
+Your prompt should change to indicate that you are now running in an isolated virtual environment.
+
+. Inspect the `gai-fix.py` file in a text editor of your choice. It uses the `install` class from the `guardrails-ai` library to install the two validators.
++
+[source,python]
+--
+...
+from guardrails import Guard, install
+
+# Install required validators
+install(
+    "hub://guardrails/toxic_language",
+    install_local_models=True,
+    quiet=False
+)
+
+install(
+    "hub://guardrails/detect_pii",
+    install_local_models=True,
+    quiet=False
+)
+...
+--
+
+. We then import all the validator classes and set up the `Guard` object. Note the use of the `on_fail="fix"` argument for the `Guard` objects.
++
+[source,python]
+--
+...
+from guardrails.hub import ToxicLanguage <1>
+from guardrails.hub import DetectPII  <1>
+
+# Detect toxic content and fix it
+def toxic_content_example():
+        
+    print("=== Toxic Content Filtering Example ===")
+    
+    # Create guard that detects and fixes toxic content
+    guard = Guard().use(
+        ToxicLanguage(threshold=0.5, on_fail="fix") <2>
+    )
+...
+
+# Detect PII in text and redact it
+def pii_redaction_example():
+        
+    print("\n=== PII Redaction Example ===")
+    
+    # Create guard that detects and redacts PII
+    guard = Guard().use(
+        DetectPII(pii_entities=["EMAIL_ADDRESS", "PHONE_NUMBER"], on_fail="fix") <3>
+    )
+...
+
+# Validator stacking - combining both PII and Toxic content validators and fix
+def combined_example():
+        
+    print("\n=== Combined PII + Toxicity Example ===")
+    
+    # Create guard with both validators
+    guard = Guard().use_many(
+        DetectPII(pii_entities=["EMAIL_ADDRESS", "PHONE_NUMBER"], on_fail="fix"), <4>
+        ToxicLanguage(threshold=0.5, on_fail="fix")
+    )
+...
+--
+<1> Import the required validator(s)
+<2> Use the toxic language detection validator with the "fix" option
+<3> Use the PII validator with the "fix" option
+<4> Stack both validators and set the "fix" option
+
+. Run the script in the virtual environment.
++
+[source,subs="verbatim,quotes"]
+--
+$ (venv) *python gai-fix.py*
+Installing hub://guardrails/toxic_language...
+✅Successfully installed guardrails/toxic_language version 0.0.2!
+
+
+Import validator:
+from guardrails.hub import ToxicLanguage
+
+Get more info:
+https://hub.guardrailsai.com/validator/guardrails/toxic_language
+
+Installing hub://guardrails/detect_pii...
+✅Successfully installed guardrails/detect_pii version 0.0.5!
+
+
+Import validator:
+from guardrails.hub import DetectPII
+
+Get more info:
+https://hub.guardrailsai.com/validator/guardrails/detect_pii
+
+=== Toxic Content Filtering Example ===
+Original text: You dumbass. Why did you drop the eggs?. I hope you rot in hell.
+Cleaned safe text: Why did you drop the eggs?.
+
+=== PII Redaction Example ===
+Original text: Contact me at john.doe@email.com or call 555-123-4567
+Redacted text: Contact me at <EMAIL_ADDRESS> or call <PHONE_NUMBER>
+
+=== Combined PII + Toxicity Example ===
+Original text: This company's damn customer service is bloody trash! Email complaints to bad.service@company.com or call 1-800-123-1234.
+Cleaned text: Email complaints to <EMAIL_ADDRESS> or call <PHONE_NUMBER>.
+--
++
+The validators check the input and scrub the unsafe content from the text. In the case of the PII validator, it redacts the PII information and replaces them with template text indicating the type of content that was redacted.
++
+NOTE: If the script fails during validator install and post-install setup due to transient network issues, try running it again.
+
+NOTE: You may see a zsh bus error on macOS after the script completes. This can be safely ignored. The cause is improper exit code from the python script, triggered by native code dependencies in some of the validators.
+
+. Experiment by installing more validators from the Guardrails AI Hub and verify the `on_fail="fix"` behavior in them.

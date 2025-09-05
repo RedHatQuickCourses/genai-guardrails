@@ -1,0 +1,9 @@
+= Feedback
+
+Please open a GitHub issue if you run into any problems with this course. Based on demand, we are also evaulating the following Guardrails frameworks for inclusion in the next update cycle:
+
+* Meta llama-guard and LlamaFirewall
+* NVIDIA NeMo Guardrails
+* WhyLabs LangKit
+
+Please open a GitHub issue at https://github.com/RedHatQuickCourses/genai-guardrails/issues and upvote if you are using other frameworks/libraries, and you need these  in this course.

@@ -7,3 +7,4 @@ nav:
 - modules/ibm-guardian/nav.adoc
 - modules/guardrails-ai/nav.adoc
 - modules/trusty-ai/nav.adoc
+- modules/feedback/nav.adoc
