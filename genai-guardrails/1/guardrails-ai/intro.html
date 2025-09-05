@@ -24,7 +24,7 @@
     </div>
     <div id="topbar-nav" class="navbar-menu">
       <div class="navbar-end">
-        <a class="navbar-item" href="https://github.com/RedHatQuickCourses/REPLACEREPONAME/issues" target="_blank">Report Issues</a>
+        <a class="navbar-item" href="https://github.com/RedHatQuickCourses/genai-guardrails/issues" target="_blank">Report Issues</a>
       </div>
     </div>
   </nav>
@@ -106,6 +106,12 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="stacked.html">Lab: Stacking Multiple Validators</a>
   </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="fix.html">Lab: Redacting and Filtering Content</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="server.html">Lab: Guardrails AI Server</a>
+  </li>
 </ul>
   </li>
 </ul>
@@ -113,16 +119,14 @@
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../trusty-ai/index.html">Trusty AI</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../trusty-ai/intro.html">Introduction</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../trusty-ai/lab.html">Lab: Trusty AI</a>
+    <a class="nav-link" href="../trusty-ai/index.html">Trusty AI (WIP)</a>
   </li>
 </ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../feedback/index.html">Feedback</a>
   </li>
 </ul>
   </li>
@@ -264,6 +268,18 @@
 <div class="paragraph">
 <p>This <code>guardrails</code> CLI fetches the validator and makes it available in your project as a <code>pip</code> dependency, making it immediately available for import and use in your application. This local copy approach ensures that your project&#8217;s dependencies are self-contained and not reliant on a remote service at runtime.</p>
 </div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Several stability and consistency issues in the <code>guardrails</code> CLI were observed during the implementation of the hands-on labs in this course. To ensure reproducability of the labs on student machines, the approach taken was to use the <code>install</code> class in the <code>guardrails-cli</code> library to install validators in the Python script itself. There were also several issues with using <code>pip freeze &gt; requirements.txt</code> and trying to install the dependencies for a script from the <code>requirements.txt</code> file. The recommendation is to complete development using the <code>install</code> class embedded in code approach, and then once you decide to deploy the application, explore automation via the <code>guardrails install</code> CLI command, or requirements.txt route.
+</td>
+</tr>
+</table>
+</div>
 </div>
 </div>
 </div>
@@ -299,6 +315,9 @@
 </div>
 <div class="paragraph">
 <p>Following this pattern, our "NoSynergy" validator would check if the input string <code>value</code> contains the substring "synergy". If it does, it would return a <code>FailResult</code> with an error message and a suggested fix, perhaps the original string with the word "synergy" removed or replaced.</p>
+</div>
+<div class="paragraph">
+<p>See <a href="https://www.guardrailsai.com/docs/how_to_guides/custom_validators" class="bare">https://www.guardrailsai.com/docs/how_to_guides/custom_validators</a> for more implementation details.</p>
 </div>
 </div>
 <div class="sect2">
@@ -363,7 +382,7 @@
 <p>Input Validation Documentation - <a href="https://www.guardrailsai.com/docs/hub/how_to_guides/input_validation" class="bare">https://www.guardrailsai.com/docs/hub/how_to_guides/input_validation</a></p>
 </li>
 <li>
-<p><strong>GitHub Repository</strong>: <a href="https://github.com/guardrails-ai/guardrails" class="bare">https://github.com/guardrails-ai/guardrails</a></p>
+<p>Guardrails AI Example Notebooks - <a href="https://github.com/guardrails-ai/guardrails/tree/main/docs/examples" class="bare">https://github.com/guardrails-ai/guardrails/tree/main/docs/examples</a></p>
 </li>
 </ul>
 </div>

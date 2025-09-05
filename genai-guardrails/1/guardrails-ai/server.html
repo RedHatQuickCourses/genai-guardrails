@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Lab: Centralizing Guardrails Enforcement with Guardrails AI Server :: Guardrails for AI Applications</title>
+    <link rel="prev" href="fix.html">
+    <link rel="next" href="../trusty-ai/index.html">
+    <meta name="generator" content="Antora 3.1.3">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <script>var uiRootPath = '../../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://www.redhat.com" target="_blank"><img src="../../../_/img/redhat-logo.png" height="40px" alt="Red Hat"></a>
+      <a class="navbar-item" style="font-size: 24px; color: white" href="../../..">Guardrails for AI Applications</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://github.com/RedHatQuickCourses/genai-guardrails/issues" target="_blank">Report Issues</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="genai-guardrails" data-version="1">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">Guardrails for AI Applications</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../index.html">Home</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../intro/index.html">Introduction</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../intro/guardrails.html">Why Guardrails?</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../intro/unguarded.html">Lab: LLMs with no Guardrails</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../intro/implementation.html">Implementing Guardrails</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../ibm-guardian/index.html">IBM Granite Guardian</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../ibm-guardian/intro.html">IBM Granite Guardian</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../ibm-guardian/simple.html">Lab: Input Guardrails</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../ibm-guardian/response.html">Lab: Output Guardrails</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../ibm-guardian/hap.html">IBM HAP Models</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../ibm-guardian/hap-lab.html">Lab: IBM HAP Models</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../ibm-guardian/custom.html">Lab: Custom Criteria Guardrails</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="index.html">Guardrails AI</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="intro.html">Introduction to Guardrails AI</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="simple.html">Lab: Simple Guardrails</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="stacked.html">Lab: Stacking Multiple Validators</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="fix.html">Lab: Redacting and Filtering Content</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="server.html">Lab: Guardrails AI Server</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../trusty-ai/index.html">Trusty AI (WIP)</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../feedback/index.html">Feedback</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Guardrails for AI Applications</span>
+    <span class="version">1</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="../index.html">Guardrails for AI Applications</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">1</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">Guardrails for AI Applications</a></li>
+    <li><a href="index.html">Guardrails AI</a></li>
+    <li><a href="server.html">Lab: Guardrails AI Server</a></li>
+  </ul>
+</nav>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Lab: Centralizing Guardrails Enforcement with Guardrails AI Server</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>In the previous exercises, you embedded the Guardrails AI library directly in your application. While this approach works for one-off applications, it becomes difficult to manage multiple different AI applications which need Guadrails functionality. A centralized approach makes sense in such a scenario. In this hands-on lab, you will create a Guardrails AI server and configure it with Guards, validators and associated configuration and expose it for external applications as a REST API.</p>
+</div>
+<div class="paragraph">
+<p>See <a href="https://www.guardrailsai.com/docs/concepts/deploying#why-a-clientserver-model" target="_blank" rel="noopener">Why a client/server model?</a> on the Guardrails AI website for the rationale.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+You will use the <code>guardrails</code> CLI to create a server stub and configure it with Guards and validators. The server stub is a file named <code>config.py</code>, a plain Python file.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_pre_requisites"><a class="anchor" href="#_pre_requisites"></a>Pre-requisites</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Python v3.12 (The labs in this course were tested with Python 3.12 on macOS. Note that Python &gt;3.12 is not supported for now)</p>
+</li>
+<li>
+<p>The <code>pip</code> CLI to install Python libraries.</p>
+</li>
+<li>
+<p>Git CLI to clone the sample code from GitHub</p>
+</li>
+<li>
+<p>Visual Studio Code or other editors to edit Python code</p>
+</li>
+<li>
+<p>You should have created an account at the Guardrails AI Hub (<a href="https://hub.guardrailsai.com" class="bare">https://hub.guardrailsai.com</a>), and created an API key as outlined in the first hands-on lab exercise in this course</p>
+</li>
+<li>
+<p>You should have a working <code>guardrails</code> CLI command configured to use your Guardrails Hub API key to download validators</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_steps"><a class="anchor" href="#_steps"></a>Steps</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>If you have not already done it, clone the Git repository containing the code to a folder of your choice.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">$ <strong>git clone https://github.com/RedHatQuickCourses/genai-apps.git</strong></code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>All the code for Guardrails AI is in a folder called <code>guardrails/guardrails-ai</code>. Change to this folder in the terminal.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">$ <strong>cd genai-apps/guardrails/guardrails-ai</strong></code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Activate the virtual environment you created previously</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">$ <strong>source venv/bin/activate</strong></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Your prompt should change to indicate that you are now running in an isolated virtual environment.</p>
+</div>
+</li>
+<li>
+<p>Use the <code>guardrails create</code> command on the terminal to generate the server stub file. Use the same validators as the stacked validators lab.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">$ <strong>guardrails create \ <i class="conum" data-value="1"></i><b>(1)</b>
+  --validators hub://guardrails/profanity_free, \ <i class="conum" data-value="2"></i><b>(2)</b>
+   hub://guardrails/competitor_check, \ <i class="conum" data-value="2"></i><b>(2)</b>
+   hub://guardrails/gibberish_text \ <i class="conum" data-value="2"></i><b>(2)</b>
+  --guard-name content_guard</strong> <i class="conum" data-value="3"></i><b>(3)</b>
+...
+Installing hub://guardrails/profanity_free...
+Installing hub://guardrails/competitor_check...
+Installing hub://guardrails/gibberish_text...
+...
+
+Success!
+Generating config file...
+Saved configuration to config.py
+Replace TODOs in config.py and run with <code>guardrails start --config config.py</code></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Use the create command in the <code>guardrails</code> CLI to create a server stub</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Add validators needed for your applications</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>A unique guard name. You can create multiple such guards for sets of applications requiring particular validators</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>The previous command will generate a file name <code>config.py</code> in the same directory. Inspect the default <code>config.py</code> file in a text editor of your choice. The file contains the validator declarations that you provided in the CLI, along with some placeholder TODOs instructing you to remove and change code to configure the validators.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">from guardrails import Guard
+from guardrails.hub import (
+        ProfanityFree,
+        CompetitorCheck,
+        GibberishText
+)
+guard = Guard()
+guard.name = 'content_guard'
+print("GUARD PARAMETERS UNFILLED! UPDATE THIS FILE!")  # TODO: Remove this when parameters are filled.
+guard.use_many(
+        ProfanityFree(),  # TODO: Add parameters.
+        CompetitorCheck(),  # TODO: Add parameters.
+        GibberishText(),  # TODO: Add parameters.
+)
+...</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Replace the code in the <code>config.py</code> with the following code. We install the validators, and configure the <code>Guard</code> with the same validators and parameters as in the stacked validators lab.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python"># Import Guard and Validators
+from guardrails import Guard, install
+
+install(
+    "hub://guardrails/gibberish_text",
+    install_local_models=True,
+    quiet=False
+)
+
+install(
+    "hub://guardrails/profanity_free",
+    install_local_models=True,
+    quiet=False
+)
+
+install(
+    "hub://guardrails/competitor_check",
+    install_local_models=True,
+    quiet=False
+)
+
+from guardrails.hub import ProfanityFree, GibberishText, CompetitorCheck
+
+guard = Guard()
+guard.name = 'content_guard'
+
+guard.use_many(
+    ProfanityFree(),
+    CompetitorCheck(competitors=["Microsoft", "Oracle"]),
+    GibberishText(threshold=0.5, validation_method="sentence")
+)</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>There is a <a href="https://github.com/guardrails-ai/guardrails/issues/1269" target="_blank" rel="noopener">bug</a> in the Guardrails server which prevents it from starting. Do the following in the virtual environment before starting the server.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">$ (venv) <strong>pip install guardrails-api==0.0.5</strong></code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Unfortunately, there is yet another bug in the dependency resolution that you need to take care of before starting the server. The <code>guardrails-api</code> package you installed in the previous step will roll back the <code>guardrails-ai</code> version back to 0.5.x. Re-install the <code>guardrails-ai</code> version and pin it to version <code>0.6.6</code></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">$ (venv) <strong>pip uninstall guardrails-ai</strong>
+$ (venv) <strong>pip install guardrails-ai==0.6.6</strong></code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Now, you can start the Guardrails AI server. Do not close the terminal window. You can use <code>Ctrl+c</code> to stop the server after the lab is complete.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">$ (venv) <strong>guardrails start --config config.py</strong>
+...
+🚀 Guardrails API is available at http://localhost:8000
+📖 Visit http://localhost:8000/docs to see available API endpoints.
+
+🟢 Active guards and OpenAI compatible endpoints:
+- Guard: content_guard http://localhost:8000/guards/content_guard/openai/v1
+...
+ * Running on http://127.0.0.1:8000
+INFO:werkzeug:Press CTRL+C to quit</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If the server fails to start due to timeouts or network jitter when downloading the validators from the hub, then try re-starting the server.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Using a web browser, navigate to <code><a href="http://localhost:8000/docs" class="bare">http://localhost:8000/docs</a></code> to view the REST API documentation for the server. The Guardrails AI library parses the <code>config.py</code> file and provides a Swagger/OpenAPI style implementation of the documentation plus associated REST services on port <code>8000</code> by default.</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/server-rest-api-docs.png" alt="server rest api docs">
+</div>
+<div class="title">Figure 1. Guardrails AI server Swagger UI</div>
+</div>
+</li>
+<li>
+<p>Your REST API is now ready to accept client requests. In the next few steps, you will inspect the code in the <code>gai-client.py</code> file. It acts as a client application that invokes the guards on the server. The Guardrails AI library takes care of all the conversion (marshalling and unmarshalling) between JSON and raw Python objects.</p>
+<div class="paragraph">
+<p>The <code>main()</code> method starts off by checking if the Guardrails AI server is running. The server convieniently exposes a <code>health-check</code> endpoint on the default port to let clients know if the server is running.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">def main():
+    # Verify if Guardrails AI server is running
+    print("\nCheck if Guardrails AI server is running...")
+    try:
+        import requests
+        response = requests.get("http://localhost:8000/health-check")
+        if response.status_code != 200:
+            print("❌ Guardrails AI server is not running!")
+            print("Start it with: guardrails start --config config.py")
+            return
+        else:
+            print("✅ Guardrails AI server is running")
+    except:
+        print("❌ Cannot connect to Guardrails AI server!")
+        print("Start it with: guardrails start --config config.py")
+        return</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If the server is running, then the <code>test_gai_server()</code> method is called.</p>
+</div>
+</li>
+<li>
+<p>The <code>test_gai_server()</code> method invokes the <code>content_guard</code> you configured on the server side. The Guardrails AI library takes care of automatically locating the named guard and then serializing/de-serializing the JSON body from the REST API into valid <code>Guard</code> objects on the client in a transparent manner. This saves you the effort of manually parsing and creating the <code>Guard</code> objects.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">...
+from guardrails import Guard
+from guardrails.errors import ValidationError
+...
+try:
+        guard = Guard.fetch_guard(
+            name="content_guard",
+            base_url="http://localhost:8000",
+        )</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If you want to avoid importing Python classes from the <code>guardrails-ai</code> library in your client, you can directly invoke the OpenAI AI compatible end point using the <code>requests</code> library and manually parse the JSON for further processing before you invoke the validator. See <a href="https://www.guardrailsai.com/docs/getting_started/guardrails_server#4-update-client-to-use-the-guardrails-server" class="bare">https://www.guardrailsai.com/docs/getting_started/guardrails_server#4-update-client-to-use-the-guardrails-server</a> for this manual approach.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Observe how the environment variable <code>GUARDRAILS_BASE_URL</code> is being set to point to the URL of the Guardrails AI server.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">...
+
+os.environ["GUARDRAILS_BASE_URL"] = "http://localhost:8000"
+...</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Once the <code>Guard</code> object is constructed, you simply invoke the <code>validate()</code> method on the Guard and pass it the text you want to validate. In our case, we have a list of messages we want to validate, and we loop through them one by one and invoke the <code>validate()</code> method.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">...
+test_responses = [
+        "The quick brown fox jumps over the lazy dog.",  # Valid response
+        "AI and machine learning are transforming industries.",  # Another Valid response
+        "flooby dooby wacka stacka gibber jabber.",  # Gibberish test
+        "Damn. My bet went to hell.",  # Profanity test
+        "The oracle at Delphi saw visions", # competitor check false positive
+        "ibm and oracle are the top enterprise databases" # competitor check should trigger
+    ]
+...
+for i, text in enumerate(test_responses, 1):
+            print(f"\nTest {i}: '{text}'")
+            try:
+                result = guard.validate(text)
+                print(f"  ✅ PASSED: {result.validation_passed}")
+                if hasattr(result, 'validation_summaries'):
+                    print(f"  Details: {result.validation_summaries}")
+
+            except ValidationError as ve:
+                print(f"  ❌ FAILED: {ve}")
+            except Exception as e:
+                print(f"  ⚠️  ERROR: {e}")
+
+    except Exception as e:
+        print(f"Failed to connect to guard: {e}")</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Run the <code>gai-client.py</code> file in a new terminal. Do not forget to activate your Python virtual environment where all the Guardrails AI library dependencies are installed. Your Guardrails AI server should be running as outlined in the previous steps.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">$ (venv) <strong>python gai-client.py</strong>
+Check if Guardrails AI server is running...
+✅ Guardrails AI server is running
+
+=== Guardrails AI Server Testing ===
+
+Test 1: 'The quick brown fox jumps over the lazy dog.'
+  ✅ PASSED: True
+  Details: []
+
+Test 2: 'AI and machine learning are transforming industries.'
+  ✅ PASSED: True
+  Details: []
+
+Test 3: 'flooby dooby wacka stacka gibber jabber.'
+  ❌ FAILED: {"detail":"Validation failed for field with errors: The following sentences in your response were found to be gibberish:\n\n- flooby dooby wacka stacka gibber jabber.","status_code":400}
+
+
+Test 4: 'Damn. My bet went to hell.'
+  ❌ FAILED: {"detail":"Validation failed for field with errors: Damn. My bet went to hell. contains profanity. Please return profanity-free output.","status_code":400}
+
+
+Test 5: 'The oracle at Delphi saw visions'
+  ✅ PASSED: True
+  Details: []
+
+Test 6: 'ibm and oracle are the top enterprise databases'
+  ❌ FAILED: {"detail":"Validation failed for field with errors: Found the following competitors: oracle. Please avoid naming those competitors next time","status_code":400}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Validations that passed do not display any details, while the ones that failed will display the reason for rejection. Note how the competitor check is contextually aware of the words in a sentence, so the word <code>"oracle"</code> when used as a noun in the sentence <code>"The oracle at Delphi saw visions"</code> does not cause the validator to fail.</p>
+</div>
+<div class="paragraph">
+<p>Uncomment the line <code>print(result)</code> on line <code>32</code> if you want to debug the code. The server terminal also displays the logs from the server side.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/server-error.png" alt="server error">
+</div>
+<div class="title">Figure 2. Guardrails AI server logs</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="fix.html">Lab: Redacting and Filtering Content</a></span>
+  <span class="next"><a href="../trusty-ai/index.html">Trusty AI (WIP)</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <img src="../../../_/img/rhl-logo-red.png" height="40px" alt="Red Hat"  href="https://redhat.com" >
+</footer><script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

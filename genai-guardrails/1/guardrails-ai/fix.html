@@ -3,9 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Lab: Stacking Multiple Validators :: Guardrails for AI Applications</title>
-    <link rel="prev" href="simple.html">
-    <link rel="next" href="fix.html">
+    <title>Lab: Redacting and Filtering Content :: Guardrails for AI Applications</title>
+    <link rel="prev" href="stacked.html">
+    <link rel="next" href="server.html">
     <meta name="generator" content="Antora 3.1.3">
     <link rel="stylesheet" href="../../../_/css/site.css">
     <script>var uiRootPath = '../../../_'</script>
@@ -103,10 +103,10 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="simple.html">Lab: Simple Guardrails</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="2">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="stacked.html">Lab: Stacking Multiple Validators</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="fix.html">Lab: Redacting and Filtering Content</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -160,7 +160,7 @@
   <ul>
     <li><a href="../index.html">Guardrails for AI Applications</a></li>
     <li><a href="index.html">Guardrails AI</a></li>
-    <li><a href="stacked.html">Lab: Stacking Multiple Validators</a></li>
+    <li><a href="fix.html">Lab: Redacting and Filtering Content</a></li>
   </ul>
 </nav>
 </div>
@@ -169,33 +169,14 @@
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Lab: Stacking Multiple Validators</h1>
+<h1 class="page">Lab: Redacting and Filtering Content</h1>
 <div id="preamble">
 <div class="sectionbody">
-<style>
-.red { color: red; }
-.blue { color: blue; }
-.green { color: green; }
-.highlight { background-color: yellow; }
-</style>
 <div class="paragraph">
-<p>In the previous exercise, you created a simple Guardrail using only a single validator. In this hands-on lab, you will create a <code>Guard</code> object and stack (attach) multiple validators to it.</p>
+<p>In the previous exercises, a failed validation results in an exception being thrown, which has to be handled by the application. In this hands-on lab, you will create <code>Guard</code> objects and configure them to automatically filter out and redact unsafe content.</p>
 </div>
 <div class="paragraph">
-<p>For this lab, you will install the following validators from the Guardrails AI Hub:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="https://hub.guardrailsai.com/validator/guardrails/gibberish_text" class="bare">https://hub.guardrailsai.com/validator/guardrails/gibberish_text</a> to detect nonsensical gibberish in text</p>
-</li>
-<li>
-<p><a href="https://hub.guardrailsai.com/validator/guardrails/profanity_free" class="bare">https://hub.guardrailsai.com/validator/guardrails/profanity_free</a> to detect profanity and swearing in text</p>
-</li>
-<li>
-<p><a href="https://hub.guardrailsai.com/validator/guardrails/competitor_check" class="bare">https://hub.guardrailsai.com/validator/guardrails/competitor_check</a> to detect the mention of competitor companies</p>
-</li>
-</ul>
+<p>The mechanism used to achieve this is to pass the <code>fix</code> argument to the <code>on_fail</code> atttribute of the Guard to change it from the default <code>exception</code> value, which simply throws an exception and hands control back to the application.</p>
 </div>
 </div>
 </div>
@@ -208,7 +189,7 @@
 <p>Python v3.12 (The labs in this course were tested with Python 3.12 on macOS. Note that Python &gt;3.12 is not supported for now)</p>
 </li>
 <li>
-<p>The <code>pip</code> CLI to install Python libraries. In this lab, you should have installed the <code>termcolor</code> library</p>
+<p>The <code>pip</code> CLI to install Python libraries.</p>
 </li>
 <li>
 <p>Git CLI to clone the sample code from GitHub</p>
@@ -259,27 +240,21 @@
 </div>
 </li>
 <li>
-<p>Inspect the <code>gai-stacked.py</code> file in a text editor of your choice. use the <code>install</code> class from the <code>guardrails-ai</code> library to install the three validators.</p>
+<p>Inspect the <code>gai-fix.py</code> file in a text editor of your choice. It uses the <code>install</code> class from the <code>guardrails-ai</code> library to install the two validators.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">...
-# Import Guard and Validators
 from guardrails import Guard, install
 
+# Install required validators
 install(
-    "hub://guardrails/gibberish_text",
+    "hub://guardrails/toxic_language",
     install_local_models=True,
     quiet=False
 )
 
 install(
-    "hub://guardrails/profanity_free",
-    install_local_models=True,
-    quiet=False
-)
-
-install(
-    "hub://guardrails/competitor_check",
+    "hub://guardrails/detect_pii",
     install_local_models=True,
     quiet=False
 )
@@ -288,20 +263,45 @@ install(
 </div>
 </li>
 <li>
-<p>We then import all the validator classes and set up the <code>Guard</code> object. The default behavior of a validator that fails is to throw an exception (You can change this behavior by changing the <code>on_fail</code> attribute to the individual validators).</p>
+<p>We then import all the validator classes and set up the <code>Guard</code> object. Note the use of the <code>on_fail="fix"</code> argument for the <code>Guard</code> objects.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">...
-from guardrails.hub import ProfanityFree, GibberishText, CompetitorCheck
-from guardrails.errors import ValidationError
-from termcolor import colored
+from guardrails.hub import ToxicLanguage <i class="conum" data-value="1"></i><b>(1)</b>
+from guardrails.hub import DetectPII  <i class="conum" data-value="1"></i><b>(1)</b>
 
-# Setup Guard
-guard = Guard().use_many( <i class="conum" data-value="1"></i><b>(1)</b>
-    ProfanityFree(), <i class="conum" data-value="2"></i><b>(2)</b>
-    CompetitorCheck(competitors=["Microsoft", "Oracle"]), <i class="conum" data-value="3"></i><b>(3)</b>
-    GibberishText(threshold=0.5, validation_method="sentence", on_fail="exception") <i class="conum" data-value="4"></i><b>(4)</b>
-)
+# Detect toxic content and fix it
+def toxic_content_example():
+
+    print("=== Toxic Content Filtering Example ===")
+
+    # Create guard that detects and fixes toxic content
+    guard = Guard().use(
+        ToxicLanguage(threshold=0.5, on_fail="fix") <i class="conum" data-value="2"></i><b>(2)</b>
+    )
+...
+
+# Detect PII in text and redact it
+def pii_redaction_example():
+
+    print("\n=== PII Redaction Example ===")
+
+    # Create guard that detects and redacts PII
+    guard = Guard().use(
+        DetectPII(pii_entities=["EMAIL_ADDRESS", "PHONE_NUMBER"], on_fail="fix") <i class="conum" data-value="3"></i><b>(3)</b>
+    )
+...
+
+# Validator stacking - combining both PII and Toxic content validators and fix
+def combined_example():
+
+    print("\n=== Combined PII + Toxicity Example ===")
+
+    # Create guard with both validators
+    guard = Guard().use_many(
+        DetectPII(pii_entities=["EMAIL_ADDRESS", "PHONE_NUMBER"], on_fail="fix"), <i class="conum" data-value="4"></i><b>(4)</b>
+        ToxicLanguage(threshold=0.5, on_fail="fix")
+    )
 ...</code></pre>
 </div>
 </div>
@@ -309,71 +309,63 @@ guard = Guard().use_many( <i class="conum" data-value="1"></i><b>(1)</b>
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Invoke the <code>use_many()</code> method to use (stack) multiple validators</td>
+<td>Import the required validator(s)</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Use the profanity detection validator with default settings</td>
+<td>Use the toxic language detection validator with the "fix" option</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Use the competitor check validator. Takes list of strings (competitor names) as argument</td>
+<td>Use the PII validator with the "fix" option</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>Use the gibberish detection validator. Validate gibberish at the sentence level with a low threshold (probabilistic score of a sentence being gibberish). Explicit declaration to throw exception in case gibberish is detected</td>
+<td>Stack both validators and set the "fix" option</td>
 </tr>
 </table>
 </div>
 </li>
 <li>
-<p>The <code>main()</code> method invokes different methods to test the Guard object with specific texts that trigger the respective validators</p>
-</li>
-<li>
-<p>Inspect the <code>test_valid_response()</code> method. It contains valid, safe text that should not trigger any of the attached validators</p>
-</li>
-<li>
-<p>Inspect the <code>test_profanity_check()</code> method. It contains some text with profanity.</p>
-</li>
-<li>
-<p>Inspect the <code>test_competitor_check()</code> method. It contains some text with competitor names in it.</p>
-</li>
-<li>
-<p>Inspect the <code>test_gibberish_sentence()</code> method. It contains both a valid sentence and another with gibberish text.</p>
-</li>
-<li>
 <p>Run the script in the virtual environment.</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">$ (venv) <strong>python gai-stacked.py</strong>
-...
-✅Successfully installed guardrails/gibberish_text version 0.0.1!
-...
-✅Successfully installed guardrails/profanity_free version 0.0.0!
-...
-✅Successfully installed guardrails/competitor_check version 0.0.1!
-...
-<span class="green">test_valid_response(): Response from LLM is valid...</span>
+<pre class="highlightjs highlight"><code class="language-none hljs">$ (venv) <strong>python gai-fix.py</strong>
+Installing hub://guardrails/toxic_language...
+✅Successfully installed guardrails/toxic_language version 0.0.2!
 
-<span class="red">test_profanity_check(): Response from LLM is invalid
-Validation failed for field with errors:
-            Goddamn you! Go to Hell!
-             contains profanity. Please return profanity-free output.</span>
 
-<span class="red">test_competitor_check(): Response from LLM is invalid
+Import validator:
+from guardrails.hub import ToxicLanguage
 
-Validation failed for field with errors: Found the following competitors: MICROSOFT. Please avoid naming those competitors next time</span>
+Get more info:
+https://hub.guardrailsai.com/validator/guardrails/toxic_language
 
-<span class="red">test_gibberish_sentence(): Response from LLM is invalid
+Installing hub://guardrails/detect_pii...
+✅Successfully installed guardrails/detect_pii version 0.0.5!
 
-Validation failed for field with errors: The following sentences in your response were found to be gibberish:
 
--
-            FLoop goop loop doop ba da bing.</span></code></pre>
+Import validator:
+from guardrails.hub import DetectPII
+
+Get more info:
+https://hub.guardrailsai.com/validator/guardrails/detect_pii
+
+=== Toxic Content Filtering Example ===
+Original text: You dumbass. Why did you drop the eggs?. I hope you rot in hell.
+Cleaned safe text: Why did you drop the eggs?.
+
+=== PII Redaction Example ===
+Original text: Contact me at john.doe@email.com or call 555-123-4567
+Redacted text: Contact me at &lt;EMAIL_ADDRESS&gt; or call &lt;PHONE_NUMBER&gt;
+
+=== Combined PII + Toxicity Example ===
+Original text: This company's damn customer service is bloody trash! Email complaints to bad.service@company.com or call 1-800-123-1234.
+Cleaned text: Email complaints to &lt;EMAIL_ADDRESS&gt; or call &lt;PHONE_NUMBER&gt;.</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The script takes a while to run. It downloads the validators and the associated fine-tuned small models for the validators. The corresponding test methods should have trigerred the appropriate validators and the exception messages identify why the input texts failed validation.</p>
+<p>The validators check the input and scrub the unsafe content from the text. In the case of the PII validator, it redacts the PII information and replaces them with template text indicating the type of content that was redacted.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -388,19 +380,32 @@ If the script fails during validator install and post-install setup due to trans
 </table>
 </div>
 </li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+You may see a zsh bus error on macOS after the script completes. This can be safely ignored. The cause is improper exit code from the python script, triggered by native code dependencies in some of the validators.
+</td>
+</tr>
+</table>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
 <li>
-<p>Experiment by changing the text in the variable <code>llm_response</code> in the test methods and see if the validators are trigerred.</p>
-</li>
-<li>
-<p>Experiment by checking the Guardrails AI hub and installing a few validators. Read their documentation and attach the validators to the <code>Guard</code> object. Add more test methods to trigger the validator and test for false positives.</p>
+<p>Experiment by installing more validators from the Guardrails AI Hub and verify the <code>on_fail="fix"</code> behavior in them.</p>
 </li>
 </ol>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="simple.html">Lab: Simple Guardrails</a></span>
-  <span class="next"><a href="fix.html">Lab: Redacting and Filtering Content</a></span>
+  <span class="prev"><a href="stacked.html">Lab: Stacking Multiple Validators</a></span>
+  <span class="next"><a href="server.html">Lab: Guardrails AI Server</a></span>
 </nav>
 </article>
   </div>
