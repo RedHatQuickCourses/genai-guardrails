@@ -179,7 +179,7 @@
 .highlight { background-color: yellow; }
 </style>
 <div class="paragraph">
-<p>In this lab, you will use add a simple guardrail to an AI application that accepts input from the user, and checks if it contains any Personal Identifiable Information (PII) in the input.</p>
+<p>In this lab, you will add a simple guardrail to an AI application that accepts input from the user, and checks if it contains any Personal Identifiable Information (PII) in the input.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -232,7 +232,7 @@ We do not run any inference LLM model in this lab, and we restrict ourselves to 
 </div>
 </li>
 <li>
-<p>After you log in, click on <code>Create API key</code> button</p>
+<p>After you log in, click on the <code>Create API key</code> button</p>
 <div class="imageblock">
 <div class="content">
 <img src="_images/gh3.png" alt="gh3" width="400" height="400">
@@ -250,7 +250,7 @@ We do not run any inference LLM model in this lab, and we restrict ourselves to 
 </div>
 </li>
 <li>
-<p>Copy the API key text to your clipboard and keep it safe. You will use this API key in all the hands-on lab exercises</p>
+<p>Copy the API key text to your clipboard and keep it safe. You will use this API key in all the hands-on lab exercises.</p>
 <div class="imageblock">
 <div class="content">
 <img src="_images/gh5.png" alt="gh5" width="400" height="400">
@@ -393,11 +393,11 @@ guard = Guard().use( <i class="conum" data-value="2"></i><b>(2)</b>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Create a <code>Guard</code> object using the validator</td>
+<td>Create a <code>Guard</code> object using the validator.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>The <code>DetectPII</code> validator takes two arguments - a list of <code>entities</code> (email IDs, phone numbers, SSN, Passport numbers, and more) that should be checked in the input as an argument, along with the action it needs to take if it detects these entities in the input. In this case we simply throw an exception.</td>
+<td>The <code>DetectPII</code> validator takes two arguments - a list of <code>entities</code> (email IDs, phone numbers, SSN, Passport numbers, and more) that should be checked in the input as an argument, along with the action it needs to take if it detects these entities in the input. In this case, we simply throw an exception.</td>
 </tr>
 </table>
 </div>
@@ -448,11 +448,11 @@ https://hub.guardrailsai.com/validator/guardrails/detect_pii
 </div>
 </div>
 <div class="paragraph">
-<p>Since there are no visible PII in the input text, the validator allows this text to be processed further in our AI application.</p>
+<p>Since there is no visible PII in the input text, the validator allows this text to be processed further in our AI application.</p>
 </div>
 </li>
 <li>
-<p>Next, inspect the <code>invalid_response1()</code>, <code>invalid_response2()</code>, and <code>invalid_response3()</code> methods. We are checking for Email IDs, SSNs, and phone numbers in these methods respectively.</p>
+<p>Next, inspect the <code>invalid_response1()</code>, <code>invalid_response2()</code>, and <code>invalid_response3()</code> methods. We are checking for Email IDs, SSNs, and phone numbers in these methods, respectively.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">...
@@ -470,7 +470,7 @@ def invalid_response1():
 def invalid_response2():
     try:
         guard.validate(
-        "Hi John Doe! Can you please verify your if your social security number is 615-49-2540"
+        "Hi John Doe! Can you please verify if your social security number is 615-49-2540"
     )
     except Exception as e:
         msg = str(e)
@@ -520,7 +520,7 @@ Hi John Doe! Can you please verify your email ID john.doe@example.com
 invalid_response2(): Response from LLM is invalid
 
 Validation failed for field with errors: The following text in your response contains PII:
-Hi John Doe! Can you please verify your if your social security number is 615-49-2540
+Hi John Doe! Can you please verify if your social security number is 615-49-2540
 
 invalid_response3(): Response from LLM is invalid
 
@@ -529,11 +529,11 @@ You can contact John Doe at +1 408-447-4433</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The validator has correctly identified that the text in these method calls have PII in them, and thows an exception. We catch these exceptions and display the validator error messages in red font.</p>
+<p>The validator has correctly identified that the text in these method calls has PII in them, and thows an exception. We catch these exceptions and display the validator error messages in red font.</p>
 </div>
 </li>
 <li>
-<p>Experiment with more input texts and verify that the validator rejects them. A sample test is commented out in the script at the bottom. Refer to the supported entities page at <a href="https://microsoft.github.io/presidio/supported_entities/" class="bare">https://microsoft.github.io/presidio/supported_entities/</a> and try and use a few. Try validating with different input texts and see if you can trigger false positives.</p>
+<p>Experiment with more input texts and verify that the validator rejects them. A sample test is commented out in the script at the bottom. Refer to the supported entities page at <a href="https://microsoft.github.io/presidio/supported_entities/" class="bare">https://microsoft.github.io/presidio/supported_entities/</a> and try to use a few. Try validating with different input texts and see if you can trigger false positives.</p>
 </li>
 </ol>
 </div>

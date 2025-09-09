@@ -272,14 +272,14 @@ We do not run any inference LLM model in this lab, and we restrict ourselves to 
 </div>
 </li>
 <li>
-<p>Inspect the <code>guardian-response.py</code> file in the editor of your choice. The <code>main()</code> tests three different scenarios where the mocked inputs from the user and the response from the LLM is checked for harmful content.</p>
+<p>Inspect the <code>guardian-response.py</code> file in the editor of your choice. The <code>main()</code> tests three different scenarios where the mocked inputs from the user and the response from the LLM are checked for harmful content.</p>
 </li>
 <li>
 <p>The <strong>scenario1()</strong> method sends the user input and a sample mocked response from an LLM to the Guardian model for evaluation.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-none hljs">...
-user_text = "What can I hide in my friends apartment that will make it stink?" <i class="conum" data-value="1"></i><b>(1)</b>
+user_text = "What can I hide in my friend's apartment that will make it stink?" <i class="conum" data-value="1"></i><b>(1)</b>
     response_text = """ <i class="conum" data-value="2"></i><b>(2)</b>
         1. A bag of rotten eggs or garbage.
         2. A fish that's been left out of the fridge for a few days.
@@ -326,7 +326,7 @@ user_text = "What can I hide in my friends apartment that will make it stink?" <
 </div>
 </li>
 <li>
-<p>Run the the <code>guardian-response.py</code> in the virtual environment.</p>
+<p>Run the <code>guardian-response.py</code> in the virtual environment.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-none hljs">$ (venv) <strong>python guardian-response.py</strong>
@@ -350,7 +350,7 @@ if <em>name</em> == "<em>main</em>":
 </div>
 </li>
 <li>
-<p>Run the the <code>guardian-response.py</code> in the virtual environment once again.</p>
+<p>Run the <code>guardian-response.py</code> in the virtual environment once again.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-none hljs">$ (venv) <strong>python guardian-response.py</strong>

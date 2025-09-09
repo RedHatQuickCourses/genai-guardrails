@@ -173,7 +173,7 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>In this lab, you will use run a simple chatbot that accepts input from the user, and checks it against the IBM AI Risk Atlas to classify if the content matches any of the pre-defined categories listed in the atlas. You will run the <code>granite3-guardian:2b</code> LLM model using <code>ollama</code>.</p>
+<p>In this lab, you will run a simple chatbot that accepts input from the user, and checks it against the IBM AI Risk Atlas to classify if the content matches any of the pre-defined categories listed in the atlas. You will run the <code>granite3-guardian:2b</code> LLM model using <code>ollama</code>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -226,7 +226,7 @@ We do not run any inference LLM model in this lab, and we restrict ourselves to 
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>If you have not already done it, clone the Git repository containing the code to a folder of your choice.</p>
+<p>If you have not done it already, clone the Git repository containing the code to a folder of your choice.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-none hljs">$ <strong>git clone https://github.com/RedHatQuickCourses/genai-apps.git</strong></code></pre>
@@ -270,7 +270,7 @@ $ <strong>source venv/bin/activate</strong></code></pre>
 </div>
 </li>
 <li>
-<p>Inspect the <code>guardian-simple.py</code> file in the editor of your choice. The <code>main()</code> function creates a simple text based chat interface and sends all input typed in by the user to the <code>ollama_gen()</code> method, which invokes the Guardian model using ollama. To exit the chatbot, type <code>exit</code> (all lowercase).</p>
+<p>Inspect the <code>guardian-simple.py</code> file in the editor of your choice. The <code>main()</code> function creates a simple text-based chat interface and sends all input typed in by the user to the <code>ollama_gen()</code> method, which invokes the Guardian model using ollama. To exit the chatbot, type <code>exit</code> (all lowercase).</p>
 </li>
 <li>
 <p>The core logic in the <code>main()</code> method checks the result of the analysis from the Guardian model and decides if the input is safe for further processing.</p>
@@ -300,7 +300,7 @@ $ <strong>source venv/bin/activate</strong></code></pre>
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Default category is set to "<strong>harm</strong>", which detects all types of risks listed in the IBM AI Risk Atlas</td>
+<td>The default category is set to "<strong>harm</strong>", which detects all types of risks listed in the IBM AI Risk Atlas.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
@@ -308,7 +308,7 @@ $ <strong>source venv/bin/activate</strong></code></pre>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>The Guardian model returns <strong>Yes</strong> if it detected harmful content in the input</td>
+<td>The Guardian model returns <strong>Yes</strong> if it detects harmful content in the input.</td>
 </tr>
 </table>
 </div>
@@ -348,7 +348,7 @@ You:</code></pre>
 <p>Try a few more combinations of safe and unsafe input text and verify if the Guardian model detects harmful content.</p>
 </li>
 <li>
-<p>The default category in the code is set to <strong>harm</strong>, which detects all types of harmful content (profanity, social bias etc). Check the page at <a href="https://www.ibm.com/granite/docs/models/guardian/#risk-definitions" target="_blank" rel="noopener">IBM Granite Guardian Risk Definitions</a> to see the list of risks that are caught by the "<strong>harm</strong>" category. You can change the category to other risks and see if your input text matches any the category. See the example notebook at <a href="https://github.com/ibm-granite/granite-guardian/blob/main/cookbooks/granite-guardian-3.2/quick_start_vllm.ipynb" target="_blank" rel="noopener">Granite Guardian Quick Start</a>, which lists a table with the different type of risks.</p>
+<p>The default category in the code is set to <strong>harm</strong>, which detects all types of harmful content (profanity, social bias, etc). Check the page at <a href="https://www.ibm.com/granite/docs/models/guardian/#risk-definitions" target="_blank" rel="noopener">IBM Granite Guardian Risk Definitions</a> to see the list of risks that are caught by the "<strong>harm</strong>" category. You can change the category to other risks and see if your input text matches any of the category. See the example notebook at <a href="https://github.com/ibm-granite/granite-guardian/blob/main/cookbooks/granite-guardian-3.2/quick_start_vllm.ipynb" target="_blank" rel="noopener">Granite Guardian Quick Start</a>, which lists a table with the different types of risks.</p>
 </li>
 <li>
 <p>For example, change the category to <strong>social_bias</strong> in the code.</p>
@@ -369,10 +369,10 @@ You:</code></pre>
 </div>
 </li>
 <li>
-<p>Restart the chatbot and type in <strong>I detest Klingons. I&#8217;d never allow them into the city</strong></p>
+<p>Restart the chatbot and type in <strong>I detest Klingons. I&#8217;d never allow them into the city.</strong></p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">You: I detest Klingons. I'd never allow them into the city
+<pre class="highlightjs highlight"><code class="language-none hljs">You: I detest Klingons. I'd never allow them into the city.
 
 🤖 Chatbot: ❌ Your input is considered harmful! Blocking further processing...</code></pre>
 </div>

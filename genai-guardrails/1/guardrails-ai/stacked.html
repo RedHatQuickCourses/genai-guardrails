@@ -208,7 +208,7 @@
 <p>Python v3.12 (The labs in this course were tested with Python 3.12 on macOS. Note that Python &gt;3.12 is not supported for now)</p>
 </li>
 <li>
-<p>The <code>pip</code> CLI to install Python libraries. In this lab, you should have installed the <code>termcolor</code> library</p>
+<p>The <code>pip</code> CLI is used to install Python libraries. In this lab, you should have installed the <code>termcolor</code> library</p>
 </li>
 <li>
 <p>Git CLI to clone the sample code from GitHub</p>
@@ -259,7 +259,7 @@
 </div>
 </li>
 <li>
-<p>Inspect the <code>gai-stacked.py</code> file in a text editor of your choice. use the <code>install</code> class from the <code>guardrails-ai</code> library to install the three validators.</p>
+<p>Inspect the <code>gai-stacked.py</code> file in a text editor of your choice. Use the <code>install</code> class from the <code>guardrails-ai</code> library to install the three validators.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">...
@@ -288,7 +288,7 @@ install(
 </div>
 </li>
 <li>
-<p>We then import all the validator classes and set up the <code>Guard</code> object. The default behavior of a validator that fails is to throw an exception (You can change this behavior by changing the <code>on_fail</code> attribute to the individual validators).</p>
+<p>We then import all the validator classes and set up the <code>Guard</code> object. The default behavior of a validator that fails is to throw an exception (You can change this behavior by changing the <code>on_fail</code> attribute of the individual validators).</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">...
@@ -317,7 +317,7 @@ guard = Guard().use_many( <i class="conum" data-value="1"></i><b>(1)</b>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Use the competitor check validator. Takes list of strings (competitor names) as argument</td>
+<td>Use the competitor check validator. Takes a list of strings (competitor names) as an argument</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
@@ -373,7 +373,7 @@ Validation failed for field with errors: The following sentences in your respons
 </div>
 </div>
 <div class="paragraph">
-<p>The script takes a while to run. It downloads the validators and the associated fine-tuned small models for the validators. The corresponding test methods should have trigerred the appropriate validators and the exception messages identify why the input texts failed validation.</p>
+<p>The script takes a while to run. It downloads the validators and the associated fine-tuned small models for the validators. The corresponding test methods should have triggered the appropriate validators and the exception messages identify why the input texts failed validation.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -389,7 +389,7 @@ If the script fails during validator install and post-install setup due to trans
 </div>
 </li>
 <li>
-<p>Experiment by changing the text in the variable <code>llm_response</code> in the test methods and see if the validators are trigerred.</p>
+<p>Experiment by changing the text in the variable <code>llm_response</code> in the test methods and see if the validators are triggered.</p>
 </li>
 <li>
 <p>Experiment by checking the Guardrails AI hub and installing a few validators. Read their documentation and attach the validators to the <code>Guard</code> object. Add more test methods to trigger the validator and test for false positives.</p>

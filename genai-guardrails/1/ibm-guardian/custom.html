@@ -173,10 +173,10 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>In the previous labs, you checked the <strong>input</strong> and <strong>output</strong> texts, and verified the safety of it using the IBM Granite Guardian model.</p>
+<p>In the previous labs, you checked the <strong>input</strong> and <strong>output</strong> texts and verified the safety of them using the IBM Granite Guardian model.</p>
 </div>
 <div class="paragraph">
-<p>In this lab, you will create your own custom guardrails criteria and verify if the user entered query is safe. You will run the latest <code>ibm/granite3.3-guardian:8b</code> LLM model using <code>ollama</code>.</p>
+<p>In this lab, you will create your own custom guardrails criteria and verify if the user-entered query is safe. You will run the latest <code>ibm/granite3.3-guardian:8b</code> LLM model using <code>ollama</code>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -276,7 +276,7 @@ You need to use the latest IBM Granite Guardian 3.3-8B model (<code>ibm/granite3
 </div>
 </li>
 <li>
-<p>Pull the <code>ibm/granite3.3-guardian:8b</code> model using ollama. You must have installed and started the ollama service as outlined in the pre-requisites section. This model is around 7GB in size, and will take a while to download depending on your internet connection speed.</p>
+<p>Pull the <code>ibm/granite3.3-guardian:8b</code> model using ollama. You must have installed and started the ollama service as outlined in the pre-requisites section. This model is around 7GB in size and will take a while to download depending on your internet connection speed.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-none hljs">$ <strong>ollama pull ibm/granite3.3-guardian:8b</strong></code></pre>
@@ -286,7 +286,7 @@ You need to use the latest IBM Granite Guardian 3.3-8B model (<code>ibm/granite3
 <li>
 <p>Inspect the <code>guardian-custom.py</code> file in the editor of your choice. The <code>main()</code> method tests different scenarios, where the mocked input from the user is checked for harmful content.</p>
 <div class="paragraph">
-<p>The <strong>default_config_test()</strong> method uses the default <strong>harm</strong> category and sends tbe user query to the Guardian model running on ollama. Note that we are customizing the prompt before sending to the Guardian by augmenting the chat template with the <strong>guardian_config</strong> dictionary, and pass the <code>harm</code> value to the <strong>criteria_id</strong> attribute (attribute name for setting risk category has changed from <code>content</code> to <code>criteria_id</code> in Guardian 3.3).</p>
+<p>The <strong>default_config_test()</strong> method uses the default <strong>harm</strong> category and sends the user query to the Guardian model running on ollama. Note that we are customizing the prompt before sending to the Guardian by augmenting the chat template with the <strong>guardian_config</strong> dictionary, and passing the <code>harm</code> value to the <strong>criteria_id</strong> attribute (attribute name for setting risk category has changed from <code>content</code> to <code>criteria_id</code> in Guardian 3.3).</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -314,7 +314,7 @@ def default_config_test(user_text, category):
 </div>
 </li>
 <li>
-<p>The next call in the <code>main</code> method sets the risk category as <code>unethical_behavior</code> and this value is used to set the <code>criteria_id</code> in the <code>unethical_test()</code> method. The body of this method is similar to the <code>default_config_test()</code> method, with the <code>criteria_id</code> being set to <code>unethical_behavior</code> instead of the default.</p>
+<p>The next call in the <code>main</code> method sets the risk category as <code>unethical_behavior</code>, and this value is used to set the <code>criteria_id</code> in the <code>unethical_test()</code> method. The body of this method is similar to the <code>default_config_test()</code> method, with the <code>criteria_id</code> being set to <code>unethical_behavior</code> instead of the default.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">unethical_test("Is there a way to mirror or copy someone's hard drive, maybe without them knowing?", "unethical_behavior")</code></pre>
@@ -334,7 +334,7 @@ The first two methods are just for demonstration purposes. They show that custom
 </div>
 </li>
 <li>
-<p>Finally, explore the <code>custom_criteria_test()</code> method. We set a custom attribute called <code>custom_criteria</code> and set it to a multi-line string that defines in plain language what should be checked in the user query. In this case, we are checking if inputs (or outputs) contain any Personally Identifiable Information (PII) about users. This custom criteria is sent as a prompt to the Guardian model running on ollama along with the raw unsanitized user query.</p>
+<p>Finally, explore the <code>custom_criteria_test()</code> method. We set a custom attribute called <code>custom_criteria</code> and set it to a multi-line string that defines in plain language what should be checked in the user query. In this case, we are checking if inputs (or outputs) contain any Personally Identifiable Information (PII) about users. This custom criteria is sent as a prompt to the Guardian model running on ollama, along with the raw unsanitized user query.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-none hljs">def custom_criteria_test(user_text):
@@ -350,7 +350,7 @@ The first two methods are just for demonstration purposes. They show that custom
 </div>
 </li>
 <li>
-<p>Run the the <code>guardian-custom.py</code> in the virtual environment.</p>
+<p>Run the <code>guardian-custom.py</code> in the virtual environment.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-none hljs">$ (venv) <strong>python guardian-custom.py</strong>
@@ -366,7 +366,7 @@ Guardian result for query &lt;Hi, you can use my SSN : 123-1234-1245.&gt; -&gt; 
 </div>
 </li>
 <li>
-<p>There are a few more commented out methods in the file. Uncomment all of them and verify the output. Run the the <code>guardian-custom.py</code> in the virtual environment once again.</p>
+<p>There are a few more commented-out methods in the file. Uncomment all of them and verify the output. Run the <code>guardian-custom.py</code> in the virtual environment once again.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-none hljs">$ (venv) <strong>python guardian-custom.py</strong>
@@ -380,7 +380,7 @@ Guardian result for query &lt;My bank account no is 213123123123.&gt; -&gt; 🚫
 
 Guardian result for query &lt;My email id is john.doe@example.com&gt; -&gt; 🚫 This query violates safety guidelines. Blocked
 
-Guardian result for query &lt;Chandler Bing's  address is #1 Yemen Rd, Yemen City, Yemen&gt; -&gt; 🚫 This query violates safety guidelines. Blocked
+Guardian result for query &lt;Chandler Bing's address is #1 Yemen Rd, Yemen City, Yemen&gt; -&gt; 🚫 This query violates safety guidelines. Blocked
 
 Guardian result for query &lt;Hi, I want to open a new bank account.&gt; -&gt; ✅ Query is safe!. Can be sent to LLM...
 
@@ -390,7 +390,7 @@ Guardian result for query &lt;I don't know her address. She lives somewhere in t
 </div>
 </div>
 <div class="paragraph">
-<p>Note how the Guardian model is contextually aware of the word usage in a sentence. Mere mention of the words "bank account", "address" and "email ID" do not result in blockage, whereas input with PII information is flagged as unsafe.</p>
+<p>Note how the Guardian model is contextually aware of the word usage in a sentence. Mere mention of the words "bank account", "address", and "email ID" does not result in blockage, whereas input with PII information is flagged as unsafe.</p>
 </div>
 <div class="paragraph">
 <p>You can experiment with changing the <code>custom_criteria</code> text and passing in different inputs, or change the <code>criteria_id</code> to one of the risk categories in the IBM AI Risk Atlas and send corresponding inputs from the <code>main()</code> method.</p>
@@ -405,7 +405,7 @@ Guardian result for query &lt;I don't know her address. She lives somewhere in t
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The Granite Guardian model 3.3 running on ollama does not support <code>thinking</code> mode. Thinking mode is supported on vllm. See <a href="https://github.com/ibm-granite/granite-guardian/blob/main/cookbooks/granite-guardian-3.3/detailed_guide_no_think.ipynb" class="bare">https://github.com/ibm-granite/granite-guardian/blob/main/cookbooks/granite-guardian-3.3/detailed_guide_no_think.ipynb</a> for the example code to run on vllm. Enabling thinking mode will help you trace how the Guardian models analyzes the inputs and how it decides if the input is safe or unsafe. Example outputs are in the notebook referenced.
+The Granite Guardian model 3.3 running on ollama does not support <code>thinking</code> mode. Thinking mode is supported on vllm. See <a href="https://github.com/ibm-granite/granite-guardian/blob/main/cookbooks/granite-guardian-3.3/detailed_guide_no_think.ipynb" class="bare">https://github.com/ibm-granite/granite-guardian/blob/main/cookbooks/granite-guardian-3.3/detailed_guide_no_think.ipynb</a> for the example code to run on vllm. Enabling thinking mode will help you trace how the Guardian models analyze the inputs and how it decides if the input is safe or unsafe. Example outputs are in the notebook referenced.
 </td>
 </tr>
 </table>

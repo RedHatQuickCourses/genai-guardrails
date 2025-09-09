@@ -173,10 +173,10 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>IBM&#8217;s HAP (Hate, Abuse and Profanity) models are a specialized category of natural language processing (NLP) classifiers. Their primary function is to analyze a piece of text (like a comment, a message, or a post) and determine if it contains elements of hate speech, abuse, or profanity.</p>
+<p>IBM&#8217;s HAP (Hate, Abuse and, Profanity) models are a specialized category of natural language processing (NLP) classifiers. Their primary function is to analyze a piece of text (like a comment, a message, or a post) and determine if it contains elements of hate speech, abuse, or profanity.</p>
 </div>
 <div class="paragraph">
-<p>Unlike the full sized Granite Guardian models with billions of parameters that require dedicated graphics processing units (GPU), the HAP models are smaller, and available in 38 million and 125 million sizes for <em>deployment to edge nodes without dedicated GPUs</em>. They are trained specifically to detect hate, abuse and profanity in text. They use sophisticated neural network architectures that can process natural language text and understand the contextual relationships between words in a sentence.</p>
+<p>Unlike the full-sized Granite Guardian models with billions of parameters that require dedicated graphics processing units (GPU), the HAP models are smaller and available in 38 million and 125 million sizes for <em>deployment to edge nodes without dedicated GPUs</em>. They are trained specifically to detect hate, abuse, and profanity in text. They use sophisticated neural network architectures that can process natural language text and understand the contextual relationships between words in a sentence.</p>
 </div>
 </div>
 </div>
@@ -187,13 +187,13 @@
 <p>Content is classified as follows:</p>
 </div>
 <div class="paragraph">
-<p><strong>Hate speech</strong>: Expressions of hatred toward an individual or group based on attributes such as race, religion, ethnic origin, sexual orientation, disability or gender. Hate speech shows an intent to hurt, humiliate or insult the members of a group, or to promote violence or social disorder.</p>
+<p><strong>Hate speech</strong>: Expressions of hatred toward an individual or group based on attributes such as race, religion, ethnic origin, sexual orientation, disability, or gender. Hate speech shows an intent to hurt, humiliate, or insult the members of a group, or to promote violence or social disorder.</p>
 </div>
 <div class="paragraph">
-<p><strong>Abusive language</strong>: Rude or hurtful language that is meant to bully, debase or demean someone or something.</p>
+<p><strong>Abusive language</strong>: Rude or hurtful language that is meant to bully, debase, or demean someone or something.</p>
 </div>
 <div class="paragraph">
-<p><strong>Profanity</strong>: Toxic words such as expletives, insults or sexually explicit language.</p>
+<p><strong>Profanity</strong>: Toxic words such as expletives, insults, or sexually explicit language.</p>
 </div>
 </div>
 </div>
@@ -231,10 +231,10 @@
 <div class="title">Figure 1. HAP Classifier</div>
 </div>
 <div class="paragraph">
-<p>In practice, a HAP filtering sentence classifier assesses each word of a models input or output text to determine whether it contains HAP content. Then, it assigns a score that represents the likelihood that HAP content is present, perhaps from 0 to 1. In this case, a score closer to 1 indicates a higher likelihood of HAP content. Depending on the threshold that the user sets for HAP content (such as "a score greater than 0.5 = HAP"), the model would then assign a label to each sentence indicating whether or not it contains HAP.</p>
+<p>In practice, a HAP filtering sentence classifier assesses each word of a model&#8217;s input or output text to determine whether it contains HAP content. Then, it assigns a score that represents the likelihood that HAP content is present, perhaps from 0 to 1. In this case, a score closer to 1 indicates a higher likelihood of HAP content. Depending on the threshold that the user sets for HAP content (such as "a score greater than 0.5 = HAP"), the model would then assign a label to each sentence indicating whether or not it contains HAP.</p>
 </div>
 <div class="paragraph">
-<p>Finally, the HAP content could either be flagged and removed if it is in pretraining data. Or, if the HAP content is an output, it could be replaced with a guardrail message indicating that the output contained harmful text that was removed.</p>
+<p>Finally, the HAP content could either be flagged and removed if it is in pre-training data. Or, if the HAP content is an output, it could be replaced with a guardrail message indicating that the output contained harmful text that was removed.</p>
 </div>
 </div>
 </div>
@@ -277,7 +277,7 @@
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The HAP models are mulit-lingual and support 11 languages: Arabic, Chinese (standard and traditional), Dutch, English, French, German, Hindi, Italian, Japanese, Portuguese, Spanish.
+The HAP models are mulitlingual and support 11 languages: Arabic, Chinese (standard and traditional), Dutch, English, French, German, Hindi, Italian, Japanese, Portuguese, and Spanish.
 </td>
 </tr>
 </table>

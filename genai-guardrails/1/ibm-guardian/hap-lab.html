@@ -173,7 +173,7 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>In this lab, you will use the <code>granite-guardian-hap-125m</code> IBM HAP model to analyze text for hate, abuse and profanity. You will download and run this model from Hugging Face.</p>
+<p>In this lab, you will use the <code>granite-guardian-hap-125m</code> IBM HAP model to analyze text for hate, abuse, and profanity. You will download and run this model from Hugging Face.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -232,7 +232,7 @@ We do not run any inference LLM model in this lab, and we restrict ourselves to 
 </div>
 </li>
 <li>
-<p>Activate the virtual environment you created in the previous labs. If you have not created a virtual environment, create a new one and active it.</p>
+<p>Activate the virtual environment you created in the previous labs. If you have not created a virtual environment, create a new one and activate it.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-none hljs">$ <strong>source venv/bin/activate</strong></code></pre>
@@ -251,7 +251,7 @@ We do not run any inference LLM model in this lab, and we restrict ourselves to 
 </div>
 </li>
 <li>
-<p>Inspect the <code>guardian-hap.py</code> file in the editor of your choice. We download and instantiate the 125m HAP model from Hugging Face repository:</p>
+<p>Inspect the <code>guardian-hap.py</code> file in the editor of your choice. We download and instantiate the 125m HAP model from the Hugging Face repository:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-none hljs">...
@@ -267,7 +267,7 @@ model = AutoModelForSequenceClassification.from_pretrained(<strong>hap_model_id<
 </div>
 </li>
 <li>
-<p>We simply loop through each input prompt, collect the HAP prediction (if it is safe or not), and the probability score into a Pandas dataframe object and then print a nicely formatted table</p>
+<p>We simply loop through each input prompt, collect the HAP prediction (if it is safe or not), and the probability score into a Pandas dataframe object, and then print a nicely formatted table.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-none hljs">...

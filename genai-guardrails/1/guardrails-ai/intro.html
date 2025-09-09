@@ -176,7 +176,7 @@
 <p>This section discusses the architecture and practical application of the <strong>Guardrails AI</strong> library, a powerful tool for structuring, validating, checking inputs, and validating the outputs of Large Language Models (LLMs).</p>
 </div>
 <div class="paragraph">
-<p>The Guardrails AI library is a Python framework that helps build reliable AI applications by performing two key functions: running Input/Output Guards in applications that detect, quantify and mitigate the presence of specific types of risks, and helping generate structured data from LLMs. The framework has evolved from its early XML-based RAIL (Reliable AI Markup Language) approach to a modern Pydantic-integrated architecture that provides more robust validation and structured data generation capabilities.</p>
+<p>The Guardrails AI library is a Python framework that helps build reliable AI applications by performing two key functions: running Input/Output Guards in applications that detect, quantify, and mitigate the presence of specific types of risks, and helping generate structured data from LLMs. The framework has evolved from its early XML-based RAIL (Reliable AI Markup Language) approach to a modern Pydantic-integrated architecture that provides more robust validation and structured data generation capabilities.</p>
 </div>
 </div>
 </div>
@@ -184,7 +184,7 @@
 <h2 id="_core_architecture_and_components"><a class="anchor" href="#_core_architecture_and_components"></a>Core Architecture and Components</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>At its core, Guardrails AI orchestrates a multi-step process to ensure that the inputs and outputs to and from an LLM do not contain harmful content, and that itconforms to a predefined structure and meets specific quality criteria. The process is managed by a central object, called the <code>Guard</code>.</p>
+<p>At its core, Guardrails AI orchestrates a multi-step process to ensure that the inputs and outputs to and from an LLM do not contain harmful content, and that it conforms to a predefined structure and meets specific quality criteria. The process is managed by a central object, called the <code>Guard</code>.</p>
 </div>
 <div class="paragraph">
 <p>The primary components are:</p>
@@ -195,7 +195,7 @@
 <p><strong>The <code>Guard</code> Object</strong>: This is the main entry point and orchestrator. You instantiate a <code>Guard</code> object, which takes your input and the desired output structure, plus some validation rules, and then you use it to wrap your LLM calls. It manages the entire process from prompting the LLM to validating and correcting its response.</p>
 </li>
 <li>
-<p><strong>Validators</strong>: These are the individual rule-checking components. A validator is a callable class or function that takes a piece of data and returns a validation outcome (<strong>pass</strong> or <strong>fail</strong>). Validators can be applied to both inputs and outputs to enforce constraints, such as checking if a string is a valid email, if a number falls within a specific range, or if a generated summary is free of hate, bias, abuse and profanity.</p>
+<p><strong>Validators</strong>: These are the individual rule-checking components. A validator is a callable class or function that takes a piece of data and returns a validation outcome (<strong>pass</strong> or <strong>fail</strong>). Validators can be applied to both inputs and outputs to enforce constraints, such as checking if a string is a valid email, if a number falls within a specific range, or if a generated summary is free of hate, bias, abuse, and profanity.</p>
 </li>
 <li>
 <p><strong>Pydantic Integration</strong>: The modern approach leverages Pydantic models for schema definition and validation, replacing the legacy XML-based RAIL files with Python-native type definitions.</p>
@@ -224,7 +224,7 @@
 <p>If parsing is successful, the <code>Guard</code> then returns control back to your application.</p>
 </li>
 <li>
-<p>If any validator <em>fails</em>, the <code>Guard</code> throws an exception and returns control back to the application. You can also configure it so that it doesn&#8217;t just give up, instead it collects all the validation failures, formulates a new request to the LLM that includes the original prompt, the erroneous output, and specific instructions on how to fix the errors, and then re-calls the LLM. This "re-asking" process can be repeated a configurable number of times until the output passes all validations or the maximum number of retries is reached.</p>
+<p>If any validator <em>fails</em>, the <code>Guard</code> throws an exception and returns control back to the application. You can also configure it so that it doesn&#8217;t just give up; instead, it collects all the validation failures, formulates a new request to the LLM that includes the original prompt, the erroneous output, and specific instructions on how to fix the errors, and then re-calls the LLM. This "re-asking" process can be repeated a configurable number of times until the output passes all validations or the maximum number of retries is reached.</p>
 </li>
 </ul>
 </div>
@@ -275,7 +275,7 @@
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-Several stability and consistency issues in the <code>guardrails</code> CLI were observed during the implementation of the hands-on labs in this course. To ensure reproducability of the labs on student machines, the approach taken was to use the <code>install</code> class in the <code>guardrails-cli</code> library to install validators in the Python script itself. There were also several issues with using <code>pip freeze &gt; requirements.txt</code> and trying to install the dependencies for a script from the <code>requirements.txt</code> file. The recommendation is to complete development using the <code>install</code> class embedded in code approach, and then once you decide to deploy the application, explore automation via the <code>guardrails install</code> CLI command, or requirements.txt route.
+Several stability and consistency issues in the <code>guardrails</code> CLI were observed during the implementation of the hands-on labs in this course. To ensure reproducibility of the labs on student machines, the approach taken was to use the <code>install</code> class in the <code>guardrails-cli</code> library to install validators in the Python script itself. There were also several issues with using <code>pip freeze &gt; requirements.txt</code> and trying to install the dependencies for a script from the <code>requirements.txt</code> file. The recommendation is to complete development using the <code>install</code> class embedded in code approach, and then once you decide to deploy the application, explore automation via the <code>guardrails install</code> CLI command, or requirements.txt route.
 </td>
 </tr>
 </table>

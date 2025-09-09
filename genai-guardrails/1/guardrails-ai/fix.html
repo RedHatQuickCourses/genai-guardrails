@@ -176,7 +176,7 @@
 <p>In the previous exercises, a failed validation results in an exception being thrown, which has to be handled by the application. In this hands-on lab, you will create <code>Guard</code> objects and configure them to automatically filter out and redact unsafe content.</p>
 </div>
 <div class="paragraph">
-<p>The mechanism used to achieve this is to pass the <code>fix</code> argument to the <code>on_fail</code> atttribute of the Guard to change it from the default <code>exception</code> value, which simply throws an exception and hands control back to the application.</p>
+<p>The mechanism used to achieve this is to pass the <code>fix</code> argument to the <code>on_fail</code> attribute of the Guard to change it from the default <code>exception</code> value, which simply throws an exception and hands control back to the application.</p>
 </div>
 </div>
 </div>
@@ -189,7 +189,7 @@
 <p>Python v3.12 (The labs in this course were tested with Python 3.12 on macOS. Note that Python &gt;3.12 is not supported for now)</p>
 </li>
 <li>
-<p>The <code>pip</code> CLI to install Python libraries.</p>
+<p>The <code>pip</code> CLI is used to install Python libraries.</p>
 </li>
 <li>
 <p>Git CLI to clone the sample code from GitHub</p>
@@ -198,10 +198,10 @@
 <p>Visual Studio Code or other editors to edit Python code</p>
 </li>
 <li>
-<p>You should have created an account at the Guardrails AI Hub (<a href="https://hub.guardrailsai.com" class="bare">https://hub.guardrailsai.com</a>), and created an API key as outlined in the first hands-on lab exercise in this course</p>
+<p>You should have created an account at the Guardrails AI Hub (<a href="https://hub.guardrailsai.com" class="bare">https://hub.guardrailsai.com</a>), and created an API key as outlined in the first hands-on lab exercise in this course.</p>
 </li>
 <li>
-<p>You should have a working <code>guardrails</code> CLI command configured to use your Guardrails Hub API key to download validators</p>
+<p>You should have a working <code>guardrails</code> CLI command configured to use your Guardrails Hub API key to download validators.</p>
 </li>
 </ul>
 </div>
@@ -365,7 +365,7 @@ Cleaned text: Email complaints to &lt;EMAIL_ADDRESS&gt; or call &lt;PHONE_NUMBER
 </div>
 </div>
 <div class="paragraph">
-<p>The validators check the input and scrub the unsafe content from the text. In the case of the PII validator, it redacts the PII information and replaces them with template text indicating the type of content that was redacted.</p>
+<p>The validators check the input and scrub the unsafe content from the text. In the case of the PII validator, it redacts the PII information and replaces it with template text indicating the type of content that was redacted.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -389,7 +389,7 @@ If the script fails during validator install and post-install setup due to trans
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-You may see a zsh bus error on macOS after the script completes. This can be safely ignored. The cause is improper exit code from the python script, triggered by native code dependencies in some of the validators.
+You may see a zsh bus error on macOS after the script completes. This can be safely ignored. The cause is an improper exit code from the python script, triggered by native code dependencies in some of the validators.
 </td>
 </tr>
 </table>
