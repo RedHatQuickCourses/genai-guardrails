@@ -1,6 +1,6 @@
 = Feedback
 
-Please open a GitHub issue if you run into any problems with this course. Based on demand, we are also evaulating the following Guardrails frameworks for inclusion in the next update cycle:
+Please open a GitHub issue if you run into any problems with this course. Based on demand, we are also evaluating the following Guardrails frameworks for inclusion in the next update cycle:
 
 * Meta llama-guard and LlamaFirewall
 * NVIDIA NeMo Guardrails

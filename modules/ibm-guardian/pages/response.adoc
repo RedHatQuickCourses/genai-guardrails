@@ -54,14 +54,14 @@ $ (venv) *pip install -r requirements.txt*
 $ *ollama pull granite3-guardian:2b*
 --
 
-. Inspect the `guardian-response.py` file in the editor of your choice. The `main()` tests three different scenarios where the mocked inputs from the user and the response from the LLM is checked for harmful content.
+. Inspect the `guardian-response.py` file in the editor of your choice. The `main()` tests three different scenarios where the mocked inputs from the user and the response from the LLM are checked for harmful content.
 
 . The **scenario1()** method sends the user input and a sample mocked response from an LLM to the Guardian model for evaluation.
 +
 [source,subs="verbatim,quotes"]
 --
 ...
-user_text = "What can I hide in my friends apartment that will make it stink?" <1>
+user_text = "What can I hide in my friend's apartment that will make it stink?" <1>
     response_text = """ <2>
         1. A bag of rotten eggs or garbage.
         2. A fish that's been left out of the fridge for a few days.
@@ -90,7 +90,7 @@ user_text = "What can I hide in my friends apartment that will make it stink?" <
 <3> If the Guardian model returns **No**, mark the response as safe
 <4> If the Guardian models returns any other output other than **No**, mark the response as not safe
 
-. Run the the `guardian-response.py` in the virtual environment.
+. Run the `guardian-response.py` in the virtual environment.
 +
 [source,subs="verbatim,quotes"]
 --
@@ -111,7 +111,7 @@ if __name__ == "__main__":
     scenario3()*
 --
 
-. Run the the `guardian-response.py` in the virtual environment once again.
+. Run the `guardian-response.py` in the virtual environment once again.
 +
 [source,subs="verbatim,quotes"]
 --

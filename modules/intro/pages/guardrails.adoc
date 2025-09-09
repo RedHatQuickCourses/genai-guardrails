@@ -17,7 +17,7 @@ video::FLOXGvqdwbM[youtube,title=What are guardrails for LLMs?,width=700,height=
 
 == Why Guardrails are Indispensable for AI Applications
 
-Just as a guardrail (fence) around a winding mountain road is used ensure safety of vehicles, AI guardrails channel the powerful capabilities of AI models along safe and productive pathways, preventing missteps and ensuring that the incredible potential of AI is realized responsibly.
+Just as a guardrail (fence) around a winding mountain road is used to ensure the safety of vehicles, AI guardrails channel the powerful capabilities of AI models along safe and productive pathways, preventing missteps and ensuring that the incredible potential of AI is realized responsibly.
 
 The deployment of AI applications, particularly those powered by large language models and exhibiting agentic behavior, fundamentally transforms the digital landscape. While the capabilities are immense, so too are the risks associated with bias, misuse, unintended outputs, and security vulnerabilities. Guardrails emerge as the critical infrastructure that bridges this gap, enabling the responsible and effective deployment of AI.
 
@@ -40,19 +40,19 @@ The appendices at the end of this section provide a brief overview of the differ
 
 == How Guardrails Work
 
-In an unguarded system, user input flows directly to the generative model, and its output returns without intervention This direct path creates vulnerabilities for malicious inputs or unintended outputs Conversely, a guarded system introduces distinct "Input Guardrails" , "Retrieval Guardrails", and "Output Guardrails" that intercept and moderate the flow of information, ensuring safety and compliance.
+In an unguarded system, user input flows directly to the generative model, and its output returns without intervention. This direct path creates vulnerabilities for malicious inputs or unintended outputs. Conversely, a guarded system introduces distinct "Input Guardrails", "Retrieval Guardrails", and "Output Guardrails" that intercept and moderate the flow of information, ensuring safety and compliance.
 
 image::guardrailed-app.png[title=Guardrails Placement in an LLM Application]
 
 The figure above visually represents the strategic placement of guardrails within an LLM application, illustrating how they intercept and influence the flow of information at key stages: input, retrieval (especially for RAG systems), and output. This ensures continuous moderation and safety.
 
-Guardrails function by embedding a **modular set of detectors along the input and output pathways of the AI model** These detectors are configured to flag text based on predefined heuristics relevant to a specific use case This multi-layered approach provides granular control over the AI's interactions.
+Guardrails function by embedding a **modular set of detectors along the input and output pathways of the AI model** These detectors are configured to flag text based on predefined heuristics relevant to a specific use case. This multi-layered approach provides granular control over the AI's interactions.
 
 * **Input Rails**: These guardrails are positioned at the initial entry point, *reviewing and processing incoming user messages*. They can filter, adjust, or completely block messages based on defined rules, effectively preventing harmful or unwanted content from ever reaching the core AI model For example, a detector could identify and stop a *prompt injection attack* before it influences the model's behavior
-* **Retrieval Rails**: For AI applications that leverage external information sources, such as through Retrieval-Augmented Generation (RAG), retrieval rails ensure that **only safe and relevant data is retrieved and utilized** by the model This helps to *ground* the model's responses in vetted information and prevent the inclusion of unreliable or toxic external content.
-* **Output Rails**: Serving as the final checkpoint, these guardrails scrutinize the AI model's generated response *before it is delivered to the user*. They verify that the output adheres to ethical guidelines, complies with content policies, and meets user expectations. An example would be a detector flagging and preventing the display of *unacceptable language* or *hallucinated facts* in the model's output
+* **Retrieval Rails**: For AI applications that leverage external information sources, such as through Retrieval-Augmented Generation (RAG), retrieval rails ensure that **only safe and relevant data is retrieved and utilized** by the model. This helps to *ground* the model's responses in vetted information and prevent the inclusion of unreliable or toxic external content.
+* **Output Rails**: Serving as the final checkpoint, these guardrails scrutinize the AI model's generated response *before it is delivered to the user*. They verify that the output adheres to ethical guidelines, complies with content policies, and meets user expectations. An example would be a detector flagging and preventing the display of *unacceptable language* or *hallucinated facts* in the model's output.
 
-This comprehensive, layered strategy ensures that every message is thoroughly checked and refined throughout the interaction, fostering a safe and trustworthy conversation experience for users
+This comprehensive, layered strategy ensures that every message is thoroughly checked and refined throughout the interaction, fostering a safe and trustworthy conversation experience for users.
 
 NOTE: While many detectors rely on small LLMs specifically tuned for Guardrails, you can also implement your own custom detectors and validators in code using the features provided by your programming language and libraries, like regular expressions and fuzzy searching.
 
@@ -61,7 +61,7 @@ NOTE: While many detectors rely on small LLMs specifically tuned for Guardrails,
 While preventing harmful content and ensuring compliance are primary drivers, guardrails offer several other significant advantages:
 
 * **Cost Savings**: Guardrail detectors can be substantially smaller and less resource-intensive (tens of millions of parameters) than the large generative models they protect (tens of billions of parameters). This allows organizations to *short-circuit irrelevant or off-topic queries* before they consume expensive computational resources on the main generative model, leading to considerable cost efficiencies.
-* **Ensuring Appropriate Language**: Guardrails can enforce the use of language that is appropriate for the specific use case and brand For instance, they can detect and prompt the model to rephrase overly formal language if the application is intended to be friendly and conversational
+* **Ensuring Appropriate Language**: Guardrails can enforce the use of language that is appropriate for the specific use case and brand. For instance, they can detect and prompt the model to rephrase overly formal language if the application is intended to be friendly and conversational
 * **Authoritative Responses**: By integrating model evaluation, guardrails can ensure that the AI model only engages in discussions on subjects for which it has sufficient knowledge and authority. This prevents the model from generating unreliable information by limiting its scope to proven areas of expertise.
 
 == Appendix
@@ -69,18 +69,18 @@ While preventing harmful content and ensuring compliance are primary drivers, gu
 .AI Risks
 ****
 
-AI agents are software entities that use AI techniques and possess the agency to act in their environment based on set goals, deciding and executing actions autonomously. Since recent agents are often built on large language models, generative AI risks are also applicable to them. The following are risks amplified by, or specific to Agentic AI:
+AI agents are software entities that use AI techniques and possess the agency to act in their environment based on set goals, deciding and executing actions autonomously. Since recent agents are often built on large language models, generative AI risks are also applicable to them. The following are risks amplified by, or specific to, Agentic AI:
 
 * **Fairness**:
 ** Discriminatory actions 
 ** Introduce data bias 
 
 * **Privacy**:
-** Sharing IP/PI/confidential information with user 
+** Sharing IP/PI/confidential information with the user 
 ** Sharing IP/PI/confidential information with tools
 
 * **Value Alignment**:
-** Over or under reliance on AI agents 
+** Over or under-reliance on AI agents 
 ** Misaligned actions 
 
 * **Robustness** :
@@ -104,7 +104,7 @@ AI agents are software entities that use AI techniques and possess the agency to
 ** Impact on human dignity 
 ** AI agents' impact on human agency
 ** AI agents' impact on jobs 
-** AI agents' impact on environment 
+** AI agents' impact on the environment 
 
 * **Explainability**:
 ** Unexplainable and untraceable actions
@@ -130,7 +130,7 @@ The following risks are broadly applicable to generative AI models, which form t
 
 * **Output Risks** :
 ** **Fairness**: Decision bias, Output bias 
-** **Value Alignment**: Harmful output, Harmful code generation, Toxic output, Incomplete advice, Over or under reliance 
+** **Value Alignment**: Harmful output, Harmful code generation, Toxic output, Incomplete advice, Over or under-reliance 
 ** **Misuse**: Dangerous use, Spreading disinformation, Nonconsensual use, Spreading toxicity, Improper usage, Non-disclosure 
 ** **Robustness**: *Hallucination* 
 ** **Privacy**: Exposing personal information 
@@ -139,7 +139,7 @@ The following risks are broadly applicable to generative AI models, which form t
 
 * **Non-Technical Risks**:
 ** **Governance**: Lack of data transparency, Lack of model transparency, Lack of system transparency, Incomplete usage definition, Incorrect risk testing, Unrepresentative risk testing, Lack of testing diversity 
-** **Legal Compliance**: Model usage rights restrictions, Legal accountability, Generated content ownership and IP 
+** **Legal Compliance**: Model usage rights restrictions, Legal accountability, Generated content ownership, and IP 
 ** **Societal Impact**: Impact on the environment, Impact on affected communities, Human exploitation, Impact on Jobs, AI agents' Impact on human agency, Impact on cultural diversity
 
 ****

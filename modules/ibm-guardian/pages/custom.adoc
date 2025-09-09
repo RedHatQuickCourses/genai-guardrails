@@ -1,8 +1,8 @@
 = Lab: Custom Criteria Guardrails
 
-In the previous labs, you checked the **input** and **output** texts, and verified the safety of it using the IBM Granite Guardian model. 
+In the previous labs, you checked the **input** and **output** texts and verified the safety of them using the IBM Granite Guardian model. 
 
-In this lab, you will create your own custom guardrails criteria and verify if the user entered query is safe. You will run the latest `ibm/granite3.3-guardian:8b` LLM model using `ollama`.
+In this lab, you will create your own custom guardrails criteria and verify if the user-entered query is safe. You will run the latest `ibm/granite3.3-guardian:8b` LLM model using `ollama`.
 
 NOTE: We do not run any inference LLM model in this lab, and we restrict ourselves to checking inputs.
 
@@ -49,7 +49,7 @@ Your prompt should change to indicate that you are now running in an isolated vi
 $ (venv) *pip install -r requirements.txt*
 --
 
-. Pull the `ibm/granite3.3-guardian:8b` model using ollama. You must have installed and started the ollama service as outlined in the pre-requisites section. This model is around 7GB in size, and will take a while to download depending on your internet connection speed.
+. Pull the `ibm/granite3.3-guardian:8b` model using ollama. You must have installed and started the ollama service as outlined in the pre-requisites section. This model is around 7GB in size and will take a while to download depending on your internet connection speed.
 +
 [source,subs="verbatim,quotes"]
 --
@@ -58,7 +58,7 @@ $ *ollama pull ibm/granite3.3-guardian:8b*
 
 . Inspect the `guardian-custom.py` file in the editor of your choice. The `main()` method tests different scenarios, where the mocked input from the user is checked for harmful content. 
 +
-The **default_config_test()** method uses the default **harm** category and sends tbe user query to the Guardian model running on ollama. Note that we are customizing the prompt before sending to the Guardian by augmenting the chat template with the **guardian_config** dictionary, and pass the `harm` value to the **criteria_id** attribute (attribute name for setting risk category has changed from `content` to `criteria_id` in Guardian 3.3).
+The **default_config_test()** method uses the default **harm** category and sends the user query to the Guardian model running on ollama. Note that we are customizing the prompt before sending to the Guardian by augmenting the chat template with the **guardian_config** dictionary, and passing the `harm` value to the **criteria_id** attribute (attribute name for setting risk category has changed from `content` to `criteria_id` in Guardian 3.3).
 +
 [source,subs="verbatim,quotes"]
 --
@@ -82,7 +82,7 @@ Note the invocation in the **main()** method with the default `harm` category.
 default_config_test("How can I hack my friend's email?", **"harm"**)
 ```
 
-. The next call in the `main` method sets the risk category as `unethical_behavior` and this value is used to set the `criteria_id` in the `unethical_test()` method. The body of this method is similar to the `default_config_test()` method, with the `criteria_id` being set to `unethical_behavior` instead of the default.
+. The next call in the `main` method sets the risk category as `unethical_behavior`, and this value is used to set the `criteria_id` in the `unethical_test()` method. The body of this method is similar to the `default_config_test()` method, with the `criteria_id` being set to `unethical_behavior` instead of the default.
 +
 ```python
 unethical_test("Is there a way to mirror or copy someone's hard drive, maybe without them knowing?", "unethical_behavior")
@@ -90,7 +90,7 @@ unethical_test("Is there a way to mirror or copy someone's hard drive, maybe wit
 +
 NOTE: The first two methods are just for demonstration purposes. They show that customizing the prompts using a chat template does not change the default behavior of the Guardian model.
 
-. Finally, explore the `custom_criteria_test()` method. We set a custom attribute called `custom_criteria` and set it to a multi-line string that defines in plain language what should be checked in the user query. In this case, we are checking if inputs (or outputs) contain any Personally Identifiable Information (PII) about users. This custom criteria is sent as a prompt to the Guardian model running on ollama along with the raw unsanitized user query.
+. Finally, explore the `custom_criteria_test()` method. We set a custom attribute called `custom_criteria` and set it to a multi-line string that defines in plain language what should be checked in the user query. In this case, we are checking if inputs (or outputs) contain any Personally Identifiable Information (PII) about users. This custom criteria is sent as a prompt to the Guardian model running on ollama, along with the raw unsanitized user query.
 +
 [source,subs="verbatim,quotes"]
 --
@@ -105,7 +105,7 @@ def custom_criteria_test(user_text):
     response = guardian.invoke(chat).content
 --
 
-. Run the the `guardian-custom.py` in the virtual environment.
+. Run the `guardian-custom.py` in the virtual environment.
 +
 [source,subs="verbatim,quotes"]
 --
@@ -119,7 +119,7 @@ Guardian result for query <Hi, you can use my SSN : 123-1234-1245.> -> 🚫 This
 +
 All three test inputs are marked as unsafe by the Guardian model.
 
-. There are a few more commented out methods in the file. Uncomment all of them and verify the output. Run the the `guardian-custom.py` in the virtual environment once again.
+. There are a few more commented-out methods in the file. Uncomment all of them and verify the output. Run the `guardian-custom.py` in the virtual environment once again.
 +
 [source,subs="verbatim,quotes"]
 --
@@ -134,7 +134,7 @@ Guardian result for query <My bank account no is 213123123123.> -> 🚫 This que
 
 Guardian result for query <My email id is john.doe@example.com> -> 🚫 This query violates safety guidelines. Blocked
 
-Guardian result for query <Chandler Bing's  address is #1 Yemen Rd, Yemen City, Yemen> -> 🚫 This query violates safety guidelines. Blocked
+Guardian result for query <Chandler Bing's address is #1 Yemen Rd, Yemen City, Yemen> -> 🚫 This query violates safety guidelines. Blocked
 
 Guardian result for query <Hi, I want to open a new bank account.> -> ✅ Query is safe!. Can be sent to LLM...
 
@@ -143,8 +143,8 @@ Guardian result for query <I don't have Jane's email ID> -> ✅ Query is safe!. 
 Guardian result for query <I don't know her address. She lives somewhere in this city.> -> ✅ Query is safe!. Can be sent to LLM...
 --
 +
-Note how the Guardian model is contextually aware of the word usage in a sentence. Mere mention of the words "bank account", "address" and "email ID" do not result in blockage, whereas input with PII information is flagged as unsafe.
+Note how the Guardian model is contextually aware of the word usage in a sentence. Mere mention of the words "bank account", "address", and "email ID" does not result in blockage, whereas input with PII information is flagged as unsafe.
 +
 You can experiment with changing the `custom_criteria` text and passing in different inputs, or change the `criteria_id` to one of the risk categories in the IBM AI Risk Atlas and send corresponding inputs from the `main()` method.
 
-NOTE: The Granite Guardian model 3.3 running on ollama does not support `thinking` mode. Thinking mode is supported on vllm. See https://github.com/ibm-granite/granite-guardian/blob/main/cookbooks/granite-guardian-3.3/detailed_guide_no_think.ipynb for the example code to run on vllm. Enabling thinking mode will help you trace how the Guardian models analyzes the inputs and how it decides if the input is safe or unsafe. Example outputs are in the notebook referenced.
+NOTE: The Granite Guardian model 3.3 running on ollama does not support `thinking` mode. Thinking mode is supported on vllm. See https://github.com/ibm-granite/granite-guardian/blob/main/cookbooks/granite-guardian-3.3/detailed_guide_no_think.ipynb for the example code to run on vllm. Enabling thinking mode will help you trace how the Guardian models analyze the inputs and how it decides if the input is safe or unsafe. Example outputs are in the notebook referenced.

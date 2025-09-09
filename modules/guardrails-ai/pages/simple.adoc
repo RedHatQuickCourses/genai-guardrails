@@ -10,7 +10,7 @@
 </style>
 ++++
 
-In this lab, you will use add a simple guardrail to an AI application that accepts input from the user, and checks if it contains any Personal Identifiable Information (PII) in the input.
+In this lab, you will add a simple guardrail to an AI application that accepts input from the user, and checks if it contains any Personal Identifiable Information (PII) in the input.
 
 NOTE: We do not run any inference LLM model in this lab, and we restrict ourselves to the core Guardrails functionality of checking inputs.
 
@@ -27,7 +27,7 @@ NOTE: We do not run any inference LLM model in this lab, and we restrict ourselv
 +
 image::gh2.png[title=Sign in to Guardrails AI Hub, width=400, height=400]
 
-** After you log in, click on `Create API key` button
+** After you log in, click on the `Create API key` button
 +
 image::gh3.png[title=API keys page,width=400, height=400]
 
@@ -35,7 +35,7 @@ image::gh3.png[title=API keys page,width=400, height=400]
 +
 image::gh4.png[title=Create API key,width=400, height=400]
 
-** Copy the API key text to your clipboard and keep it safe. You will use this API key in all the hands-on lab exercises
+** Copy the API key text to your clipboard and keep it safe. You will use this API key in all the hands-on lab exercises.
 +
 image::gh5.png[title=Newly created API key,width=400, height=400]
 
@@ -129,8 +129,8 @@ guard = Guard().use( <2>
 ...
 --
 <1> Import the Validator
-<2> Create a `Guard` object using the validator
-<3> The `DetectPII` validator takes two arguments - a list of `entities` (email IDs, phone numbers, SSN, Passport numbers, and more) that should be checked in the input as an argument, along with the action it needs to take if it detects these entities in the input. In this case we simply throw an exception.
+<2> Create a `Guard` object using the validator.
+<3> The `DetectPII` validator takes two arguments - a list of `entities` (email IDs, phone numbers, SSN, Passport numbers, and more) that should be checked in the input as an argument, along with the action it needs to take if it detects these entities in the input. In this case, we simply throw an exception.
 +
 NOTE: Consult the `DetectPII` validator documentation at https://hub.guardrailsai.com/validator/guardrails/detect_pii. The list of supported entities is available at https://microsoft.github.io/presidio/supported_entities/
 
@@ -166,9 +166,9 @@ https://hub.guardrailsai.com/validator/guardrails/detect_pii
 [.green]#valid_response(): Response from LLM is valid...#
 --
 +
-Since there are no visible PII in the input text, the validator allows this text to be processed further in our AI application.
+Since there is no visible PII in the input text, the validator allows this text to be processed further in our AI application.
 
-. Next, inspect the `invalid_response1()`, `invalid_response2()`, and `invalid_response3()` methods. We are checking for Email IDs, SSNs, and phone numbers in these methods respectively.
+. Next, inspect the `invalid_response1()`, `invalid_response2()`, and `invalid_response3()` methods. We are checking for Email IDs, SSNs, and phone numbers in these methods, respectively.
 +
 ```python
 ...
@@ -186,7 +186,7 @@ def invalid_response1():
 def invalid_response2():
     try:
         guard.validate(
-        "Hi John Doe! Can you please verify your if your social security number is 615-49-2540"
+        "Hi John Doe! Can you please verify if your social security number is 615-49-2540"
     )
     except Exception as e:
         msg = str(e)
@@ -233,7 +233,7 @@ Hi John Doe! Can you please verify your email ID john.doe@example.com
 invalid_response2(): Response from LLM is invalid
 
 Validation failed for field with errors: The following text in your response contains PII:
-Hi John Doe! Can you please verify your if your social security number is 615-49-2540
+Hi John Doe! Can you please verify if your social security number is 615-49-2540
 
 invalid_response3(): Response from LLM is invalid
 
@@ -241,6 +241,6 @@ Validation failed for field with errors: The following text in your response con
 You can contact John Doe at +1 408-447-4433#
 --
 +
-The validator has correctly identified that the text in these method calls have PII in them, and thows an exception. We catch these exceptions and display the validator error messages in red font.
+The validator has correctly identified that the text in these method calls has PII in them, and thows an exception. We catch these exceptions and display the validator error messages in red font.
 
-. Experiment with more input texts and verify that the validator rejects them. A sample test is commented out in the script at the bottom. Refer to the supported entities page at https://microsoft.github.io/presidio/supported_entities/ and try and use a few. Try validating with different input texts and see if you can trigger false positives.
+. Experiment with more input texts and verify that the validator rejects them. A sample test is commented out in the script at the bottom. Refer to the supported entities page at https://microsoft.github.io/presidio/supported_entities/ and try to use a few. Try validating with different input texts and see if you can trigger false positives.

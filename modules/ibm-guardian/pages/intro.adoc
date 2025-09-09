@@ -66,7 +66,7 @@ The orchestration process typically involves:
 *   **Detector Servers**: These are microservices containing individual detection algorithms. For example, IBM's Granite Guardian HAP model can be deployed as a detector server to flag hateful and profane language.
 *   **Centralized Management**: TrustyAI centralizes the guardrails logic, meaning updates to guardrail policies are handled centrally and are *invisible* to the applications consuming the LLM endpoint. This is a significant advantage over per-application guardrail implementation, especially for large organizations.
 
-NOTE: TrustyAI integration with Granite Guardian is explored in more details in the *TrustyAI* chapter of this course.
+NOTE: TrustyAI integration with Granite Guardian is explored in more detail in the *TrustyAI* chapter of this course.
 
 == References
 
@@ -75,3 +75,4 @@ NOTE: TrustyAI integration with Granite Guardian is explored in more details in 
 * https://github.com/redhat-ai-services/etx-delivery-labs/blob/main/workshop/files/guardrails_prompt_inference_granite_guardian.ipynb[Guardrails Prompt Inference Granite Guardian Notebook^]
 * https://github.com/trustyai-explainability/trustyai-llm-demo[TrustyAI LLM Demo^]
 * https://www.youtube.com/watch?v=R914Jk9h-E0[How to add guardrails to generative AI in OpenShift AI^]
+// This YouTube video doesn't seem to open on my end. Shows no longer available.
