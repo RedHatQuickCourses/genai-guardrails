@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Lab: Redacting and Filtering Content :: Guardrails for AI Applications</title>
+    <link rel="prev" href="stacked.html">
+    <link rel="next" href="server.html">
+    <meta name="generator" content="Antora 3.1.3">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <script>var uiRootPath = '../../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://www.redhat.com" target="_blank"><img src="../../../_/img/redhat-logo.png" height="40px" alt="Red Hat"></a>
+      <a class="navbar-item" style="font-size: 24px; color: white" href="../../..">Guardrails for AI Applications</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://github.com/RedHatQuickCourses/genai-guardrails/issues" target="_blank">Report Issues</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="genai-guardrails" data-version="1">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">Guardrails for AI Applications</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../index.html">Home</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../intro/index.html">Introduction</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../intro/guardrails.html">Why Guardrails?</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../intro/unguarded.html">Lab: LLMs with no Guardrails</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../intro/implementation.html">Implementing Guardrails</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../ibm-guardian/index.html">IBM Granite Guardian</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../ibm-guardian/intro.html">IBM Granite Guardian</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../ibm-guardian/simple.html">Lab: Input Guardrails</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../ibm-guardian/response.html">Lab: Output Guardrails</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../ibm-guardian/hap.html">IBM HAP Models</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../ibm-guardian/hap-lab.html">Lab: IBM HAP Models</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../ibm-guardian/custom.html">Lab: Custom Criteria Guardrails</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="index.html">Guardrails AI</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="intro.html">Introduction to Guardrails AI</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="simple.html">Lab: Simple Guardrails</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="stacked.html">Lab: Stacking Multiple Validators</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="fix.html">Lab: Redacting and Filtering Content</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="server.html">Lab: Guardrails AI Server</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../trusty-ai/index.html">Trusty AI (WIP)</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../feedback/index.html">Feedback</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Guardrails for AI Applications</span>
+    <span class="version">1</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="../index.html">Guardrails for AI Applications</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">1</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">Guardrails for AI Applications</a></li>
+    <li><a href="index.html">Guardrails AI</a></li>
+    <li><a href="fix.html">Lab: Redacting and Filtering Content</a></li>
+  </ul>
+</nav>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Lab: Redacting and Filtering Content</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>In the previous exercises, a failed validation results in an exception being thrown, which has to be handled by the application. In this hands-on lab, you will create <code>Guard</code> objects and configure them to automatically filter out and redact unsafe content.</p>
+</div>
+<div class="paragraph">
+<p>The mechanism used to achieve this is to pass the <code>fix</code> argument to the <code>on_fail</code> attribute of the Guard to change it from the default <code>exception</code> value, which simply throws an exception and hands control back to the application.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_pre_requisites"><a class="anchor" href="#_pre_requisites"></a>Pre-requisites</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Python v3.12 (The labs in this course were tested with Python 3.12 on macOS. Note that Python &gt;3.12 is not supported for now)</p>
+</li>
+<li>
+<p>The <code>pip</code> CLI is used to install Python libraries.</p>
+</li>
+<li>
+<p>Git CLI to clone the sample code from GitHub</p>
+</li>
+<li>
+<p>Visual Studio Code or other editors to edit Python code</p>
+</li>
+<li>
+<p>You should have created an account at the Guardrails AI Hub (<a href="https://hub.guardrailsai.com" class="bare">https://hub.guardrailsai.com</a>), and created an API key as outlined in the first hands-on lab exercise in this course.</p>
+</li>
+<li>
+<p>You should have a working <code>guardrails</code> CLI command configured to use your Guardrails Hub API key to download validators.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_steps"><a class="anchor" href="#_steps"></a>Steps</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>If you have not already done it, clone the Git repository containing the code to a folder of your choice.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">$ <strong>git clone https://github.com/RedHatQuickCourses/genai-apps.git</strong></code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>All the code for Guardrails AI is in a folder called <code>guardrails/guardrails-ai</code>. Change to this folder in the terminal.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">$ <strong>cd genai-apps/guardrails/guardrails-ai</strong></code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Activate the virtual environment you created previously</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">$ <strong>source venv/bin/activate</strong></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Your prompt should change to indicate that you are now running in an isolated virtual environment.</p>
+</div>
+</li>
+<li>
+<p>Inspect the <code>gai-fix.py</code> file in a text editor of your choice. It uses the <code>install</code> class from the <code>guardrails-ai</code> library to install the two validators.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">...
+from guardrails import Guard, install
+
+# Install required validators
+install(
+    "hub://guardrails/toxic_language",
+    install_local_models=True,
+    quiet=False
+)
+
+install(
+    "hub://guardrails/detect_pii",
+    install_local_models=True,
+    quiet=False
+)
+...</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>We then import all the validator classes and set up the <code>Guard</code> object. Note the use of the <code>on_fail="fix"</code> argument for the <code>Guard</code> objects.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">...
+from guardrails.hub import ToxicLanguage <i class="conum" data-value="1"></i><b>(1)</b>
+from guardrails.hub import DetectPII  <i class="conum" data-value="1"></i><b>(1)</b>
+
+# Detect toxic content and fix it
+def toxic_content_example():
+
+    print("=== Toxic Content Filtering Example ===")
+
+    # Create guard that detects and fixes toxic content
+    guard = Guard().use(
+        ToxicLanguage(threshold=0.5, on_fail="fix") <i class="conum" data-value="2"></i><b>(2)</b>
+    )
+...
+
+# Detect PII in text and redact it
+def pii_redaction_example():
+
+    print("\n=== PII Redaction Example ===")
+
+    # Create guard that detects and redacts PII
+    guard = Guard().use(
+        DetectPII(pii_entities=["EMAIL_ADDRESS", "PHONE_NUMBER"], on_fail="fix") <i class="conum" data-value="3"></i><b>(3)</b>
+    )
+...
+
+# Validator stacking - combining both PII and Toxic content validators and fix
+def combined_example():
+
+    print("\n=== Combined PII + Toxicity Example ===")
+
+    # Create guard with both validators
+    guard = Guard().use_many(
+        DetectPII(pii_entities=["EMAIL_ADDRESS", "PHONE_NUMBER"], on_fail="fix"), <i class="conum" data-value="4"></i><b>(4)</b>
+        ToxicLanguage(threshold=0.5, on_fail="fix")
+    )
+...</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Import the required validator(s)</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Use the toxic language detection validator with the "fix" option</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Use the PII validator with the "fix" option</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Stack both validators and set the "fix" option</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Run the script in the virtual environment.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">$ (venv) <strong>python gai-fix.py</strong>
+Installing hub://guardrails/toxic_language...
+✅Successfully installed guardrails/toxic_language version 0.0.2!
+
+
+Import validator:
+from guardrails.hub import ToxicLanguage
+
+Get more info:
+https://hub.guardrailsai.com/validator/guardrails/toxic_language
+
+Installing hub://guardrails/detect_pii...
+✅Successfully installed guardrails/detect_pii version 0.0.5!
+
+
+Import validator:
+from guardrails.hub import DetectPII
+
+Get more info:
+https://hub.guardrailsai.com/validator/guardrails/detect_pii
+
+=== Toxic Content Filtering Example ===
+Original text: You dumbass. Why did you drop the eggs?. I hope you rot in hell.
+Cleaned safe text: Why did you drop the eggs?.
+
+=== PII Redaction Example ===
+Original text: Contact me at john.doe@email.com or call 555-123-4567
+Redacted text: Contact me at &lt;EMAIL_ADDRESS&gt; or call &lt;PHONE_NUMBER&gt;
+
+=== Combined PII + Toxicity Example ===
+Original text: This company's damn customer service is bloody trash! Email complaints to bad.service@company.com or call 1-800-123-1234.
+Cleaned text: Email complaints to &lt;EMAIL_ADDRESS&gt; or call &lt;PHONE_NUMBER&gt;.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The validators check the input and scrub the unsafe content from the text. In the case of the PII validator, it redacts the PII information and replaces it with template text indicating the type of content that was redacted.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If the script fails during validator install and post-install setup due to transient network issues, try running it again.
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+You may see a zsh bus error on macOS after the script completes. This can be safely ignored. The cause is an improper exit code from the python script, triggered by native code dependencies in some of the validators.
+</td>
+</tr>
+</table>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Experiment by installing more validators from the Guardrails AI Hub and verify the <code>on_fail="fix"</code> behavior in them.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="stacked.html">Lab: Stacking Multiple Validators</a></span>
+  <span class="next"><a href="server.html">Lab: Guardrails AI Server</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <img src="../../../_/img/rhl-logo-red.png" height="40px" alt="Red Hat"  href="https://redhat.com" >
+</footer><script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>
