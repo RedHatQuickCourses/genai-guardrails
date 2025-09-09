@@ -2,16 +2,16 @@
 
 In the previous exercises, a failed validation results in an exception being thrown, which has to be handled by the application. In this hands-on lab, you will create `Guard` objects and configure them to automatically filter out and redact unsafe content.
 
-The mechanism used to achieve this is to pass the `fix` argument to the `on_fail` atttribute of the Guard to change it from the default `exception` value, which simply throws an exception and hands control back to the application.
+The mechanism used to achieve this is to pass the `fix` argument to the `on_fail` attribute of the Guard to change it from the default `exception` value, which simply throws an exception and hands control back to the application.
 
 == Pre-requisites
 
 * Python v3.12 (The labs in this course were tested with Python 3.12 on macOS. Note that Python >3.12 is not supported for now)
-* The `pip` CLI to install Python libraries.
+* The `pip` CLI is used to install Python libraries.
 * Git CLI to clone the sample code from GitHub
 * Visual Studio Code or other editors to edit Python code
-* You should have created an account at the Guardrails AI Hub (https://hub.guardrailsai.com), and created an API key as outlined in the first hands-on lab exercise in this course
-* You should have a working `guardrails` CLI command configured to use your Guardrails Hub API key to download validators
+* You should have created an account at the Guardrails AI Hub (https://hub.guardrailsai.com), and created an API key as outlined in the first hands-on lab exercise in this course.
+* You should have a working `guardrails` CLI command configured to use your Guardrails Hub API key to download validators.
 
 == Steps
 
@@ -145,10 +145,10 @@ Original text: This company's damn customer service is bloody trash! Email compl
 Cleaned text: Email complaints to <EMAIL_ADDRESS> or call <PHONE_NUMBER>.
 --
 +
-The validators check the input and scrub the unsafe content from the text. In the case of the PII validator, it redacts the PII information and replaces them with template text indicating the type of content that was redacted.
+The validators check the input and scrub the unsafe content from the text. In the case of the PII validator, it redacts the PII information and replaces it with template text indicating the type of content that was redacted.
 +
 NOTE: If the script fails during validator install and post-install setup due to transient network issues, try running it again.
 
-NOTE: You may see a zsh bus error on macOS after the script completes. This can be safely ignored. The cause is improper exit code from the python script, triggered by native code dependencies in some of the validators.
+NOTE: You may see a zsh bus error on macOS after the script completes. This can be safely ignored. The cause is an improper exit code from the python script, triggered by native code dependencies in some of the validators.
 
 . Experiment by installing more validators from the Guardrails AI Hub and verify the `on_fail="fix"` behavior in them.

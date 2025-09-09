@@ -1,3 +1,3 @@
 = Trusty AI (WIP)
 
-NOTE: Although **TrustyAI** has a Guardrails component, it has many more aspects related to model evaluation, bias, and deployment. It deserves its own dedicated course. This course is a work in progress and will be linked in this page when it is completed. Create a GitHub issues in this course repository if you feel strongly that it is needed sooner than planned.
+NOTE: Although **TrustyAI** has a Guardrails component, it has many more aspects related to model evaluation, bias, and deployment. It deserves its own dedicated course. This course is a work in progress and will be linked on this page when it is completed. Create a GitHub issue in this course repository if you feel strongly that it is needed sooner than planned.

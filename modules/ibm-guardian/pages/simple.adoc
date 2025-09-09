@@ -1,6 +1,6 @@
 = Lab: Input Guardrails
 
-In this lab, you will use run a simple chatbot that accepts input from the user, and checks it against the IBM AI Risk Atlas to classify if the content matches any of the pre-defined categories listed in the atlas. You will run the `granite3-guardian:2b` LLM model using `ollama`.
+In this lab, you will run a simple chatbot that accepts input from the user, and checks it against the IBM AI Risk Atlas to classify if the content matches any of the pre-defined categories listed in the atlas. You will run the `granite3-guardian:2b` LLM model using `ollama`.
 
 NOTE: We do not run any inference LLM model in this lab, and we restrict ourselves to the core Guardrails functionality of checking inputs.
 
@@ -15,7 +15,7 @@ NOTE: We do not run any inference LLM model in this lab, and we restrict ourselv
 
 ## Steps
 
-. If you have not already done it, clone the Git repository containing the code to a folder of your choice.
+. If you have not done it already, clone the Git repository containing the code to a folder of your choice.
 +
 [source,subs="verbatim,quotes"]
 --
@@ -53,7 +53,7 @@ $ (venv) *pip install -r requirements.txt*
 $ *ollama pull granite3-guardian:2b*
 --
 
-. Inspect the `guardian-simple.py` file in the editor of your choice. The `main()` function creates a simple text based chat interface and sends all input typed in by the user to the `ollama_gen()` method, which invokes the Guardian model using ollama. To exit the chatbot, type `exit` (all lowercase).
+. Inspect the `guardian-simple.py` file in the editor of your choice. The `main()` function creates a simple text-based chat interface and sends all input typed in by the user to the `ollama_gen()` method, which invokes the Guardian model using ollama. To exit the chatbot, type `exit` (all lowercase).
 
 . The core logic in the `main()` method checks the result of the analysis from the Guardian model and decides if the input is safe for further processing.
 +
@@ -78,9 +78,9 @@ messages= [{
             print(f"\n🤖 Chatbot: ❌ Your input is considered harmful! Blocking further processing...")
         continue
 --
-<1> Default category is set to "**harm**", which detects all types of risks listed in the IBM AI Risk Atlas
+<1> The default category is set to "**harm**", which detects all types of risks listed in the IBM AI Risk Atlas.
 <2> The Guardian model is specifically tuned for checking input text. It simply replies **No** if the input is safe. The code checks for this text and responds to the chat input.
-<3> The Guardian model returns **Yes** if it detected harmful content in the input
+<3> The Guardian model returns **Yes** if it detects harmful content in the input.
 
 . Run the chatbot. You will be shown a prompt where you can type in input text.
 +
@@ -112,7 +112,7 @@ You: Goddamn it. You are such a dumb idiot!
 
 . Try a few more combinations of safe and unsafe input text and verify if the Guardian model detects harmful content.
 
-. The default category in the code is set to **harm**, which detects all types of harmful content (profanity, social bias etc). Check the page at https://www.ibm.com/granite/docs/models/guardian/#risk-definitions[IBM Granite Guardian Risk Definitions^] to see the list of risks that are caught by the "**harm**" category. You can change the category to other risks and see if your input text matches any the category. See the example notebook at https://github.com/ibm-granite/granite-guardian/blob/main/cookbooks/granite-guardian-3.2/quick_start_vllm.ipynb[Granite Guardian Quick Start^], which lists a table with the different type of risks.
+. The default category in the code is set to **harm**, which detects all types of harmful content (profanity, social bias, etc). Check the page at https://www.ibm.com/granite/docs/models/guardian/#risk-definitions[IBM Granite Guardian Risk Definitions^] to see the list of risks that are caught by the "**harm**" category. You can change the category to other risks and see if your input text matches any of the category. See the example notebook at https://github.com/ibm-granite/granite-guardian/blob/main/cookbooks/granite-guardian-3.2/quick_start_vllm.ipynb[Granite Guardian Quick Start^], which lists a table with the different types of risks.
 
 . For example, change the category to **social_bias** in the code.
 +
@@ -131,11 +131,11 @@ You: Goddamn it. You are such a dumb idiot!
 ...
 --
 
-. Restart the chatbot and type in **I detest Klingons. I'd never allow them into the city**
+. Restart the chatbot and type in **I detest Klingons. I'd never allow them into the city.**
 +
 [source,subs="verbatim,quotes"]
 --
-You: I detest Klingons. I'd never allow them into the city
+You: I detest Klingons. I'd never allow them into the city.
 
 🤖 Chatbot: ❌ Your input is considered harmful! Blocking further processing...
 --

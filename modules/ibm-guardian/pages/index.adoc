@@ -1,10 +1,10 @@
 = IBM Granite Guardian
 
-This chapter will introduce you to *IBM Granite Guardian*, a collection of AI models specifically designed to detect and mitigate a wide range of risks in prompts and responses for AI applications. You will gain an understanding of how these models function as critical guardrails, helping to ensure that your LLM powered solutions remain safe, ethical, and aligned with desired behaviors.
+This chapter will introduce you to *IBM Granite Guardian*, a collection of AI models specifically designed to detect and mitigate a wide range of risks in prompts and responses for AI applications. You will gain an understanding of how these models function as critical guardrails, helping to ensure that your LLM-powered solutions remain safe, ethical, and aligned with desired behaviors.
 
 == Objectives
 
 * Learn how Granite Guardian models detect risks in prompts (user input), responses (LLM output), and conversations, and their application in Retrieval-Augmented Generation (RAG) and agentic workflows.
 * Implement Granite Guardian as a programmatic guardrail within applications, either directly or as part of an orchestration framework.
-* Recognize the scope and limitations of Granite Guardian models, and their optimal use cases.
+* Recognize the scope and limitations of Granite Guardian models and their optimal use cases.
 * Explore practical applications of Granite Guardian, including its use in real-world scenarios for content moderation and safety checks.

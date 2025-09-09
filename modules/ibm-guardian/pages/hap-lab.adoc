@@ -1,6 +1,6 @@
 = Lab: IBM HAP Models
 
-In this lab, you will use the `granite-guardian-hap-125m` IBM HAP model to analyze text for hate, abuse and profanity. You will download and run this model from Hugging Face.
+In this lab, you will use the `granite-guardian-hap-125m` IBM HAP model to analyze text for hate, abuse, and profanity. You will download and run this model from Hugging Face.
 
 NOTE: We do not run any inference LLM model in this lab, and we restrict ourselves to checking input/output text.
 
@@ -27,7 +27,7 @@ $ *git clone https://github.com/RedHatQuickCourses/genai-apps.git*
 $ *cd genai-apps/guardrails/granite-guardian*
 --
 
-. Activate the virtual environment you created in the previous labs. If you have not created a virtual environment, create a new one and active it.
+. Activate the virtual environment you created in the previous labs. If you have not created a virtual environment, create a new one and activate it.
 +
 [source,subs="verbatim,quotes"]
 --
@@ -43,7 +43,7 @@ Your prompt should change to indicate that you are now running in an isolated vi
 $ (venv) *pip install -r requirements.txt*
 --
 
-. Inspect the `guardian-hap.py` file in the editor of your choice. We download and instantiate the 125m HAP model from Hugging Face repository:
+. Inspect the `guardian-hap.py` file in the editor of your choice. We download and instantiate the 125m HAP model from the Hugging Face repository:
 +
 [source,subs="verbatim,quotes"]
 --
@@ -57,7 +57,7 @@ model = AutoModelForSequenceClassification.from_pretrained(*hap_model_id*)
 +
 The `hap_scorer()` method assigns a probability score between (`0` and `1`) for each input text to the HAP model. The `prompt_list` variable contains the list of input texts that we want the HAP model to analyze and score. You can add your own text to this list.
 
-. We simply loop through each input prompt, collect the HAP prediction (if it is safe or not), and the probability score into a Pandas dataframe object and then print a nicely formatted table
+. We simply loop through each input prompt, collect the HAP prediction (if it is safe or not), and the probability score into a Pandas dataframe object, and then print a nicely formatted table.
 +
 [source,subs="verbatim,quotes"]
 --

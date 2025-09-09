@@ -5,7 +5,7 @@ This chapter introduces the terminology, architecture, concepts, and implementat
 == Objectives
 
 * Describe the concept of `Guards` and `Validators` in Guardrails AI
-* Installing and using validators from `Guardrails Hub`
-* Stacking multiple validators together to add multiple Guardrail policies to applications
-* Filtering and fixing harmful language using Guardrails AI `fix` mode
-* Implementing centralized Guardrail services using `Guardrails AI Server`
+* Install and use validators from `Guardrails Hub`
+* Stack multiple validators together to add multiple Guardrail policies to applications
+* Filter and fix harmful language using Guardrails AI `fix` mode
+* Implement centralized Guardrail services using `Guardrails AI Server`

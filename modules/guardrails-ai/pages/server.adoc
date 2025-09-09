@@ -62,10 +62,10 @@ Saved configuration to config.py
 Replace TODOs in config.py and run with `guardrails start --config config.py`
 --
 <1> Use the create command in the `guardrails` CLI to create a server stub
-<2> Add validators needed for your applications
+<2> Add the validators needed for your applications.
 <3> A unique guard name. You can create multiple such guards for sets of applications requiring particular validators
 
-. The previous command will generate a file name `config.py` in the same directory. Inspect the default `config.py` file in a text editor of your choice. The file contains the validator declarations that you provided in the CLI, along with some placeholder TODOs instructing you to remove and change code to configure the validators.
+. The previous command will generate a file named `config.py` in the same directory. Inspect the default `config.py` file in a text editor of your choice. The file contains the validator declarations that you provided in the CLI, along with some placeholder TODOs instructing you to remove and change code to configure the validators.
 +
 [source,python]
 --
@@ -154,15 +154,15 @@ $ (venv) *guardrails start --config config.py*
 INFO:werkzeug:Press CTRL+C to quit
 --
 +
-NOTE: If the server fails to start due to timeouts or network jitter when downloading the validators from the hub, then try re-starting the server.
+NOTE: If the server fails to start due to timeouts or network jitter when downloading the validators from the hub, then try restarting the server.
 
-. Using a web browser, navigate to `http://localhost:8000/docs` to view the REST API documentation for the server. The Guardrails AI library parses the `config.py` file and provides a Swagger/OpenAPI style implementation of the documentation plus associated REST services on port `8000` by default.
+. Using a web browser, navigate to `http://localhost:8000/docs` to view the REST API documentation for the server. The Guardrails AI library parses the `config.py` file and provides a Swagger/OpenAPI style implementation of the documentation, plus associated REST services on port `8000` by default.
 +
 image::server-rest-api-docs.png[title=Guardrails AI server Swagger UI]
 
 . Your REST API is now ready to accept client requests. In the next few steps, you will inspect the code in the `gai-client.py` file. It acts as a client application that invokes the guards on the server. The Guardrails AI library takes care of all the conversion (marshalling and unmarshalling) between JSON and raw Python objects.
 +
-The `main()` method starts off by checking if the Guardrails AI server is running. The server convieniently exposes a `health-check` endpoint on the default port to let clients know if the server is running.
+The `main()` method starts off by checking if the Guardrails AI server is running. The server conveniently exposes a `health-check` endpoint on the default port to let clients know if the server is running.
 +
 [source,python]
 --
@@ -200,7 +200,7 @@ try:
         )
 ```
 +
-NOTE: If you want to avoid importing Python classes from the `guardrails-ai` library in your client, you can directly invoke the OpenAI AI compatible end point using the `requests` library and manually parse the JSON for further processing before you invoke the validator. See https://www.guardrailsai.com/docs/getting_started/guardrails_server#4-update-client-to-use-the-guardrails-server for this manual approach.
+NOTE: If you want to avoid importing Python classes from the `guardrails-ai` library in your client, you can directly invoke the OpenAI AI-compatible endpoint using the `requests` library and manually parse the JSON for further processing before you invoke the validator. See https://www.guardrailsai.com/docs/getting_started/guardrails_server#4-update-client-to-use-the-guardrails-server for this manual approach.
 +
 NOTE: Observe how the environment variable `GUARDRAILS_BASE_URL` is being set to point to the URL of the Guardrails AI server.
 +
@@ -241,7 +241,7 @@ for i, text in enumerate(test_responses, 1):
         print(f"Failed to connect to guard: {e}")
 ```
 
-. Run the `gai-client.py` file in a new terminal. Do not forget to activate your Python virtual environment where all the Guardrails AI library dependencies are installed. Your Guardrails AI server should be running as outlined in the previous steps.
+. Run the `gai-client.py` file in a new terminal. Do not forget to activate your Python virtual environment, where all the Guardrails AI library dependencies are installed. Your Guardrails AI server should be running as outlined in the previous steps.
 +
 [source,subs="verbatim,quotes"]
 --
@@ -275,7 +275,7 @@ Test 6: 'ibm and oracle are the top enterprise databases'
   ❌ FAILED: {"detail":"Validation failed for field with errors: Found the following competitors: oracle. Please avoid naming those competitors next time","status_code":400}
 --
 +
-Validations that passed do not display any details, while the ones that failed will display the reason for rejection. Note how the competitor check is contextually aware of the words in a sentence, so the word `"oracle"` when used as a noun in the sentence `"The oracle at Delphi saw visions"` does not cause the validator to fail.
+Validations that passed do not display any details, while the ones that failed will display the reason for rejection. Note how the competitor check is contextually aware of the words in a sentence, so the word `"oracle"`, when used as a noun in the sentence `"The oracle at Delphi saw visions,"` does not cause the validator to fail.
 +
 Uncomment the line `print(result)` on line `32` if you want to debug the code. The server terminal also displays the logs from the server side.
 +

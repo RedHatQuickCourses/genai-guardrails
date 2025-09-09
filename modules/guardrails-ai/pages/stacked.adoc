@@ -20,7 +20,7 @@ For this lab, you will install the following validators from the Guardrails AI H
 == Pre-requisites
 
 * Python v3.12 (The labs in this course were tested with Python 3.12 on macOS. Note that Python >3.12 is not supported for now)
-* The `pip` CLI to install Python libraries. In this lab, you should have installed the `termcolor` library
+* The `pip` CLI is used to install Python libraries. In this lab, you should have installed the `termcolor` library
 * Git CLI to clone the sample code from GitHub
 * Visual Studio Code or other editors to edit Python code
 * You should have created an account at the Guardrails AI Hub (https://hub.guardrailsai.com), and created an API key as outlined in the first hands-on lab exercise in this course
@@ -51,7 +51,7 @@ $ *source venv/bin/activate*
 +
 Your prompt should change to indicate that you are now running in an isolated virtual environment.
 
-. Inspect the `gai-stacked.py` file in a text editor of your choice. use the `install` class from the `guardrails-ai` library to install the three validators.
+. Inspect the `gai-stacked.py` file in a text editor of your choice. Use the `install` class from the `guardrails-ai` library to install the three validators.
 +
 [source,python]
 --
@@ -79,7 +79,7 @@ install(
 ...
 --
 
-. We then import all the validator classes and set up the `Guard` object. The default behavior of a validator that fails is to throw an exception (You can change this behavior by changing the `on_fail` attribute to the individual validators).
+. We then import all the validator classes and set up the `Guard` object. The default behavior of a validator that fails is to throw an exception (You can change this behavior by changing the `on_fail` attribute of the individual validators).
 +
 [source,python]
 --
@@ -98,7 +98,7 @@ guard = Guard().use_many( <1>
 --
 <1> Invoke the `use_many()` method to use (stack) multiple validators
 <2> Use the profanity detection validator with default settings
-<3> Use the competitor check validator. Takes list of strings (competitor names) as argument
+<3> Use the competitor check validator. Takes a list of strings (competitor names) as an argument
 <4> Use the gibberish detection validator. Validate gibberish at the sentence level with a low threshold (probabilistic score of a sentence being gibberish). Explicit declaration to throw exception in case gibberish is detected
 
 . The `main()` method invokes different methods to test the Guard object with specific texts that trigger the respective validators
@@ -143,10 +143,10 @@ Validation failed for field with errors: The following sentences in your respons
 --
 
 +
-The script takes a while to run. It downloads the validators and the associated fine-tuned small models for the validators. The corresponding test methods should have trigerred the appropriate validators and the exception messages identify why the input texts failed validation.
+The script takes a while to run. It downloads the validators and the associated fine-tuned small models for the validators. The corresponding test methods should have triggered the appropriate validators and the exception messages identify why the input texts failed validation.
 +
 NOTE: If the script fails during validator install and post-install setup due to transient network issues, try running it again.
 
-. Experiment by changing the text in the variable `llm_response` in the test methods and see if the validators are trigerred.
+. Experiment by changing the text in the variable `llm_response` in the test methods and see if the validators are triggered.
 
 . Experiment by checking the Guardrails AI hub and installing a few validators. Read their documentation and attach the validators to the `Guard` object. Add more test methods to trigger the validator and test for false positives.

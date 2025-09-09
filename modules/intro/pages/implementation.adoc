@@ -1,6 +1,6 @@
 # Implementing Guardrails
 
-In the previous section, you learnt about the importance of adding Guardrails to your AI applications. Rather than manually coding the Guardrail rails and workflows, there are specialized LLMs that can analyze inputs and outputs to and from the LLM (inference) that you are using for your applications. There are multiple options when it comes to Guardrails implementation using a mixture of specialized models and SDKs targeting programming languages like Python, Node.js and Java.
+In the previous section, you learnt about the importance of adding Guardrails to your AI applications. Rather than manually coding the Guardrail rails and workflows, there are specialized LLMs that can analyze inputs and outputs to and from the LLM (inference) that you are using for your applications. There are multiple options when it comes to Guardrails implementation using a mixture of specialized models and SDKs targeting programming languages like Python, Node.js, and Java.
 
 At their core, AI guardrails are *rules*, *safeguards*, and *policies* that govern how AI models function. Their primary purpose is to provide users with reliable and ethically sound AI interactions, guide the model towards accurate and context-aware responses, proactively prevent harmful outputs, and minimize unintended consequences.
 
@@ -10,11 +10,11 @@ NOTE: In this course, we will mostly focus on a few free and open source (FOSS) 
 
 == Proprietary Guardrails Frameworks and Tools
 
-Most of the hyperscaler cloud providers like AWS, GCP and Azure provide their own Guardrails frameworks that are tightly integrated with their cloud services.
+Most of the hyperscaler cloud providers like AWS, GCP, and Azure provide their own Guardrails frameworks that are tightly integrated with their cloud services.
 
 * https://aws.amazon.com/bedrock/guardrails[AWS Bedrock Guardrails^]:
 ** Manages what an AI model can and cannot say using various filters, also called policies.
-** Content filters identify and filter harmful text or images (hate speech, insults, sexual material, violence, harmful behavior, prompt attacks) with customizable strictness.
+** Content filters identify and filter harmful text or images (hate speech, insults, sexual material, violence, harmful behavior, and prompt attacks) with customizable strictness.
 ** Word filters block specific words or phrases (e.g., swear words, competitor names).
 ** Sensitive information filters look for and can block or mask private data like Social Security numbers, birthdates, and addresses, supporting custom patterns.
 ** Includes a contextual grounding check to verify if the model's answer matches its source, flagging or filtering out "hallucinations" or off-topic responses.
@@ -26,7 +26,7 @@ Most of the hyperscaler cloud providers like AWS, GCP and Azure provide their ow
 ** Provides a Content Safety Studio for testing, adjusting, and monitoring content moderation, including managing blocklists and exporting configurations.
 ** Features Customization Options to create custom moderation categories and fine-tune strictness for specific fields.
 ** Includes Smarter Detection tools like Prompt Shields (catching manipulative user inputs), Groundedness Checks (verifying AI answers against real sources), and Protected Content Detection (identifying copyrighted material).
-** Offers Monitoring and Analytics for tracking system performance and trends.
+** Offers monitoring and Analytics for tracking system performance and trends.
 ** Prioritizes Security and Privacy through secure connections, encrypted data, and adherence to privacy standards.
 
 * https://platform.openai.com/docs/guides/moderation[OpenAI Moderation API^]:
@@ -80,4 +80,4 @@ The following are some popular open source frameworks and libraries for adding G
 * https://whylabs.ai/langkit[WhyLabs’ LangKit^]:
   ** An open-source tool for monitoring Large Language Models. Compare and A/B test across different LLM and prompt versions
   ** Helps trace what an agent said or did. Validate and safeguard individual prompts and responses
-  ** Evaluate that the LLM behavior is compliant with policy. Monitor user interactions inside LLM-powered applications
+  ** Evaluate that the LLM behavior is compliant with policy. Monitor user interactions inside LLM-powered applications.
